@@ -72,22 +72,15 @@ set cursorline
 
 let g:ale_disable_lsp = 1
 
-highlight link ALEErrorSign ErrorMsg
-highlight link ALEWarningSign Type
-
 let g:ale_emit_conflict_warnings = 1
 let g:ale_echo_msg_format = '[%severity%] %s [%linter%]'
-let g:ale_sign_error      = '❌'
-let g:ale_sign_warning    = '❗'
-let g:ale_sign_info       = '❓'
+let g:ale_sign_error      = ''
+let g:ale_sign_warning    = 'ﲍ'
+let g:ale_sign_info       = 'ﯦ'
 let g:ale_fix_on_save     = 1
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_format = '%code: %%s [%linter%]'
 let g:ale_virtualtext_cursor = 0
-
-highlight link ALEError   ErrorMsg
-highlight link ALEWarning CursorLineNr
-highlight link ALEInfo    Conceal
 
 call plug#begin('~/.vim/plugged')
 Plug 'hoob3rt/lualine.nvim'
@@ -134,10 +127,17 @@ if has("persistent_undo")
 endif
 
 set termguicolors
-highlight LineNr guifg=#261C4D guibg=None
-highlight CursorLineNr guifg=#443979 guibg=#190F36
-highlight CursorLine guibg=#190F36
-highlight SignColumn guibg=#190F36
+highlight LineNr guifg=#160C2F guibg=None
+highlight CursorLineNr guifg=#1A1035 guibg=#120828
+highlight CursorLine guibg=#120828
+highlight SignColumn guibg=#0F0623
+
+highlight ALEError   guifg=#D5757C
+highlight ALEWarning guifg=#F8B8B7
+highlight ALEInfo    guifg=#DFE0F0
+highlight ALEErrorSign guifg=#D5757C
+highlight ALEWarningSign guifg=#F8B8B7
+
 
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wh <C-w>s
