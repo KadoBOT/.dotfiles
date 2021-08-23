@@ -1,0 +1,7 @@
+require("kadobot.lsp")
+require("kadobot.telescope")
+require("kadobot.nerd")
+require("kadobot.lualine")
+require("kadobot.treesitter")
+require("kadobot.compe")
+require("kadobot.whichkey")
