@@ -143,7 +143,7 @@ highlights:
   TSFuncMacro: "purple_mountain_majesty"
   TSParameter: "snow"
   TSParameterReference: "languid_lavender"
-  TSMethod: "royal_purple - b"
+  TSMethod: "lavender_web - b"
   TSField: "candy_pink"
   TSProperty: "snow"
   TSConstructor: "royal_purple"
@@ -153,7 +153,8 @@ highlights:
   TSLabel: "dark_slate_blue"
   # Does not work for yield and return they should be diff then class and def
   TSKeyword: "dark_slate_blue"
-  TSKeywordFunction: "purple_mountain_majesty"
+  TSKeywordReturn: "pastel_pink"
+  TSKeywordFunction: "pastel_pink"
   TSKeywordOperator: "blue_violet_crayola"
   TSOperator: "fg"
   TSException: "candy_pink"
@@ -163,7 +164,7 @@ highlights:
   TSInclude: "candy_pink"
 
   # Variable
-  TSVariable: "languid_lavender"
+  TSVariable: "dark_slate_blue"
   TSVariableBuiltin: "purple_mountain_majesty"
   # Text
   TSText: "purple_mountain_majesty"
