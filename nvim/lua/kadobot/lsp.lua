@@ -6,12 +6,18 @@ local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    }
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
 }
 
 -- Use an on_attach function to only map the following keys
@@ -30,7 +36,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gp', ':Lspsaga preview_definition<CR>', opts)
   buf_set_keymap('n', 'gh', ':Lspsaga lsp_finder<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-K>', ':Lspsaga signature_help<CR>', opts)
+  buf_set_keymap('n', '<space>ck', ':Lspsaga signature_help<CR>', opts)
   buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
   buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
@@ -39,14 +45,14 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>=a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>=r', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>=l', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', 'cr', ':Lspsaga rename<CR>', opts)
-  buf_set_keymap('n', 'ca', ':Lspsaga code_action<CR>', opts)
-  buf_set_keymap('v', 'ca', ':<C-U>Lspsaga range_code_action<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'cd', ':Lspsaga show_line_diagnostics<CR>', opts)
-  buf_set_keymap('n', 'cD', ':Lspsaga show_cursor_diagnostics<CR>', opts)
-  buf_set_keymap('n', '[d', ':Lspsaga diagnostic_jump_next<CR>', opts)
-  buf_set_keymap('n', ']d', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+  buf_set_keymap('n', '<space>cr', ':Lspsaga rename<CR>', opts)
+  --buf_set_keymap('n', 'ca', ':Lspsaga code_action<CR>', opts)
+  --buf_set_keymap('v', 'ca', ':<C-U>Lspsaga range_code_action<CR>', opts)
+  --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  --buf_set_keymap('n', 'cd', ':Lspsaga show_line_diagnostics<CR>', opts)
+  --buf_set_keymap('n', 'cD', ':Lspsaga show_cursor_diagnostics<CR>', opts)
+  --buf_set_keymap('n', '[d', ':Lspsaga diagnostic_jump_next<CR>', opts)
+  --buf_set_keymap('n', ']d', ':Lspsaga diagnostic_jump_prev<CR>', opts)
   buf_set_keymap('n', '<space>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end

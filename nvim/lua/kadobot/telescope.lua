@@ -17,11 +17,21 @@ require("telescope").setup({
             override_generic_sorter = false, -- override the generic sorter
             override_file_sorter = true,     -- override the file sorter
             case_mode = "smart_case",
+        },
+        frecency = {
+            ignore_patterns = {"*.git/*", "*/node_modules/*", "*/tmp/*", "*cache/*"},
+            workspaces = {
+                ["projects"] = "/home/ricardoa/Projects/",
+                ["go"] = "/home//ricardoa/Projects/go",
+                ["dotfiles"] = "/home/ricardoa/Projects/.dotfiles",
+                ["ts"] = "/home/Projects/ricardoa/typescript",
+            }
         }
     }
 })
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('frecency')
 
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {noremap = true})
@@ -32,7 +42,7 @@ vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<cr>'
 vim.api.nvim_set_keymap('n', '<leader>ce', '<cmd>Telescope lsp_definitions<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>ci', '<cmd>Telescope lsp_implementations<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>cd', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>cr', '<cmd>Telescope lsp_references<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>cR', '<cmd>Telescope lsp_references<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>cD', '<cmd>Telescope lsp_workspace_diagnostics<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>cS', '<cmd>Telescope lsp_workspace_symbols<cr>', {noremap = true})
@@ -42,3 +52,4 @@ vim.api.nvim_set_keymap('n', '<leader>gf', '<cmd>Telescope git_files<cr>', {nore
 vim.api.nvim_set_keymap('n', '<leader>gs', '<cmd>Telescope git_status<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<M-c>', '<cmd>Telescope commands<cr>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-Space>', '<cmd>Telescope frecency<cr>', {noremap = true})
