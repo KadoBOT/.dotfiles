@@ -21,7 +21,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:MesloLGS NF 17px
+font pango:BlexMono Nerd Font Book 17px
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -344,7 +344,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-    font pango:MesloLGS NF 17px
+    font pango:BlexMono Nerd Font Book 17px
 	strip_workspace_numbers no
 
     colors {

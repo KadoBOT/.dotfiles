@@ -59,7 +59,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver', 'vimls', 'sumneko_lua' }
+local servers = { 'gopls', 'tsserver', 'vimls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -70,7 +70,7 @@ for _, lsp in ipairs(servers) do
 end
 
 nvim_lsp.gopls['setup.gopls'] = { cmd = {"gopls", "serve"} }
-nvim_lsp.gopls['setup.capabilities'] =capabilities
+nvim_lsp.gopls['setup.capabilities'] = capabilities
 nvim_lsp.gopls['setup.settings'] = {
     gopls = {
         analyses = {
@@ -81,27 +81,29 @@ nvim_lsp.gopls['setup.settings'] = {
     },
 }
 
-nvim_lsp.sumneko_lua['cmd'] = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"}
-nvim_lsp.sumneko_lua['settings'] = {
-    Lua = {
-        runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-            -- Setup your lua path
-            path = vim.split(package.path, ';'),
-        },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = {
-                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-            },
-        },
-    },
+nvim_lsp.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  settings = {
+      Lua = {
+          runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT',
+              -- Setup your lua path
+              path = vim.split(package.path, ';'),
+          },
+          diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = {'vim'},
+          },
+          workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = {
+                  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+              },
+          },
+      },
+  }
 }
 
 saga.init_lsp_saga()
