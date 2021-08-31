@@ -24,6 +24,17 @@ palette:
   bg0_s: "#13092B"
   bg1: "#261C4D"
 
+  # In between
+  thistle: "#DBBED2"
+  lily: "#C8ABBC"
+  lilac: "#C698B5"
+  bouquet: "#A88196"
+  strikemaster: "#8C6488"
+  strikemaster_2: "#926181"
+  strikemaster_1: "#A16D8F"
+  mulled_wine: "#674B74"
+  mulled_wine_1: "#4C3A62"
+
   # Pinks
   snow: "#FEF1F1"
   snow_2: "#FFF8F8"
@@ -33,6 +44,7 @@ palette:
   light_coral: "#E9888D"
   pastel_pink: "#F1A0A2"
   candy_pink: "#D5757C"
+  turkish_rose: "#B26F94"
 
 highlights:
   Normal: "fg bg"
@@ -42,7 +54,7 @@ highlights:
   String: "misty_rose"
   Character: "purple_mountain_majesty"
   Number: "middle_blue_purple"
-  Boolean: "snow"
+  Boolean: "thistle"
   Float: "middle_blue_purple"
   Identifier: "purple_mountain_majesty"
   Function: "purple_mountain_majesty"
@@ -51,10 +63,10 @@ highlights:
   Repeat: "candy_pink"
   Label: "languid_lavender"
   Operator: "fg"
-  Keyword: "pastel_pink"
+  Keyword: "snow"
   Exception: "candy_pink"
   PreProc: "purple_mountain_majesty"
-  Include: "pastel_pink"
+  Include: "snow"
   Define: "candy_pink"
   Title: "fg"
   Macro: "candy_pink"
@@ -66,9 +78,9 @@ highlights:
   Special: "languid_lavender - i"
   SpecialComment: "russian_violet"
   MoreMsg: "fg"
-  Error: "pastel_pink - br"
+  Error: "snow - br"
   Todo: "candy_pink - bi"
-  Underlined: "light_coral . u"
+  Underlined: "strikemaster . u"
   Cursor: "- - r"
 
   ColorColumn: "- russian_violet_2"
@@ -82,7 +94,7 @@ highlights:
   DiffChange: "purple_mountain_majesty - u"
   DiffDelete: "bg light_coral"
   DiffText: "bg purple_mountain_majesty"
-  ErrorMsg: "pastel_pink"
+  ErrorMsg: "snow"
   VertSplit: "bg1"
   Folded: "russian_violet"
   FoldColumn: ""
@@ -98,7 +110,7 @@ highlights:
   QuickFixLine: "bg purple_mountain_majesty"
   Search: "bg fg"
   SpecialKey: "russian_violet"
-  SpellBad: "pastel_pink - u"
+  SpellBad: "snow - u"
   SpellCap: "middle_blue_purple"
   SpellLocal: "middle_blue_purple"
   SpellRare: "middle_blue_purple"
@@ -118,34 +130,34 @@ highlights:
 
   # -- Start Treesitter --
   # Misc
-  TSError: "pastel_pink"
+  TSError: "snow"
   TSPunctDelimiter: "lavender_web"
   TSPunctBracket: "lavender_web"
   TSPunctSpecial: "lavender_web"
   # Constants
   TSConstant: "languid_lavender"
-  TSConstBuiltin: "pastel_pink"
+  TSConstBuiltin: "snow"
   # -- These things overrides all palletes above
-  # TSConstMacro: "snow"
-  # TSStringRegex: "snow"
-  TSString: "purple_mountain_majesty"
+  # TSConstMacro: "thistle"
+  # TSStringRegex: "thistle"
+  TSString: "thistle"
   # TSStringEscape: "middle_blue_purple"
   TSCharacter: "misty_rose"
   TSNumber: "candy_pink"
   # TSBoolean: "dark_slate_blue"
   # TSFloat: "light_purple_mountain_majesty"
   # TSAnnotation: "purple_mountain_majesty"
-  # TSAttribute: "snow"
+  # TSAttribute: "thistle"
   # TSNamespace: "languid_lavender"
   # Functions
-  TSFuncBuiltin: "purple_mountain_majesty"
-  TSFunction: "lavender_web - b"
+  TSFuncBuiltin: "lavender_web"
+  TSFunction: "lavender_web"
   TSFuncMacro: "purple_mountain_majesty"
   TSParameter: "snow"
   TSParameterReference: "languid_lavender"
-  TSMethod: "lavender_web - b"
+  TSMethod: "lavender_web"
   TSField: "candy_pink"
-  TSProperty: "baby_pink"
+  TSProperty: "lavender_web"
   TSConstructor: "royal_purple"
   # Keywords
   TSConditional: "candy_pink"
@@ -153,19 +165,19 @@ highlights:
   TSLabel: "dark_slate_blue"
   # Does not work for yield and return they should be diff then class and def
   TSKeyword: "dark_slate_blue"
-  TSKeywordReturn: "pastel_pink"
-  TSKeywordFunction: "pastel_pink"
+  TSKeywordReturn: "languid_lavender"
+  TSKeywordFunction: "languid_lavender"
   TSKeywordOperator: "blue_violet_crayola"
   TSOperator: "fg"
   TSException: "candy_pink"
   TSTypeBuiltin: "candy_pink - i"
-  TSType: "candy_pink"
+  TSType: "candy_pink - i"
   TSStructure: "dark_slate_blue"
   TSInclude: "candy_pink"
 
   # Variable
-  TSVariable: "dark_slate_blue"
-  TSVariableBuiltin: "purple_mountain_majesty"
+  TSVariable: "purple_mountain_majesty"
+  TSVariableBuiltin: "blue_violet_crayola"
   # Text
   TSText: "purple_mountain_majesty"
   TSStrong: "purple_mountain_majesty"
@@ -195,8 +207,8 @@ highlights:
   htmlSpecialChar: "purple_mountain_majesty"
   htmlSpecialTagName: "dark_slate_blue"
   htmlTag: "languid_lavender"
-  htmlTagN: "snow"
-  htmlTagName: "snow"
+  htmlTagN: "thistle"
+  htmlTagName: "thistle"
   htmlTitle: "fg"
 
   # Markdown (keep consistent with HTML, above)
@@ -211,7 +223,7 @@ highlights:
   markdownH4: "fg"
   markdownH5: "fg"
   markdownH6: "fg"
-  markdownHeadingDelimiter: "snow"
+  markdownHeadingDelimiter: "thistle"
   markdownHeadingRule: "russian_violet"
   markdownId: "candy_pink"
   markdownIdDeclaration: "dark_slate_blue"
@@ -219,8 +231,8 @@ highlights:
   markdownItalic: "candy_pink - i"
   markdownLinkDelimiter: "candy_pink"
   markdownLinkText: "dark_slate_blue"
-  markdownListMarker: "snow"
-  markdownOrdelight_coralListMarker: "snow"
+  markdownListMarker: "thistle"
+  markdownOrdelight_coralListMarker: "thistle"
   markdownRule: "russian_violet"
   markdownUrl: "misty_rose - u"
 
@@ -246,13 +258,13 @@ highlights:
 
   # -- START CoC --
   CocExplorerIndentLine: "russian_violet"
-  CocExplorerBufferRoot: "snow"
-  CocExplorerFileRoot: "snow"
+  CocExplorerBufferRoot: "thistle"
+  CocExplorerFileRoot: "thistle"
   CocExplorerBufferFullPath: "russian_violet"
   CocExplorerFileFullPath: "russian_violet"
   CocExplorerBufferReadonly: "candy_pink"
   CocExplorerBufferModified: "candy_pink"
-  CocExplorerBufferNameVisible: "snow"
+  CocExplorerBufferNameVisible: "thistle"
   CocExplorerFileReadonly: "candy_pink"
   CocExplorerFileModified: "candy_pink"
   CocExplorerFileHidden: "russian_violet"
@@ -260,9 +272,9 @@ highlights:
   # -- END CoC --
 
   # -- START Easymotion --
-  EasyMotionTarget: "pastel_pink - b"
-  EasyMotionTarget2First: "pastel_pink - b"
-  EasyMotionTarget2Second: "pastel_pink - b"
+  EasyMotionTarget: "snow - b"
+  EasyMotionTarget2First: "snow - b"
+  EasyMotionTarget2Second: "snow - b"
   EasyMotionShade: ""
   # EasyMotionIncSearch:
   # EasyMotionMoveHL:
@@ -273,7 +285,7 @@ highlights:
   StartifyNumber: "fg"
   StartifySelect: "dark_slate_blue"
   StartifyBracket: "dark_slate_blue"
-  StartifySpecial: "snow"
+  StartifySpecial: "thistle"
   StartifyVar: "dark_slate_blue"
   StartifyPath: "purple_mountain_majesty"
   StartifyFile: "fg"
@@ -285,42 +297,65 @@ highlights:
   # -- START WhichKey --
   WhichKey: "candy_pink"
   WhichKeySeperator: "purple_mountain_majesty"
-  WhichKeyGroup: "snow"
+  WhichKeyGroup: "thistle"
   WhichKeyDesc: "blue_violet_crayola"
   # -- END WhichKey --
 
   # Fugitive
   diffAdded: "purple_mountain_majesty"
-  diffRemoved: "snow"
+  diffRemoved: "thistle"
   diffFileId: "dark_slate_blue - br"
   diffFile: "russian_violet"
   diffNewFile: "purple_mountain_majesty"
-  diffOldFile: "snow"
+  diffOldFile: "thistle"
 
   # Signify
 
   SignifySignAdd: "purple_mountain_majesty"
   SignifySignChange: "purple_mountain_majesty"
-  SignifySignDelete: "snow"
+  SignifySignDelete: "thistle"
 
   # Git-gutter
   GitGutterAdd: "misty_rose"
   GitGutterChange: "purple_mountain_majesty"
-  GitGutterDelete: "light_coral"
+  GitGutterDelete: "strikemaster"
 
   debugPc: "- light_coral"
-  debugBreakpoint: "light_coral - r"
+  debugBreakpoint: "strikemaster - r"
 
   # VimWiki
-  VimwikiHeader1: "snow_2 - b"
+  VimwikiHeader1: "thistle - b"
   VimwikiHeader2: "misty_rose - b"
   VimwikiHeader3: "languid_lavender - b"
   VimwikiHeader4: "royal_purple - b"
-  VimwikiHeader5: "pastel_pink - b"
+  VimwikiHeader5: "snow - b"
   VimwikiHeader6: "baby_pink - b"
   VimwikiLink: "blue_violet_crayola"
   VimwikiHeaderChar: "russian_violet_2"
   VimwikiHR: "purple_mountain_majesty"
-  VimwikiList: "snow"
-  VimwikiTag: "snow"
+  VimwikiList: "thistle"
+  VimwikiTag: "thistle"
   VimwikiMarkers: "russian_violet_2"
+
+  # Barbar
+  BufferCurrent: "lavender_web royal_purple"
+  BufferCurrentIndex: "lavender_web royal_purple"
+  BufferCurrentMod: "lavender_web royal_purple"
+  BufferCurrentSign: "russian_violet_2 royal_purple"
+  BufferCurrentTarget: "lavender_web royal_purple"
+  BufferVisible: "bg royal_purple"
+  BufferVisibleIndex: "bg royal_purple"
+  BufferVisibleMod: "bg royal_purple"
+  BufferVisibleSign: "bg royal_purple"
+  BufferVisibleTarget: "bg royal_purple"
+  BufferInactive: "st_patricks_blue russian_violet_2"
+  BufferInactiveIndex: "st_patricks_blue russian_violet_2"
+  BufferInactiveMod: "st_patricks_blue russian_violet_2"
+  BufferInactiveSign: "royal_purple russian_violet_2"
+  BufferInactiveTarget: "st_patricks_blue russian_violet_2"
+  BufferTabpages: "bouquet"
+  BufferTabpageFill: "royal_purple bg1"
+  BufferCurrentIcon: "royal_purple"
+  BufferVisibleIcon: "bg"
+  BufferInactiveIcon: "royal_purple"
+  BufferOffset: "royal_purple"

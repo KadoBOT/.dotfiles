@@ -75,6 +75,7 @@ ENABLE_CORRECTION="false"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+set globdots
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -141,6 +142,8 @@ alias n="nvim"
 alias vi="nvim"
 alias vim="nvim"
 alias oldvim="\vim"
+alias cdp="cd ~/Projects"
+alias cdd="cd ~/.dotfiles"
 
 # Paths
 export PATH=$PATH:/usr/local/go/bin

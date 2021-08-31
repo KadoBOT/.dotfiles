@@ -17,6 +17,7 @@ set smartindent
 set nohlsearch
 set ignorecase
 set incsearch
+set inccommand=nosplit
 set smartcase
 
 " Text Rendering
@@ -108,10 +109,17 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'tami5/sql.nvim'
 Plug 'airblade/vim-gitgutter'
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'romgrk/barbar.nvim'
+Plug 'Raimondi/delimitMate'
+Plug 'psliwka/vim-smoothie'
+Plug 'Yggdroot/indentLine'
 call plug#end()
+
+" indentLine indent char
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
@@ -171,8 +179,12 @@ EOF
 
  "ALE (Asynchronous Lint Engine)
 let g:ale_fixers = {
+ \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+ \ 'html': ['prettier'],
  \ 'javascript': ['eslint'],
- \ 'go': ['goimports', 'golines', 'gofmt']
+ \ 'json': ['eslint', 'prettier'],
+ \ 'go': ['goimports', 'golines', 'gofmt'],
+ \ 'typescript': ['eslint', 'prettier']
  \ }
 let g:ale_linters = {
  \ 'go': ['golangci-lint']
