@@ -334,8 +334,8 @@ set $primary     #271D4C
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
+	status_command i3status | ~/.i3/i3kb.sh i3status
 	i3bar_command i3bar
-	status_command i3status
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
@@ -430,3 +430,9 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# change keyboard layout
+# bindsym Ctrl+F2 exec setxkbmap -layout us && xset -r 66
+bindsym Ctrl+F2 exec ~/.i3/i3kb.sh set us && xset -r 66
+# bindsym Ctrl+F1 exec setxkbmap -layout dvp-workman && xset r 66
+bindsym Ctrl+F1 exec ~/.i3/i3kb.sh set dvp-workman && xset r 66

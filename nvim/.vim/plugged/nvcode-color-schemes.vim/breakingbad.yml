@@ -84,11 +84,11 @@ highlights:
   Cursor: "- - r"
 
   ColorColumn: "- russian_violet_2"
-  CursorLineNr: "dark_purple - b"
+  CursorLineNr: "royal_purple - b"
   SignColumn: "- bg"
   Conceal: "russian_violet"
   CursorColumn: "- bg0"
-  CursorLine: "- bg0_s"
+  CursorLine: "- russian_violet_2"
   Directory: "languid_lavender"
   DiffAdd: "bg purple_mountain_majesty"
   DiffChange: "purple_mountain_majesty - u"
@@ -99,7 +99,7 @@ highlights:
   Folded: "russian_violet"
   FoldColumn: ""
   IncSearch: "blue_violet_crayola russian_violet"
-  LineNr: "russian_violet_2"
+  LineNr: "st_patricks_blue"
   MatchParen: "dark_slate_blue - u"
   NonText: "russian_violet"
   Pmenu: "fg bg1"
@@ -359,3 +359,10 @@ highlights:
   BufferVisibleIcon: "bg"
   BufferInactiveIcon: "royal_purple"
   BufferOffset: "royal_purple"
+
+  # Ale
+  ALEError: "candy_pink"
+  ALEWarning: "pastel_pink"
+  ALEInfo: "misty_rose"
+  ALEErrorSign: "candy_pink"
+  ALEWarningSign: "pastel_pink"

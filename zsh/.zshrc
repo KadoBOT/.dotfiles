@@ -157,6 +157,25 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi
 
+setxkbmap us
+KB="us"
+
+toggle_kb_layout()
+{
+    if [[ "$KB" = "us" ]]; then
+        KB="workman"
+    elif [[ "$KB" = "workman" ]]; then
+        KB="dvp"
+    else
+        KB="us"
+    fi
+
+    setxkbmap $KB
+}
+
+zle -N tkb toggle_kb_layout
+bindkey "^[[24~" tkb
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

@@ -111,11 +111,11 @@ Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'airblade/vim-gitgutter'
-Plug 'tjdevries/colorbuddy.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'Raimondi/delimitMate'
 Plug 'psliwka/vim-smoothie'
 Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-eunuch'
 call plug#end()
 
 " indentLine indent char
@@ -140,17 +140,6 @@ if has("persistent_undo")
 endif
 
 set termguicolors
-highlight LineNr guifg=#160C2F guibg=None
-highlight CursorLineNr guifg=#1A1035 guibg=#120828
-highlight CursorLine guibg=#120828
-highlight SignColumn guibg=#0F0623
-
-highlight ALEError   guifg=#D5757C
-highlight ALEWarning guifg=#F8B8B7
-highlight ALEInfo    guifg=#DFE0F0
-highlight ALEErrorSign guifg=#D5757C
-highlight ALEWarningSign guifg=#F8B8B7
-
 
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wh <C-w>s
