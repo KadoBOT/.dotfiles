@@ -28,7 +28,7 @@ i3status() {
   while :
   do
     read line
-    block="{\"full_text\":\"$(get_kbdlayout)\"}"
+    block="{\"full_text\":\"  $(get_kbdlayout)\"}"
     echo "${line/\[\{/\[$block,\{}"|| exit 1
   done
 }

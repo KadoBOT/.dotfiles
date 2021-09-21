@@ -161,6 +161,11 @@ nmap <space>ghs <Plug>(GitGutterStageHunk)
 nmap <space>ghu <Plug>(GitGutterUndoHunk)
 nmap <space>ghp <Plug>(GitGutterPreviewHunk)
 
+noremap l <Left>
+noremap h <Down>
+noremap j <Up>
+noremap z <Right>
+
 " Config
 lua << EOF
 require('kadobot')

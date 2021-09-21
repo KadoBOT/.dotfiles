@@ -1,0 +1,66 @@
+// TODO: Description
+
+partial alphanumeric_keys
+xkb_symbols "dvp-workman" {
+
+    include "us(dvorak)"
+
+    name[Group1] = "USA - Programmer Dvorak";
+
+    key <TLDE> { [ dollar,          asciitilde,     dead_tilde                  ] };
+    key <AE12> { [ ampersand,       percent                                     ] };
+    key <AE01> { [ bracketleft,     1,              currency                    ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE02> { [ braceleft,       2,              cent                        ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE03> { [ plus,            3,              yen                         ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE04> { [ parenleft,       4,              EuroSign                    ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE05> { [ equal,           5,              sterling                    ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE06> { [ asterisk,        6                                           ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE07> { [ parenright,      7,              onehalf                     ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE08> { [ exclam,            8                                           ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE09> { [ braceright,    9                                           ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE10> { [ bracketright,          0,              exclamdown                  ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AE11> { [ numbersign,      grave,          dead_grave                  ] };
+
+    key <BKSP> { [ BackSpace                                                    ] };
+    key <CAPS> { [    BackSpace,       Escape,       BackSpace,        BackSpace ] };
+
+    key <AD01> { [ colon,       semicolon,          dead_diaeresis              ] };
+    key <AD02> {  [   d,  D   ] };
+    key <AD03> {  [   m,  M   ] };
+    key <AD04> {  [   b,  B   ] };
+    key <AD05> {  [   q,  Q   ] };
+    key <AD06> {  [   x,  X   ] };
+    key <AD07> {  [   f,  F   ] };
+    key <AD08> {  [   u,  U   ] };
+    key <AD09> {  [   p,  P   ] };
+    key <AD10> {  [   k,  K   ] };
+    key <AD11> { [ slash,           question,       questiondown                ] };
+    key <AD12> { [ at,              asciicircum,    dead_circumflex, dead_caron ] };
+
+    key <AC01> {  [   a,  A   ] };
+    key <AC02> {  [   s,  S   ] };
+    key <AC03> {  [   r,  R   ] };
+    key <AC04> {  [   t,  T   ] };
+    key <AC05> {  [   g,  G   ] };
+    key <AC06> {  [   y,  Y   ] };
+    key <AC07> {  [   n,  N   ] };
+    key <AC08> {  [   e,  E   ] };
+    key <AC09> {  [   o,  O   ] };
+    key <AC10> {  [   i,  I   ] };
+    key <AC11> { [ apostrophe,      quotedbl,       dead_acute                  ] };
+
+
+    key <AB01> { [ comma,           less,           guillemotleft               ] };
+    key <AB02> { [ period,          greater,        guillemotright              ] };
+    key <AB03> {  [   v,  V   ] };
+    key <AB04> {  [   c,  C   ] };
+    key <AB05> { [ minus,           underscore,     hyphen                      ], type[Group1] = "FOUR_LEVEL_ALPHABETIC" };
+    key <AB06> {  [   w,  W   ] };
+    key <AB07> {  [   l,  L   ] };
+    key <AB08> {  [   h,  H   ] };
+    key <AB10> {  [   z,  Z   ] };
+    key <AB09> {  [   j,  J   ] };
+    key <BKSL> { [ backslash,       bar                                         ] };
+
+    include "level3(ralt_switch)"
+};

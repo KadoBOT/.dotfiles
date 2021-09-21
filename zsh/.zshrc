@@ -11,7 +11,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
-export BROWSER=brave-browser
+export BROWSER=brave
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -151,6 +151,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 export PATH=$PATH:$HOME/.pulumi/bin
 export PATH=$PATH:$HOME/.istio/bin
 export PATH=$PATH:$HOME/.emacs.d/bin
+export PATH=$PATH:/usr/local/share/webOS_TV_SDK/CLI/bin
 
 # If running from tty1 start sway
 if [ "$(tty)" = "/dev/tty1" ]; then
@@ -181,3 +182,9 @@ bindkey "^[[24~" tkb
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /home/ricardoa/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi

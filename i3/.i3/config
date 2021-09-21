@@ -327,7 +327,7 @@ set_from_resource $term_color15    color15
 set $bg_active   #735EA6
 set $text_active #FDE5E2
 set $bg_inactive #352A4D
-set $border_acti #614570
+set $border_acti #CA8987
 set $text_inacti #423873
 set $border_inac #423873
 set $primary     #271D4C
