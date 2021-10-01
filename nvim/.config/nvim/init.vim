@@ -88,7 +88,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground',
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
@@ -116,6 +116,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'psliwka/vim-smoothie'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-eunuch'
+Plug 'DataWraith/auto_mkdir'
+Plug 'onsails/lspkind-nvim'
 call plug#end()
 
 " indentLine indent char

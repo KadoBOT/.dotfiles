@@ -158,7 +158,6 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway
 fi
 
-setxkbmap us
 KB="us"
 
 toggle_kb_layout()

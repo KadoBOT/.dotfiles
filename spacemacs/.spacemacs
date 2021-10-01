@@ -565,14 +565,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("/usr/bin/terraform-ls" "serve"))
-                    :major-modes '(terraform-mode)
-                    :server-id 'terraform-ls))
-
-  (add-hook 'terraform-mode-hook #'lsp)
-
-  )
+  (define-key evil-normal-state-map (kbd "l") 'evil-backward-char)
+  (define-key evil-normal-state-map (kbd "j") 'evil-previous-line)
+  (define-key evil-normal-state-map (kbd "h") 'evil-next-line)
+  (define-key evil-normal-state-map (kbd "z") 'evil-forward-char)
+)
 
 
 ;; Do not write anything past this comment. This is where Emacs will
