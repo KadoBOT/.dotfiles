@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -75,7 +75,7 @@ ENABLE_CORRECTION="false"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-set globdots
+setopt globdots
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -87,17 +87,16 @@ plugins=(
     docker-compose
     gcloud
     kubectl
-    tmux
     minikube
     helm
     terraform
     aws
     vi-mode
-    zsh-autosuggestions
-    zsh-syntax-highlighting
+#   zsh-autosuggestions
+#    zsh-syntax-highlighting
 )
 
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -128,8 +127,8 @@ alias ohmyzsh= "vim ~/.oh-my-zsh"
 alias cat="bat"
 alias ls="exa --icons"
 alias ll="exa --header --long --icons"
-alias mk="minikube"
-alias k="kubectl"
+#alias mk="minikube"
+#alias k="kubectl"
 alias ka="k apply"
 alias kaf="ka -f"
 alias kc="k create"
@@ -137,7 +136,7 @@ alias kcf="kc -f"
 alias kg="k get"
 alias kdl="k delete"
 alias kds="k describe"
-alias tf="terraform"
+#alias tf="terraform"
 alias n="nvim"
 alias vi="nvim"
 alias vim="nvim"
@@ -146,44 +145,27 @@ alias cdp="cd ~/Projects"
 alias cdd="cd ~/.dotfiles"
 
 # Paths
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=$PATH:$HOME/.pulumi/bin
-export PATH=$PATH:$HOME/.istio/bin
-export PATH=$PATH:$HOME/.emacs.d/bin
-export PATH=$PATH:/usr/local/share/webOS_TV_SDK/CLI/bin
+# export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
+# export PATH=$PATH:$HOME/.pulumi/bin
+# export PATH=$PATH:$HOME/.istio/bin
+# export PATH=$PATH:$HOME/.emacs.d/bin
+# export PATH=$PATH:/usr/local/share/webOS_TV_SDK/CLI/bin
 
-# If running from tty1 start sway
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
-fi
-
-KB="us"
-
-toggle_kb_layout()
-{
-    if [[ "$KB" = "us" ]]; then
-        KB="workman"
-    elif [[ "$KB" = "workman" ]]; then
-        KB="dvp"
-    else
-        KB="us"
-    fi
-
-    setxkbmap $KB
-}
-
-zle -N tkb toggle_kb_layout
-bindkey "^[[24~" tkb
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /home/ricardoa/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/tmp/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias luamake=/Users/ricardoambrogi/Projects/lua-language-server/3rd/luamake/luamake

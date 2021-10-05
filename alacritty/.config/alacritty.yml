@@ -111,7 +111,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "BlexMono Nerd Font"
+    family: "BlexMono NF"
     style: Book
 
     # The `style` can be specified to pick a specific face.
@@ -151,7 +151,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 13.5
+  size: 16.5
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -287,7 +287,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.90
+background_opacity: 0.95
 
 debug:
   render_timer: false
@@ -353,7 +353,7 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /usr/bin/zsh
+  program: /bin/zsh
   #args:
     #- new-session
     #- -A

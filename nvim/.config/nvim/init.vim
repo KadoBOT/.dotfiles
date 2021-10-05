@@ -61,7 +61,7 @@ set hidden
 set formatoptions+=j
 set nomodeline
 set nrformats-=octal
-set shell=/usr/bin/zsh
+set shell=/bin/zsh
 set clipboard=unnamedplus
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c

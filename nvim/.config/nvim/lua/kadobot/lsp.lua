@@ -1,8 +1,8 @@
 local nvim_lsp = require 'lspconfig'
 local saga = require 'lspsaga'
 
-local sumneko_root_path = '/home/ricardoa/lua-language-server'
-local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
+local sumneko_root_path = '/Users/ricardoambrogi/Projects/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/macOS/lua-language-server'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -24,7 +24,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   require 'lsp_signature'.on_attach()
 
   -- Mappings.
@@ -36,8 +36,8 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gp', ':Lspsaga preview_definition<CR>', opts)
   buf_set_keymap('n', 'gh', ':Lspsaga lsp_finder<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<space>ck', ':Lspsaga signature_help<CR>', opts)
-  buf_set_keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+  buf_set_keymap('n', '<space>ck', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
   buf_set_keymap('n', '<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
@@ -45,7 +45,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>=a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>=r', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>=l', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>cr', ':Lspsaga rename<CR>', opts)
+  buf_set_keymap('n', '<space>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   --buf_set_keymap('n', 'ca', ':Lspsaga code_action<CR>', opts)
   --buf_set_keymap('v', 'ca', ':<C-U>Lspsaga range_code_action<CR>', opts)
   --buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
@@ -59,7 +59,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tsserver', 'vimls' }
+local servers = { 'tsserver', 'vimls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -69,19 +69,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-nvim_lsp.gopls['setup.gopls'] = { cmd = {"gopls", "serve"} }
-nvim_lsp.gopls['setup.capabilities'] = capabilities
-nvim_lsp.gopls['setup.settings'] = {
-    gopls = {
-        analyses = {
-            unusedparams = true,
-            unreachable = true
-        },
-        staticcheck = true,
-    },
-}
-
 nvim_lsp.sumneko_lua.setup {
+  on_attach = on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
       Lua = {
