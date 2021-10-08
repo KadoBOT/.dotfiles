@@ -169,3 +169,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias luamake=/Users/ricardoambrogi/Projects/lua-language-server/3rd/luamake/luamake
+
+# Added by serverless binary installer
+export PATH="$HOME/.serverless/bin:$PATH"
