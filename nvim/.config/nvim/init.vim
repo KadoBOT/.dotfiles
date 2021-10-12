@@ -146,6 +146,10 @@ set termguicolors
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wh <C-w>s
 nnoremap <leader>wc <C-w>q
+nnoremap <Tab>l <C-w>h
+nnoremap <Tab>h <C-w>j
+nnoremap <Tab>j <C-w>k
+nnoremap <Tab>z <C-w>l
 vnoremap <leader>y "*y
 vnoremap <leader>Y "+y
 nnoremap <leader>p "*p

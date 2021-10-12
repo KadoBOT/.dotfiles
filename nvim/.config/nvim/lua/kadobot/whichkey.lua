@@ -64,6 +64,12 @@ vim.g.which_key_map = {
   },
   p = 'which_key_ignore',
   P = 'which_key_ignore',
+  b = {
+    name = 'Buffer',
+    p = 'Previous',
+    n = 'Next',
+    c = 'Close',
+  }
 }
 
 vim.fn['which_key#register']('<Space>', "g:which_key_map")

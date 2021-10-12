@@ -92,11 +92,12 @@ plugins=(
     terraform
     aws
     vi-mode
-#   zsh-autosuggestions
-#    zsh-syntax-highlighting
+    tmux
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
-# ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
