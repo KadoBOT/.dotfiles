@@ -1,7 +1,9 @@
 local opts = { noremap=true, silent=true }
 
 vim.api.nvim_set_keymap('n', '<space>bp', ':BufferPrevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-p>', ':BufferPrevious<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>bn', ':BufferNext<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-n>', ':BufferNext<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>bc', ':BufferClose<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>b1', ':BufferGoto 1<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>b2', ':BufferGoto 2<CR>', opts)

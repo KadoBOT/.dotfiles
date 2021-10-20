@@ -21,17 +21,17 @@ vim.g.which_key_map = {
   c = {
     name = '+Code',
     f = 'Format',
-    a = 'Actions',
+    a = 'Action',
     e = 'Definitions',
     i = 'Implementations',
     d = 'Document Diagnostics',
     D = 'Workspace Diagnostics',
-    k = 'Signature Help',
     R = 'References',
     r = 'Rename',
     s = 'Document Symbols',
     S = 'Workspace Symbols',
-    q = 'Location List',
+    q = 'Quickfix',
+    l = 'Location List'
   },
   ['='] = {
     name = '+Workspace',
@@ -69,6 +69,13 @@ vim.g.which_key_map = {
     p = 'Previous',
     n = 'Next',
     c = 'Close',
+    b = 'List',
+    o = 'Old Files'
+  },
+  h = {
+    name = 'History',
+    c = 'Command',
+    s = 'Search'
   }
 }
 
