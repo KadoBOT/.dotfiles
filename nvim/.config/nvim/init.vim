@@ -106,6 +106,7 @@ Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tami5/sql.nvim'
@@ -120,6 +121,7 @@ Plug 'DataWraith/auto_mkdir'
 Plug 'onsails/lspkind-nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
+Plug 'weilbith/nvim-code-action-menu'
 call plug#end()
 
 " indentLine indent char
@@ -165,9 +167,9 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <leader>tu :UndotreeShow<CR>
 nnoremap <leader><leader> <c-^>
-nmap <space>ghs <Plug>(GitGutterStageHunk)
-nmap <space>ghu <Plug>(GitGutterUndoHunk)
-nmap <space>ghp <Plug>(GitGutterPreviewHunk)
+nmap <leader>ghs <Plug>(GitGutterStageHunk)
+nmap <leader>ghu <Plug>(GitGutterUndoHunk)
+nmap <leader>ghp <Plug>(GitGutterPreviewHunk)
 
 noremap l <Left>
 noremap h <Down>
