@@ -669,8 +669,6 @@ key_bindings:
   - { key: D,         mods: Alt,                    chars: "\x01\x63"      }
   - { key: X,         mods: Alt,                    chars: "\x01\x26"      }
   - { key: X,         mods: Alt|Shift,              chars: "\x01\x78"      }
-  - { key: N,         mods: Alt,                    chars: "\x01\x6e"      }
-  - { key: P,         mods: Alt,                    chars: "\x01\x70"      }
   - { key: Key1,      mods: Alt,                    chars: "\x01\x31"      }
   - { key: Key2,      mods: Alt,                    chars: "\x01\x32"      }
   - { key: Key3,      mods: Alt,                    chars: "\x01\x33"      }
@@ -681,19 +679,15 @@ key_bindings:
   - { key: Key8,      mods: Alt,                    chars: "\x01\x38"      }
   - { key: Key9,      mods: Alt,                    chars: "\x01\x39"      }
   - { key: Key0,      mods: Alt,                    chars: "\x01\x30"      }
-  - { key: H,         mods: Alt,                    chars: "\x01\x25"      }
-  - { key: H,         mods: Alt|Shift,              chars: "\x01\x22"      }
-  - { key: J,         mods: Alt|Shift,              chars: "\x01\x7b"      }
-  - { key: K,         mods: Alt|Shift,              chars: "\x01\x7d"      }
-  - { key: Up,        mods: Alt,                    chars: "\x01\x1b[A"    }
-  - { key: Down,      mods: Alt,                    chars: "\x01\x1b[B"    }
-  - { key: Left,      mods: Alt,                    chars: "\x01\x1b[D"    }
-  - { key: Right,     mods: Alt,                    chars: "\x01\x1b[C"    }
+  - { key: T,         mods: Alt,                    chars: "\x01\x25"      }
+  - { key: T,         mods: Alt|Shift,              chars: "\x01\x22"      }
+  - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
+  - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
   - { key: Up,        mods: Alt|Shift,              chars: "\x01\x1b[1;5A" }
   - { key: Down,      mods: Alt|Shift,              chars: "\x01\x1b[1;5B" }
   - { key: Left,      mods: Alt|Shift,              chars: "\x01\x1b[1;5D" }
   - { key: Right,     mods: Alt|Shift,              chars: "\x01\x1b[1;5C" }
-  - { key: E,         mods: Alt,                    chars: "\x01\x20"      }
+  - { key: N,         mods: Alt,                    chars: "\x01\x20"      }
   #- { key: L,9        mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }

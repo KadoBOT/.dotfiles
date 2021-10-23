@@ -55,6 +55,7 @@ set nobomb
 set autoread
 set backspace=indent,eol,start
 set nobackup
+set nowritebackup
 set confirm
 set noswapfile
 set hidden
@@ -71,6 +72,8 @@ set nostartofline
 set timeoutlen=500
 set cursorline
 set updatetime=100
+set listchars=tab:>·,trail:~,extends:>,precedes:<,space:·
+set list
 
 let g:ale_disable_lsp = 1
 
@@ -89,6 +92,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'arcticicestudio/nord-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'DataWraith/auto_mkdir'
 Plug 'dense-analysis/ale'
 Plug 'hrsh7th/cmp-buffer'
@@ -152,20 +156,16 @@ set termguicolors
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wh <C-w>s
 nnoremap <leader>wc <C-w>q
-nnoremap <Tab>l <C-w>h
-nnoremap <Tab>h <C-w>j
-nnoremap <Tab>j <C-w>k
-nnoremap <Tab>z <C-w>l
 vnoremap <leader>y "*y
 vnoremap <leader>Y "+y
 nnoremap <leader>p "*p
 nnoremap <leader>P "+p
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <ESC>:m .+1<CR>==gi
-inoremap <C-k> <ESC>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+nnoremap <M-h> :m .+1<CR>==
+nnoremap <M-j> :m .-2<CR>==
+inoremap <M-h> <ESC>:m .+1<CR>==gi
+inoremap <M-j> <ESC>:m .-2<CR>==gi
+vnoremap <M-h> :m '>+1<CR>gv=gv
+vnoremap <M-j> :m '<-2<CR>gv=gv
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <leader>tu :UndotreeShow<CR>
 nnoremap <leader><leader> <c-^>
@@ -177,6 +177,14 @@ noremap l <Left>
 noremap h <Down>
 noremap j <Up>
 noremap z <Right>
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-l> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-h> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-j> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-z> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " Config
 lua require('kadobot')
