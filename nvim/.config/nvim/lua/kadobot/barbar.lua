@@ -16,8 +16,8 @@ vim.api.nvim_set_keymap('n', '<space>b8', ':BufferGoto 8<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>b9', ':BufferGoto 9<CR>', opts)
 
 vim.g.bufferline = {
-  icon_close_tab = '',
-  icon_close_tab_modified = '',
-  icon_separator_active = '',
-  icon_separator_inactive = '',
+  icon_close_tab = '',
+  icon_close_tab_modified = '',
+  icon_separator_active = '⏽',
+  icon_separator_inactive = '',
 }

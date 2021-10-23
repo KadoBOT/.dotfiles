@@ -24,9 +24,9 @@ set smartcase
 set display+=lastline
 set encoding=utf-8
 set linebreak
-set scrolloff=8
-set sidescrolloff=5
-set sidescroll=8
+set scrolloff=12
+set sidescrolloff=7
+set sidescroll=12
 set nowrap
 set spell
 set spelllang=en_us
@@ -70,6 +70,7 @@ set showmatch
 set nostartofline
 set timeoutlen=500
 set cursorline
+set updatetime=100
 
 let g:ale_disable_lsp = 1
 
@@ -84,44 +85,45 @@ let g:ale_echo_msg_format = '%code: %%s [%linter%]'
 let g:ale_virtualtext_cursor = 0
 
 call plug#begin('~/.vim/plugged')
-Plug 'hoob3rt/lualine.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground',
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'neovim/nvim-lspconfig'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-polyglot'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'dense-analysis/ale'
-Plug 'liuchengxu/vim-which-key'
-Plug 'mhinz/vim-startify'
+Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
+Plug 'arcticicestudio/nord-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'ray-x/lsp_signature.nvim'
+Plug 'DataWraith/auto_mkdir'
+Plug 'dense-analysis/ale'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'liuchengxu/vim-which-key'
+Plug 'mbbill/undotree'
+Plug 'mhinz/vim-startify'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'tami5/sql.nvim'
-Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }
-Plug 'airblade/vim-gitgutter'
-Plug 'romgrk/barbar.nvim'
-Plug 'Raimondi/delimitMate'
-Plug 'psliwka/vim-smoothie'
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-eunuch'
-Plug 'DataWraith/auto_mkdir'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/playground',
 Plug 'onsails/lspkind-nvim'
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
+Plug 'phaazon/hop.nvim'
+Plug 'psliwka/vim-smoothie'
+Plug 'Raimondi/delimitMate'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'romgrk/barbar.nvim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }
+Plug 'tami5/sql.nvim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 Plug 'weilbith/nvim-code-action-menu'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 " indentLine indent char
@@ -130,7 +132,7 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
-colorscheme breakingbad
+colorscheme nord
 
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
@@ -177,9 +179,7 @@ noremap j <Up>
 noremap z <Right>
 
 " Config
-lua << EOF
-require('kadobot')
-EOF
+lua require('kadobot')
 
  "ALE (Asynchronous Lint Engine)
 let g:ale_fixers = {

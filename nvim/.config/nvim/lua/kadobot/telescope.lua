@@ -9,7 +9,18 @@ require("telescope").setup({
         winblend = 0,
         file_ignore_patterns = { "%.git", "node_modules/" },
         prompt_prefix = "   ",
-        selection_caret = " "
+        selection_caret = " ",
+        mappings = {
+            i = {
+                ["$"] = function(prompt_bufnr)
+                    local opts = {
+                        callback = actions.toggle_selection,
+                        loop_callback = actions.send_selected_to_qflist,
+                    }
+                    require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
+                end,
+            },
+        }
     },
     extensions = {
         frecency = {

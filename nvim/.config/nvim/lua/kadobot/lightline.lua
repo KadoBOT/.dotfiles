@@ -12,6 +12,11 @@ function! LightLineFugitive()
 
     return branch !=# '' ? "\ue0a0 " . branch : ''
 endfunction
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
 ]])
 
 vim.g.lightline = {
@@ -22,18 +27,19 @@ vim.g.lightline = {
     },
     active = {
         left = {
-            { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' }
+            { 'mode', 'paste' }, { 'gitbranch','readonly', 'filename', 'modified' }
         },
         right = {
             { 'percent' },
             { 'lineinfo' },
-            { 'fileencoding', 'filetype' }
+            { 'fileencoding', 'filetype', 'gitstatus' }
         },
     },
     component = {
         lineinfo = '%-3l %-2v',
     },
     component_function = {
+        gitstatus = 'GitStatus',
         gitbranch = 'LightLineFugitive',
         filename = 'LightlineFilename'
     },

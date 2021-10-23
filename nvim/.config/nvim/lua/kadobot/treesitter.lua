@@ -4,4 +4,7 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = true,
     },
+    refactor = {
+        highlight_definitions = { enable = true },
+    },
 }
