@@ -118,6 +118,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-eunuch'
 Plug 'DataWraith/auto_mkdir'
 Plug 'onsails/lspkind-nvim'
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
 " indentLine indent char

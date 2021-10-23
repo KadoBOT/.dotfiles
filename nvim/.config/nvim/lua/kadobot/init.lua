@@ -1,7 +1,7 @@
 require("kadobot.lsp")
 require("kadobot.telescope")
 require("kadobot.commentary")
-require("kadobot.lualine")
+require("kadobot.lightline")
 require("kadobot.treesitter")
 require("kadobot.cmp")
 require("kadobot.whichkey")

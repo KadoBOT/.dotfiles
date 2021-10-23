@@ -1,3 +1,19 @@
+vim.cmd([[
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+function! LightLineFugitive()
+    let branch = fugitive#head()
+
+    return branch !=# '' ? "\ue0a0 " . branch : ''
+endfunction
+]])
+
 vim.g.lightline = {
     colorscheme = 'breakingbad',
     enable = {
@@ -5,7 +21,21 @@ vim.g.lightline = {
         tabline = 1,
     },
     active = {
-		   left = {{ 'mode', 'paste' }, { 'fugitive', 'filename' }}
+        left = {
+            { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' }
+        },
+        right = {
+            { 'percent' },
+            { 'lineinfo' },
+            { 'fileencoding', 'filetype' }
+        },
+    },
+    component = {
+        lineinfo = '%-3l %-2v',
+    },
+    component_function = {
+        gitbranch = 'LightLineFugitive',
+        filename = 'LightlineFilename'
     },
     separator = {
         left = '',
@@ -24,4 +54,3 @@ vim.g.lightline = {
         right = '',
     },
 }
-
