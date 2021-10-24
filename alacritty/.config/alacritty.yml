@@ -679,15 +679,17 @@ key_bindings:
   - { key: Key8,      mods: Alt,                    chars: "\x01\x38"      }
   - { key: Key9,      mods: Alt,                    chars: "\x01\x39"      }
   - { key: Key0,      mods: Alt,                    chars: "\x01\x30"      }
-  - { key: T,         mods: Alt,                    chars: "\x01\x25"      }
-  - { key: T,         mods: Alt|Shift,              chars: "\x01\x22"      }
-  - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
-  - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
-  - { key: Up,        mods: Alt|Shift,              chars: "\x01\x1b[1;5A" }
-  - { key: Down,      mods: Alt|Shift,              chars: "\x01\x1b[1;5B" }
-  - { key: Left,      mods: Alt|Shift,              chars: "\x01\x1b[1;5D" }
-  - { key: Right,     mods: Alt|Shift,              chars: "\x01\x1b[1;5C" }
-  - { key: N,         mods: Alt,                    chars: "\x01\x20"      }
+  - { key: H,         mods: Alt,                    chars: "\x01\x25"      }
+  - { key: H,         mods: Alt|Shift,              chars: "\x01\x22"      }
+  # - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
+  # - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
+  - { key: Z,         mods: Control|Shift,          chars: "\x01\x6e"      }
+  - { key: L,         mods: Control|Shift,          chars: "\x01\x70"      }
+  - { key: Up,        mods: Alt,                    chars: "\x01\x1b[1;5A" }
+  - { key: Down,      mods: Alt,                    chars: "\x01\x1b[1;5B" }
+  - { key: Left,      mods: Alt,                    chars: "\x01\x1b[1;5D" }
+  - { key: Right,     mods: Alt,                    chars: "\x01\x1b[1;5C" }
+  - { key: T,         mods: Alt,                    chars: "\x01\x20"      }
   #- { key: L,9        mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }

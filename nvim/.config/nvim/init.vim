@@ -107,6 +107,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'neovim/nvim-lspconfig'
+Plug 'NTBBloodbath/doom-one.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
@@ -136,7 +137,7 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
-colorscheme nord
+colorscheme doom-one
 
 if has("persistent_undo")
    let target_path = expand('~/.undodir')

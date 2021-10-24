@@ -10,6 +10,13 @@ require("telescope").setup({
         file_ignore_patterns = { "%.git", "node_modules/" },
         prompt_prefix = "   ",
         selection_caret = " ",
+        mappings = {
+            n = {
+                ["j"] = require("telescope.actions").move_selection_previous,
+                ["h"] = require("telescope.actions").move_selection_next,
+                ["<leader>"] = require("telescope.actions").which_key
+            }
+        }
     },
     extensions = {
         frecency = {
