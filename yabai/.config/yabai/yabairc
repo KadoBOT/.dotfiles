@@ -1,0 +1,61 @@
+
+# ===== Loading Scripting Additions ============
+
+# See: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#macos-big-sur---automatically-load-scripting-addition-on-startup
+# sudo yabai --load-sa
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+
+# ===== Tiling setting =========================
+
+yabai -m config layout                      bsp
+
+yabai -m config top_padding                 8
+yabai -m config bottom_padding              8
+yabai -m config left_padding                8
+yabai -m config right_padding               8
+yabai -m config window_gap                  8
+
+yabai -m config mouse_follows_focus         off
+yabai -m config focus_follows_mouse         on
+
+yabai -m config window_topmost              on
+yabai -m config window_opacity              on
+yabai -m config window_shadow               fleat
+
+yabai -m config window_border               on
+yabai -m config window_border_width         4
+yabai -m config active_window_border_color  0xff2acaea
+yabai -m config normal_window_border_color  0xff555555
+yabai -m config insert_feedback_color       0xffcccccc
+
+yabai -m config active_window_opacity       1.0
+yabai -m config normal_window_opacity       0.9
+yabai -m config split_ratio                 0.50
+
+yabai -m config auto_balance                on
+
+yabai -m config mouse_modifier              fn
+yabai -m config mouse_action1               move
+yabai -m config mouse_action2               resize
+
+yabai -m config window_placement second_child
+yabai -m config focus_follows_mouse autoraise
+
+yabai -m config external_bar all:26:0
+
+# ===== Rules ==================================
+
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
+yabai -m rule --add label="App Store" app="^App Store$" manage=off
+yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
+yabai -m rule --add label="1Password 7" app="^1Password 7$" manage=off
+yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
+yabai -m rule --add label="Dictionary" app="^Dictionary$" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+
+set +x
+printf "yabai: configuration loaded...\\n"
