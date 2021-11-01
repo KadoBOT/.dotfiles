@@ -685,8 +685,8 @@ key_bindings:
   - { key: Key0,      mods: Alt,                    chars: "\x01\x30"      }
   - { key: S,         mods: Alt,                    chars: "\x01\x25"      }
   - { key: S,         mods: Alt|Shift,              chars: "\x01\x22"      }
-  # - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
-  # - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
+  - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
+  - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
   - { key: Z,         mods: Alt,                    chars: "\x01\x6e"      }
   - { key: L,         mods: Alt,                    chars: "\x01\x70"      }
   - { key: Up,        mods: Alt,                    chars: "\x01\x1b[1;5A" }

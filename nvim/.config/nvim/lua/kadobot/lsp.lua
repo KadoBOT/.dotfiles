@@ -1,4 +1,5 @@
 local nvim_lsp = require 'lspconfig'
+local wk = require 'which-key'
 
 local sumneko_root_path = '/Users/ricardoambrogi/Projects/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/macOS/lua-language-server'
@@ -54,31 +55,31 @@ local on_attach = function(client, bufnr)
       hint_enable = false
     }, bufnr)
 
-  -- Mappings.T
-  local opts = { noremap=true, silent=true }
-
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gw', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-  buf_set_keymap('n', 'gW', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
-  buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>=a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>=r', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<leader>=l', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gx', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'go', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', 'gj', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', 'gl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>=a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  wk.register({
+      ['<leader>=a'] = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add folder'},
+      ['gD'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Go to declaration' },
+      ['gd'] = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition'},
+      ['gi'] = {'<cmd>lua vim.lsp.buf.implementation()<CR>,', 'Go to implementation'},
+      ['gr'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
+      ['gR'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'References'},
+      ['gs'] = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help'},
+      ['K'] = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover'},
+      ['gw'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol'},
+      ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'Workspace Symbol'},
+      ['gt'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition'},
+      ['<leader>=r'] = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace Folder'},
+      ['<leader>=l'] = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspace Folders'},
+      ['<leader>cr'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
+      ['<leader>ca'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
+      ['gx'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
+      ['go'] = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics'},
+      ['gh'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to next diagnostic'},
+      ['gj'] = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to prev diagnostic'},
+      ['gf'] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Buffer'},
+      ['gl'] = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist'},
+    })
 
 end
 

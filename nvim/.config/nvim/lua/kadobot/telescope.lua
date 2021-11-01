@@ -1,3 +1,5 @@
+local wk = require('which-key')
+
 require("telescope").setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -46,33 +48,28 @@ require("telescope").setup({
 
 require('telescope').load_extension('frecency')
 
-vim.api.nvim_set_keymap('n', '<leader>bb', "<cmd>Telescope buffers<cr>", {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>bo', "<cmd>Telescope oldfiles<cr>", {noremap = true})
-
-vim.api.nvim_set_keymap('n', '<leader>hc', "<cmd>Telescope command_history<cr>", {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>hs', "<cmd>Telescope search_history<cr>", {noremap = true})
-
-vim.api.nvim_set_keymap('n', '?', "<cmd>Telescope current_buffer_fuzzy_find<cr>", {noremap = true})
-
-vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>Telescope buffers<cr>", {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ft', "<cmd>Telescope file_browser<cr>", {noremap = true})
--- vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<cr>', {noremap = true})
--- vim.api.nvim_set_keymap('v', '<leader>ca', '<cmd>Telescope lsp_range_code_actions<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ce', '<cmd>Telescope lsp_definitions<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ci', '<cmd>Telescope lsp_implementations<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>cR', '<cmd>Telescope lsp_references<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>cs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>cS', '<cmd>Telescope lsp_workspace_symbols<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>gb', '<cmd>Telescope git_branches<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>gt', '<cmd>Telescope git_stash<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>gf', '<cmd>Telescope git_files<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>gs', '<cmd>Telescope git_status<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>gc', '<cmd>Telescope git_commits<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<M-c>', '<cmd>Telescope commands<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-Space>', '<cmd>Telescope frecency<cr>', {noremap = true})
+wk.register({
+    ['<leader>h'] = { name = "History" },
+    ['<leader>hc'] = { "<cmd>Telescope command_history<cr>", "Command History" },
+    ['<leader>hs'] = { "<cmd>Telescope search_history<cr>", "Search History" },
+    ['?'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
+    ['<leader>f'] = { name = "Files" },
+    ['<leader>ff'] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    ['<leader>fb'] = { "<cmd>Telescope buffers<cr>", "Buffers" },
+    ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', "Help Tags" },
+    ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', "Live Grep" },
+    ['<leader>ft'] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
+    ['<leader>cs'] = { '<cmd>Telescope lsp_document_symbols<cr>', "Document Symbols"},
+    ['<leader>cS'] = { '<cmd>Telescope lsp_workspace_symbols<cr>', "Workspace Symbols"},
+    ['<leader>g'] = { name = "Git" },
+    ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', "Branches"},
+    ['<leader>gt'] = { '<cmd>Telescope git_stash<cr>', "Stash"},
+    ['<leader>gf'] = { '<cmd>Telescope git_files<cr>', "Files"},
+    ['<leader>gs'] = { '<cmd>Telescope git_status<cr>', "Status"},
+    ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', "Commits"},
+    ['<M-c>'] = { '<cmd>Telescope commands<cr>', "Commands"},
+    ['<C-Space>'] = { '<cmd>Telescope frecency<cr>', "Frecency"},
+})
 
 -- Highlights
 vim.highlight.create('TelescopeMatching', {guifg='#F18F91'}, false)

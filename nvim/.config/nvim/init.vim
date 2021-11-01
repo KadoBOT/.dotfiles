@@ -4,85 +4,75 @@ syntax on
 filetype plugin indent on
 let mapleader=" "
 
-" Indent
 set autoindent
-set expandtab
-set shiftround
-set shiftwidth=4
-set smarttab
-set tabstop=4
-set smartindent
-
-" Search
-set nohlsearch
-set ignorecase
-set incsearch
-set inccommand=nosplit
-set smartcase
-
-" Text Rendering
-set display+=lastline
-set encoding=utf-8
-set linebreak
-set scrolloff=12
-set sidescrolloff=7
-set sidescroll=12
-set nowrap
-set spell
-set spelllang=en_us
-
-" UI
-set laststatus=2
-set ruler
-set wildmenu wildmode=full,list:longest
-set number
-set relativenumber
-set noerrorbells
-set visualbell
-set mouse=a
-set title
-set background=dark
-set splitright
-set splitbelow
-
-" Fold
-set foldmethod=indent
-set foldnestmax=3
-set nofoldenable
-
-" Misc
-set nobomb
 set autoread
+set background=dark
 set backspace=indent,eol,start
-set nobackup
-set nowritebackup
-set confirm
-set noswapfile
-set hidden
-set formatoptions+=j
-set nomodeline
-set nrformats-=octal
-set shell=/bin/zsh
 set clipboard=unnamedplus
 set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-set showmode
-set showmatch
-set nostartofline
-set timeoutlen=500
+set confirm
 set cursorline
-set updatetime=100
-set listchars=tab:>·,trail:~,extends:>,precedes:<,space:·
+set display+=lastline
+set encoding=utf-8
+set expandtab
+set foldmethod=indent
+set foldnestmax=3
+set formatoptions+=j
+set hidden
+set ignorecase
+set inccommand=nosplit
+set incsearch
+set laststatus=2
+set linebreak
 set list
+set listchars=tab:>·,trail:~,extends:>,precedes:<,space:·
+set mouse=a
+set nobackup
+set nobomb
+set noerrorbells
+set nofoldenable
+set nohlsearch
+set nomodeline
+set nostartofline
+set noswapfile
+set nowrap
+set number
+set nowritebackup
+set nrformats-=octal
+set norelativenumber
+set numberwidth=2
+set noruler
+set scrolloff=12
+set shell=/bin/zsh
+set shiftround
+set shiftwidth=2
+set shortmess+=c
+set showmatch
+set showmode
+set sidescroll=12
+set sidescrolloff=7
+set smartcase
+set smartindent
+set smarttab
+set spell
+set spelllang=en_us
+set splitbelow
+set splitright
+set tabstop=8
+set timeoutlen=0
+set title
+set updatetime=100
+set visualbell
+set wildmenu wildmode=full,list:longest
 
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
 Plug 'arcticicestudio/nord-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'DataWraith/auto_mkdir'
 Plug 'folke/trouble.nvim'
+Plug 'folke/which-key.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
@@ -91,7 +81,6 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 Plug 'mhinz/vim-startify'
 Plug 'neovim/nvim-lspconfig'
@@ -110,6 +99,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'Raimondi/delimitMate'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'romgrk/barbar.nvim'
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tami5/sql.nvim'
 Plug 'tpope/vim-commentary'
@@ -151,13 +141,12 @@ vnoremap <leader>y "*y
 vnoremap <leader>Y "+y
 nnoremap <leader>p "*p
 nnoremap <leader>P "+p
-nnoremap <M-h> :m .+1<CR>==
-nnoremap <M-j> :m .-2<CR>==
-inoremap <M-h> <ESC>:m .+1<CR>==gi
-inoremap <M-j> <ESC>:m .-2<CR>==gi
-vnoremap <M-h> :m '>+1<CR>gv=gv
-vnoremap <M-j> :m '<-2<CR>gv=gv
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+nnoremap <down> :m .+1<CR>==
+nnoremap <up> :m .-2<CR>==
+inoremap <down> <ESC>:m .+1<CR>==gi
+inoremap <up> <ESC>:m .-2<CR>==gi
+vnoremap <down> :m '>+1<CR>gv=gv
+vnoremap <up> :m '<-2<CR>gv=gv
 nnoremap <leader>tu :UndotreeShow<CR>
 nnoremap <leader><leader> <c-^>
 nmap <leader>ghs <Plug>(GitGutterStageHunk)
@@ -176,6 +165,19 @@ nnoremap <silent> <C-h> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-j> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-z> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" Wrap selection with '' 
+vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
+" Wrap selection with ""
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
+" Wrap selection with ()
+vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
+" Wrap selection with []
+vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
+" Wrap selection with {}
+vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
+
+let g:Hexokinase_highlighters = ['virtual']
 
 " Config
 lua require('kadobot')
