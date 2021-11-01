@@ -155,7 +155,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 20
+  size: 16
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -683,8 +683,8 @@ key_bindings:
   - { key: Key8,      mods: Alt,                    chars: "\x01\x38"      }
   - { key: Key9,      mods: Alt,                    chars: "\x01\x39"      }
   - { key: Key0,      mods: Alt,                    chars: "\x01\x30"      }
-  - { key: H,         mods: Alt,                    chars: "\x01\x25"      }
-  - { key: H,         mods: Alt|Shift,              chars: "\x01\x22"      }
+  - { key: S,         mods: Alt,                    chars: "\x01\x25"      }
+  - { key: S,         mods: Alt|Shift,              chars: "\x01\x22"      }
   # - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
   # - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
   - { key: Z,         mods: Alt,                    chars: "\x01\x6e"      }
@@ -693,7 +693,7 @@ key_bindings:
   - { key: Down,      mods: Alt,                    chars: "\x01\x1b[1;5B" }
   - { key: Left,      mods: Alt,                    chars: "\x01\x1b[1;5D" }
   - { key: Right,     mods: Alt,                    chars: "\x01\x1b[1;5C" }
-  - { key: T,         mods: Alt,                    chars: "\x01\x20"      }
+  - { key: R,         mods: Alt,                    chars: "\x01\x20"      }
   # - { key: K,         mods: Control,                chars: "\x08k"         }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }

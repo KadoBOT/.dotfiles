@@ -75,18 +75,6 @@ set updatetime=100
 set listchars=tab:>·,trail:~,extends:>,precedes:<,space:·
 set list
 
-let g:ale_disable_lsp = 1
-
-let g:ale_emit_conflict_warnings = 1
-let g:ale_echo_msg_format = '[%severity%] %s [%linter%]'
-let g:ale_sign_error      = ''
-let g:ale_sign_warning    = 'ﲍ'
-let g:ale_sign_info       = 'ﯦ'
-let g:ale_fix_on_save     = 1
-let g:ale_sign_column_always = 1
-let g:ale_echo_msg_format = '%code: %%s [%linter%]'
-let g:ale_virtualtext_cursor = 0
-
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
@@ -94,7 +82,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'DataWraith/auto_mkdir'
-Plug 'dense-analysis/ale'
+Plug 'folke/trouble.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
@@ -117,12 +105,12 @@ Plug 'nvim-treesitter/nvim-treesitter-refactor'
 Plug 'nvim-treesitter/playground',
 Plug 'onsails/lspkind-nvim'
 Plug 'phaazon/hop.nvim'
+Plug 'prettier/vim-prettier'
 Plug 'psliwka/vim-smoothie'
 Plug 'Raimondi/delimitMate'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'sheerun/vim-polyglot'
-Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }
 Plug 'tami5/sql.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -157,6 +145,8 @@ set termguicolors
 nnoremap <leader>wv <C-w>v
 nnoremap <leader>wh <C-w>s
 nnoremap <leader>wc <C-w>q
+nnoremap <leader>w+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <leader>w- :exe "resize " . (winheight(0) * 2/3)<CR>
 vnoremap <leader>y "*y
 vnoremap <leader>Y "+y
 nnoremap <leader>p "*p
@@ -189,43 +179,3 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
 " Config
 lua require('kadobot')
-
- "ALE (Asynchronous Lint Engine)
-let g:ale_fixers = {
- \ '*': ['remove_trailing_lines', 'trim_whitespace'],
- \ 'html': ['prettier'],
- \ 'javascript': ['eslint'],
- \ 'json': ['eslint', 'prettier'],
- \ 'go': ['goimports', 'golines', 'gofmt'],
- \ 'typescript': ['eslint', 'prettier']
- \ }
-let g:ale_linters = {
- \ 'go': ['golangci-lint']
- \ }
-
-let g:ale_go_goimports_executable = 'gofumports'
-let g:ale_go_gofmt_executable = 'gofumpt'
-let g:ale_go_gofmt_options = '-s'
-let g:ale_go_golangci_lint_package = 1
-let g:ale_go_golangci_lint_options = ''
-\   . ' --exclude-use-default'
-\   . ' --out-format=line-number'
-\   . ' --tests'
-\   . ' --print-issued-lines=false'
-\   . ' --disable-all'
-\   . ' --enable=bodyclose'
-\   . ' --enable=deadcode'
-\   . ' --enable=errcheck'
-\   . ' --enable=golint'
-\   . ' --enable=gosec'
-\   . ' --enable=ineffassign'
-\   . ' --enable=interfacer'
-\   . ' --enable=megacheck'
-\   . ' --enable=misspell'
-\   . ' --enable=prealloc'
-\   . ' --enable=scopelint'
-\   . ' --enable=structcheck'
-\   . ' --enable=unconvert'
-\   . ' --enable=unparam'
-\   . ' --enable=varcheck'
-\   . ' --enable=whitespace'
