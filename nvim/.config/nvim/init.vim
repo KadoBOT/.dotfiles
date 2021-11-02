@@ -59,10 +59,12 @@ set spelllang=en_us
 set splitbelow
 set splitright
 set tabstop=8
-set timeoutlen=0
+set timeoutlen=500
 set title
 set updatetime=100
 set visualbell
+set wildignore+=**/node_modules/*
+set wildignore+=**/.git/*
 set wildmenu wildmode=full,list:longest
 
 call plug#begin('~/.vim/plugged')
@@ -101,11 +103,11 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'romgrk/barbar.nvim'
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase'}
 Plug 'sheerun/vim-polyglot'
+Plug 'tami5/lspsaga.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'weilbith/nvim-code-action-menu'
 Plug 'Yggdroot/indentLine'
 call plug#end()
 
@@ -132,26 +134,12 @@ endif
 
 set termguicolors
 
-nnoremap <leader>wv <C-w>v
-nnoremap <leader>wh <C-w>s
-nnoremap <leader>wc <C-w>q
-nnoremap <leader>w+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <leader>w- :exe "resize " . (winheight(0) * 2/3)<CR>
-vnoremap <leader>y "*y
-vnoremap <leader>Y "+y
-nnoremap <leader>p "*p
-nnoremap <leader>P "+p
 nnoremap <down> :m .+1<CR>==
 nnoremap <up> :m .-2<CR>==
 inoremap <down> <ESC>:m .+1<CR>==gi
 inoremap <up> <ESC>:m .-2<CR>==gi
 vnoremap <down> :m '>+1<CR>gv=gv
 vnoremap <up> :m '<-2<CR>gv=gv
-nnoremap <leader>tu :UndotreeShow<CR>
-nnoremap <leader><leader> <c-^>
-nmap <leader>ghs <Plug>(GitGutterStageHunk)
-nmap <leader>ghu <Plug>(GitGutterUndoHunk)
-nmap <leader>ghp <Plug>(GitGutterPreviewHunk)
 
 noremap l <Left>
 noremap h <Down>
@@ -166,18 +154,27 @@ nnoremap <silent> <C-j> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-z> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 
-" Wrap selection with '' 
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
-" Wrap selection with ""
-vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
-" Wrap selection with ()
-vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>
-" Wrap selection with []
-vnoremap <leader>[ <esc>`>a]<esc>`<i[<esc>
-" Wrap selection with {}
-vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>
-
 let g:Hexokinase_highlighters = ['virtual']
 
 " Config
 lua require('kadobot')
+
+let g:loaded_gzip = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_matchit = 1
+let g:loaded_matchparen = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_logiPat = 1
+let g:loaded_rrhelper = 1
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
+let g:loaded_netrwFileHandlers = 1
+let g:did_load_filetypes = 1

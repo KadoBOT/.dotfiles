@@ -47,39 +47,61 @@ local on_attach = function(client, bufnr)
     ]]
   end
 
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   require 'lsp_signature'.on_attach({
-      bind = true,
-      auto_close_after = 2,
-      hint_enable = false
+    bind = false,
+    hint_enable = false,
+    use_lspsaga = true,
+    doc_lines = 4,
+    floating_window_above_cur_line = false,
+    handler_opts = {
+      border = "single" -- double, single, shadow, none
+    },
+    auto_close_after = 5,
+    fix_pos = true,
+    hint_scheme = "Function",
+    hi_parameter = "IncSearch"
     }, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- buf_set_keymap('n', '<leader>=a', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   wk.register({
-      ['<leader>=a'] = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add folder'},
-      ['gD'] = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Go to declaration' },
-      ['gd'] = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition'},
-      ['gi'] = {'<cmd>lua vim.lsp.buf.implementation()<CR>,', 'Go to implementation'},
-      ['gr'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
-      ['gR'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'References'},
-      ['gs'] = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature Help'},
-      ['K'] = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover'},
-      ['gw'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol'},
-      ['gW'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'Workspace Symbol'},
-      ['gt'] = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Type Definition'},
-      ['<leader>=r'] = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace Folder'},
-      ['<leader>=l'] = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspace Folders'},
-      ['<leader>cr'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
-      ['<leader>ca'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
-      ['gx'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
-      ['go'] = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics'},
-      ['gh'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to next diagnostic'},
-      ['gj'] = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to prev diagnostic'},
-      ['gf'] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Buffer'},
-      ['gl'] = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist'},
-    })
+    ['K'] = {':Lspsaga hover_doc<CR>', 'Hover Doc'},
+  })
+  wk.register({
+    ['D'] = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to declaration' },
+    ['d'] = {':Lspsaga preview_definition<CR>', 'Preview definition'},
+    ['i'] = {'<cmd>lua vim.lsp.buf.implementation()<CR>,', 'Go to implementation'},
+    ['r'] = {':Lspsaga rename<CR>', 'Rename'},
+    ['R'] = {'<cmd>lua vim.lsp.buf.references()<CR>', 'References'},
+    ['s'] = {':Lspsaga signature_help<CR>', 'Signature Help'},
+    ['w'] = {'<cmd>lua vim.lsp.buf.document_symbol()<CR>', 'Document symbol'},
+    ['W'] = {'<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'Workspace Symbol'},
+    ['t'] = {':Lspsaga type_definition<CR>', 'Type Definition'},
+    ['x'] = {':Lspsaga code_action<CR>', 'Code Action'},
+    ['o'] = {':Lspsaga show_line_diagnostics<CR>', 'Line Diagnostics'},
+    ['z'] = {':Lspsaga diagnostic_jump_next<CR>', 'Go to next diagnostic'},
+    ['l'] = {':Lspsaga diagnostic_jump_prev<CR>', 'Go to prev diagnostic'},
+    ['f'] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Buffer'},
+    ['h'] = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
+    ['L'] = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist'},
+  }, { prefix = "g" })
+
+  wk.register({
+    ["x"] = {':Lspsaga range_code_action<CR>', 'Code Action'},
+    ['f'] = {'<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'Format Buffer'},
+  }, { prefix = "g", mode = "v" })
+
+  wk.register({
+    name = "Workspace",
+    ['a'] = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add folder'},
+    ['r'] = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace Folder'},
+    ['l'] = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspace Folders'},
+  }, { prefix = "<leader>=" })
+
+  wk.register({
+    name = "Code",
+    ['r'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
+    ['a'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
+  }, { prefix = '<leader>c' })
 
 end
 
