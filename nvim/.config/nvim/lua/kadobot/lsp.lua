@@ -1,3 +1,5 @@
+require 'kadobot.lspkind'
+
 local nvim_lsp = require 'lspconfig'
 local wk = require 'which-key'
 
