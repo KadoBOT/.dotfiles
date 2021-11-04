@@ -25,28 +25,48 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  if client.name == "tsserver" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    local ts_utils = require "nvim-lsp-ts-utils"
+    -- defaults
+    ts_utils.setup {
+      enable_import_on_completion = true,
+      filter_out_diagnostics_by_code = { 80001 },
+    }
+    ts_utils.setup_client(client)
+  end
+
   if client.resolved_capabilities.code_lens then
     vim.cmd [[
-    augroup CodeLens
-      au!
-      au InsertEnter,InsertLeave * lua vim.lsp.codelens.refresh()
-    augroup END
+      augroup lsp_code_lens_refresh
+        autocmd! * <buffer>
+        autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+        autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
+      augroup END
     ]]
   end
 
   if client.resolved_capabilities.call_hierarchy then
-    vim.cmd([[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]])
-    vim.cmd([[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]])
+    vim.cmd [[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]]
+    vim.cmd [[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]]
   end
 
   if client.resolved_capabilities.document_highlight then
     vim.cmd [[
-    augroup LSPDocumentHighlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    augroup END
+      augroup lsp_document_highlight
+          autocmd! * <buffer>
+          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
     ]]
+  end
+
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf_formatting_seq_sync() ]]
   end
 
   require 'lsp_signature'.on_attach({
@@ -62,7 +82,7 @@ local on_attach = function(client, bufnr)
     fix_pos = true,
     hint_scheme = "Function",
     hi_parameter = "IncSearch"
-    }, bufnr)
+  }, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   wk.register({

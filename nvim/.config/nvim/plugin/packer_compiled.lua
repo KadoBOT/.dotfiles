@@ -70,12 +70,12 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   auto_mkdir = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/auto_mkdir",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/auto_mkdir",
     url = "https://github.com/DataWraith/auto_mkdir"
   },
   ["barbar.nvim"] = {
+    config = { "require('kadobot.barbar')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
@@ -105,21 +105,23 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
-  delimitMate = {
-    loaded = false,
+  ["dashboard-nvim"] = {
+    loaded = true,
     needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/delimitMate",
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
+  delimitMate = {
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/delimitMate",
     url = "https://github.com/Raimondi/delimitMate"
   },
   ["doom-one.nvim"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/doom-one.nvim",
+    config = { "require('kadobot.doom-one')" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/doom-one.nvim",
     url = "https://github.com/NTBBloodbath/doom-one.nvim"
-  },
-  ["hop.nvim"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/hop.nvim",
-    url = "https://github.com/phaazon/hop.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -128,15 +130,22 @@ _G.packer_plugins = {
   },
   indentLine = {
     after_files = { "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/indentLine/after/plugin/indentLine.vim" },
-    loaded = false,
+    loaded = true,
     needs_bufread = false,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/indentLine",
     url = "https://github.com/Yggdroot/indentLine"
   },
   ["lightline.vim"] = {
+    config = { "require('kadobot.lightline')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/lightline.vim",
     url = "https://github.com/itchyny/lightline.vim"
+  },
+  ["lightspeed.nvim"] = {
+    config = { "require('kadobot.lightspeed')" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
+    url = "https://github.com/ggandor/lightspeed.nvim"
   },
   ["lsp_signature.nvim"] = {
     loaded = true,
@@ -166,16 +175,24 @@ _G.packer_plugins = {
     url = "https://github.com/christianchiarulli/nvcode-color-schemes.vim"
   },
   ["nvim-cmp"] = {
+    config = { "require('kadobot.cmp')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-lsp-ts-utils"] = {
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
+    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
+  },
   ["nvim-lspconfig"] = {
+    config = { "require('kadobot.lsp')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
+    config = { "require('kadobot.treesitter')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
@@ -191,10 +208,11 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
-  ["onedark.vim"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/onedark.vim",
-    url = "https://github.com/joshdick/onedark.vim"
+  ["onedark.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/onedark.nvim",
+    url = "https://github.com/navarasu/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -228,11 +246,13 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope-frecency.nvim"
   },
   ["telescope.nvim"] = {
+    config = { "require('kadobot.telescope')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["trouble.nvim"] = {
+    config = { "require('kadobot.trouble')" },
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
@@ -243,15 +263,13 @@ _G.packer_plugins = {
     url = "https://github.com/mbbill/undotree"
   },
   ["vim-commentary"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-commentary",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-eunuch"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-eunuch",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-eunuch",
     url = "https://github.com/tpope/vim-eunuch"
   },
   ["vim-fugitive"] = {
@@ -260,9 +278,8 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-gitbranch"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-gitbranch",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-gitbranch",
     url = "https://github.com/itchyny/vim-gitbranch"
   },
   ["vim-gitgutter"] = {
@@ -271,9 +288,8 @@ _G.packer_plugins = {
     url = "https://github.com/airblade/vim-gitgutter"
   },
   ["vim-hexokinase"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-hexokinase",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-hexokinase",
     url = "https://github.com/RRethy/vim-hexokinase"
   },
   ["vim-polyglot"] = {
@@ -282,21 +298,14 @@ _G.packer_plugins = {
     url = "https://github.com/sheerun/vim-polyglot"
   },
   ["vim-prettier"] = {
-    loaded = false,
-    needs_bufread = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-prettier",
     url = "https://github.com/prettier/vim-prettier"
   },
   ["vim-smoothie"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-smoothie",
-    url = "https://github.com/psliwka/vim-smoothie"
-  },
-  ["vim-startify"] = {
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-startify",
-    url = "https://github.com/mhinz/vim-startify"
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-smoothie",
+    url = "https://github.com/psliwka/vim-smoothie"
   },
   ["vim-tmux-navigator"] = {
     loaded = true,
@@ -317,6 +326,52 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: dashboard-nvim
+time([[Setup for dashboard-nvim]], true)
+vim.g.dashboard_default_executive = "telescope"
+time([[Setup for dashboard-nvim]], false)
+time([[packadd for dashboard-nvim]], true)
+vim.cmd [[packadd dashboard-nvim]]
+time([[packadd for dashboard-nvim]], false)
+-- Setup for: indentLine
+time([[Setup for indentLine]], true)
+vim.g.indentLine_fileTypeExclude = {'dashboard'}
+time([[Setup for indentLine]], false)
+time([[packadd for indentLine]], true)
+vim.cmd [[packadd indentLine]]
+time([[packadd for indentLine]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('kadobot.trouble')
+time([[Config for trouble.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('kadobot.telescope')
+time([[Config for telescope.nvim]], false)
+-- Config for: lightline.vim
+time([[Config for lightline.vim]], true)
+require('kadobot.lightline')
+time([[Config for lightline.vim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('kadobot.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('kadobot.lsp')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: lightspeed.nvim
+time([[Config for lightspeed.nvim]], true)
+require('kadobot.lightspeed')
+time([[Config for lightspeed.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('kadobot.barbar')
+time([[Config for barbar.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('kadobot.cmp')
+time([[Config for nvim-cmp]], false)
 if should_profile then save_profiles() end
 
 end)

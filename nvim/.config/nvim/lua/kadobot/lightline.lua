@@ -20,7 +20,7 @@ set statusline+=%{GitStatus()}
 ]])
 
 vim.g.lightline = {
-    colorscheme = 'onedark',
+    colorscheme = 'one',
     enable = {
         statusline = 1,
         tabline = 1,

@@ -55,6 +55,7 @@ wk.register({
     ['?'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
     ['<leader>f'] = { name = "Files" },
     ['<leader>ff'] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    ['<leader>fr'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
     ['<leader>fb'] = { "<cmd>Telescope buffers<cr>", "Buffers" },
     ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', "Help Tags" },
     ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', "Live Grep" },

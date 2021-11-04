@@ -1,7 +1,8 @@
 local o = vim.opt
 local w = vim.wo
+local g = vim.g
 
-vim.cmd('colorscheme doom-one')
+vim.cmd('colorscheme onedark')
 
 o.autoindent = true
 o.autoread = true
@@ -33,6 +34,7 @@ o.laststatus = 2
 o.linebreak = true
 o.list = true
 o.listchars = "tab:>·,trail:~,extends:>,precedes:<,space:·"
+o.matchpairs:append { "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" }
 o.modeline = false
 o.mouse = "a"
 o.nrformats:remove { "octal" }
@@ -43,7 +45,7 @@ o.ruler = false
 o.scrolloff = 12
 o.shell = "/bin/zsh"
 o.shiftround = true
-o.shiftwidth = 2
+o.shiftwidth = 4
 o.shortmess:append { c = true }
 o.showmatch = true
 o.showmode = true
@@ -56,6 +58,7 @@ o.spell = true
 o.spelllang = "en_us"
 o.splitbelow = true
 o.splitright = true
+o.softtabstop = 4
 o.startofline = false
 o.syntax = 'enable'
 o.swapfile = false
@@ -71,3 +74,29 @@ o.wildmenu = true
 o.wildmode = "full,list:longest"
 o.wrap = false
 o.writebackup = false
+
+g.loaded_gzip = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_2html_plugin = 1
+g.loaded_logiPat = 1
+g.loaded_rrhelper = 1
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
+g.loaded_netrwFileHandlers = 1
+g.did_load_filetypes = 1
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
