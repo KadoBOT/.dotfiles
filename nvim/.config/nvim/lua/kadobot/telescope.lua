@@ -47,6 +47,7 @@ require("telescope").setup({
 })
 
 require('telescope').load_extension('frecency')
+require('telescope').load_extension('project')
 
 wk.register({
     ['<leader>h'] = { name = "History" },
@@ -62,6 +63,7 @@ wk.register({
     ['<leader>ft'] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
     ['<leader>cs'] = { '<cmd>Telescope lsp_document_symbols<cr>', "Document Symbols"},
     ['<leader>cS'] = { '<cmd>Telescope lsp_workspace_symbols<cr>', "Workspace Symbols"},
+    ['<leader>fp'] = { '<cmd>Telescope project<cr>', "Projects"},
     ['<leader>g'] = { name = "Git" },
     ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', "Branches"},
     ['<leader>gt'] = { '<cmd>Telescope git_stash<cr>', "Stash"},

@@ -75,23 +75,28 @@ o.wildmode = "full,list:longest"
 o.wrap = false
 o.writebackup = false
 
-g.loaded_gzip = 1
-g.loaded_tar = 1
-g.loaded_tarPlugin = 1
-g.loaded_zip = 1
-g.loaded_zipPlugin = 1
-g.loaded_getscript = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_vimball = 1
-g.loaded_vimballPlugin = 1
-g.loaded_2html_plugin = 1
-g.loaded_logiPat = 1
-g.loaded_rrhelper = 1
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
-g.did_load_filetypes = 1
+local disabled_built_ins = {
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logiPat",
+    "netrw",
+    "netrwFileHandlers",
+    "netrwPlugin",
+    "netrwSettings",
+    "rrhelper",
+    "tar",
+    "tarPlugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    g["loaded_" .. plugin] = 1
+end
 
 vim.cmd([[
   augroup packer_user_config

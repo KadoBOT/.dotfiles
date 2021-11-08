@@ -22,7 +22,7 @@ return require('packer').startup(function (use)
             'hrsh7th/cmp-nvim-lua',
             'hrsh7th/cmp-path',
             'onsails/lspkind-nvim',
-            {'hrsh7th/vim-vsnip', opt = true }
+            'hrsh7th/vim-vsnip'
         },
         config = [[require('kadobot.cmp')]]
     }
@@ -47,14 +47,13 @@ return require('packer').startup(function (use)
     }
     use 'itchyny/vim-gitbranch'
     use 'mbbill/undotree'
-    use {'glepnir/dashboard-nvim', setup = [[vim.g.dashboard_default_executive = "telescope"]] }
+    use {'glepnir/dashboard-nvim', config = [[require('kadobot.dashboard')]] }
     use {
         'neovim/nvim-lspconfig',
         requires = {
             'tami5/lspsaga.nvim',
             'ray-x/lsp_signature.nvim',
             'onsails/lspkind-nvim',
-            'jose-elias-alvarez/nvim-lsp-ts-utils',
             'hrsh7th/nvim-cmp',
         },
         config = [[require('kadobot.lsp')]]
@@ -65,6 +64,7 @@ return require('packer').startup(function (use)
         'nvim-telescope/telescope.nvim',
         requires = {
             'nvim-telescope/telescope-frecency.nvim',
+            'nvim-telescope/telescope-project.nvim',
             'nvim-lua/plenary.nvim',
             'nvim-lua/popup.nvim',
         },
@@ -89,6 +89,7 @@ return require('packer').startup(function (use)
     use 'tpope/vim-commentary'
     use 'tpope/vim-eunuch'
     use {'Yggdroot/indentLine', setup = [[vim.g.indentLine_fileTypeExclude = {'dashboard'}]]}
+    use {'luukvbaal/stabilize.nvim', config = function () require('stabilize').setup() end }
 
   if packer_bootstrap then
     require('packer').sync()

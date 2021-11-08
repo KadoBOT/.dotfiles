@@ -15,80 +15,128 @@ capabilities.textDocument.completion.completionItem.deprecatedSupport = true
 capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
 capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
+    properties = {
+        'documentation',
+        'detail',
+        'additionalTextEdits',
+    }
+}
+capabilities.textDocument.codeAction = {
+    dynamicRegistration = true,
+    codeActionLiteralSupport = {
+        codeActionKind = {
+            valueSet = (function ()
+                local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+                table.sort(res)
+                return res
+            end)()
+        }
+    }
 }
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-  if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    local ts_utils = require "nvim-lsp-ts-utils"
-    -- defaults
-    ts_utils.setup {
-      enable_import_on_completion = true,
-      filter_out_diagnostics_by_code = { 80001 },
-    }
-    ts_utils.setup_client(client)
-  end
+    if client.name == "tsserver" then
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
 
-  if client.resolved_capabilities.code_lens then
-    vim.cmd [[
-      augroup lsp_code_lens_refresh
+        vim.cmd([[
+            augroup Format
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> :Prettier()
+            augroup END
+        ]])
+    end
+
+    if client.resolved_capabilities.code_lens then
+        vim.cmd [[
+        augroup lsp_code_lens_refresh
         autocmd! * <buffer>
         autocmd InsertLeave <buffer> lua vim.lsp.codelens.refresh()
         autocmd InsertLeave <buffer> lua vim.lsp.codelens.display()
-      augroup END
-    ]]
-  end
+        augroup END
+        ]]
+    end
 
-  if client.resolved_capabilities.call_hierarchy then
-    vim.cmd [[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]]
-    vim.cmd [[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]]
-  end
+    if client.resolved_capabilities.call_hierarchy then
+        vim.cmd [[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]]
+        vim.cmd [[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]]
+    end
 
-  if client.resolved_capabilities.document_highlight then
-    vim.cmd [[
-      augroup lsp_document_highlight
-          autocmd! * <buffer>
-          autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-          autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]
-  end
+    if client.resolved_capabilities.document_highlight then
+        vim.cmd [[
+        augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+        ]]
+    end
 
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf_formatting_seq_sync() ]]
-  end
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+            augroup Format
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+            augroup END
+        ]])
+    end
 
-  require 'lsp_signature'.on_attach({
-    bind = false,
-    hint_enable = false,
-    use_lspsaga = true,
-    doc_lines = 4,
-    floating_window_above_cur_line = false,
-    handler_opts = {
-      border = "single" -- double, single, shadow, none
-    },
-    auto_close_after = 5,
-    fix_pos = true,
-    hint_scheme = "Function",
-    hi_parameter = "IncSearch"
-  }, bufnr)
+    vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+    vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  wk.register({
+    -- Diagnostics
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics, {
+            --defines error in line via keybinding
+            virtual_text = {
+                prefix = "ﱢ",
+                spacing = 0,
+            },
+            signs = true,
+            update_in_insert = false,
+            underline = true
+        }
+    )
+
+    require('lspsaga').init_lsp_saga({
+        rename_action_keys = { quit = '<ESC>', exec = '<CR>' },
+        rename_prompt_prefix = 'Rename ?',
+        code_action_prompt = {
+            enable = true,
+            sign = false,
+            sign_priority = 20,
+            virtual_text = false,
+        },
+    })
+
+    require 'lsp_signature'.on_attach({
+        bind = false,
+        hint_enable = false,
+        use_lspsaga = true,
+        doc_lines = 4,
+        floating_window_above_cur_line = false,
+        handler_opts = {
+            border = "single" -- double, single, shadow, none
+        },
+        auto_close_after = 5,
+        fix_pos = true,
+        hint_scheme = "Function",
+        hi_parameter = "IncSearch"
+    }, bufnr)
+end
+
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+wk.register({
     ['K'] = {':Lspsaga hover_doc<CR>', 'Hover Doc'},
-  })
-  wk.register({
+})
+wk.register({
     ['D'] = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to declaration' },
     ['d'] = {':Lspsaga preview_definition<CR>', 'Preview definition'},
     ['i'] = {'<cmd>lua vim.lsp.buf.implementation()<CR>,', 'Go to implementation'},
@@ -101,34 +149,32 @@ local on_attach = function(client, bufnr)
     ['x'] = {':Lspsaga code_action<CR>', 'Code Action'},
     ['o'] = {':Lspsaga show_line_diagnostics<CR>', 'Line Diagnostics'},
     ['z'] = {':Lspsaga diagnostic_jump_next<CR>', 'Go to next diagnostic'},
-    ['l'] = {':Lspsaga diagnostic_jump_prev<CR>', 'Go to prev diagnostic'},
+    ['Z'] = {':Lspsaga diagnostic_jump_prev<CR>', 'Go to prev diagnostic'},
     ['f'] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Buffer'},
     ['h'] = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
     ['L'] = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loclist'},
-  }, { prefix = "g" })
+}, { prefix = "g" })
 
-  wk.register({
+wk.register({
     ["x"] = {':Lspsaga range_code_action<CR>', 'Code Action'},
     ['f'] = {'<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'Format Buffer'},
-  }, { prefix = "g", mode = "v" })
+}, { prefix = "g", mode = "v" })
 
-  wk.register({
+wk.register({
     name = "Workspace",
     ['a'] = {'<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', 'Add folder'},
     ['r'] = {'<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace Folder'},
     ['l'] = {'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspace Folders'},
-  }, { prefix = "<leader>=" })
+}, { prefix = "<leader>=" })
 
-  wk.register({
+wk.register({
     name = "Code",
     ['r'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
     ['a'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
-  }, { prefix = '<leader>c' })
+}, { prefix = '<leader>c' })
 
-end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
 local servers = { 'tsserver', 'vimls', 'jsonls', 'yamlls', 'eslint' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -139,8 +185,6 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 end
-
-vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :PrettierAsync]]
 
 nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach,
@@ -167,23 +211,6 @@ nvim_lsp.sumneko_lua.setup {
       },
   }
 }
-
-vim.lsp.handlers["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
-vim.lsp.handlers["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
-
--- Diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    --defines error in line via keybinding
-        virtual_text = {
-            prefix = "ﱢ",
-            spacing = 0,
-        },
-    signs = true,
-    update_in_insert = false,
-    underline = true
-  }
-)
 
 local signs = {
   Error = " ",

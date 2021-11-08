@@ -106,9 +106,9 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/cmp-path"
   },
   ["dashboard-nvim"] = {
+    config = { "require('kadobot.dashboard')" },
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/dashboard-nvim",
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/glepnir/dashboard-nvim"
   },
   delimitMate = {
@@ -180,11 +180,6 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
-  ["nvim-lsp-ts-utils"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
-    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
-  },
   ["nvim-lspconfig"] = {
     config = { "require('kadobot.lsp')" },
     loaded = true,
@@ -240,10 +235,21 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/sql.nvim",
     url = "https://github.com/tami5/sql.nvim"
   },
+  ["stabilize.nvim"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/stabilize.nvim",
+    url = "https://github.com/luukvbaal/stabilize.nvim"
+  },
   ["telescope-frecency.nvim"] = {
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim",
     url = "https://github.com/nvim-telescope/telescope-frecency.nvim"
+  },
+  ["telescope-project.nvim"] = {
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-project.nvim",
+    url = "https://github.com/nvim-telescope/telescope-project.nvim"
   },
   ["telescope.nvim"] = {
     config = { "require('kadobot.telescope')" },
@@ -313,9 +319,8 @@ _G.packer_plugins = {
     url = "https://github.com/christoomey/vim-tmux-navigator"
   },
   ["vim-vsnip"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-vsnip",
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
   },
   ["which-key.nvim"] = {
@@ -326,13 +331,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Setup for: dashboard-nvim
-time([[Setup for dashboard-nvim]], true)
-vim.g.dashboard_default_executive = "telescope"
-time([[Setup for dashboard-nvim]], false)
-time([[packadd for dashboard-nvim]], true)
-vim.cmd [[packadd dashboard-nvim]]
-time([[packadd for dashboard-nvim]], false)
 -- Setup for: indentLine
 time([[Setup for indentLine]], true)
 vim.g.indentLine_fileTypeExclude = {'dashboard'}
@@ -340,14 +338,6 @@ time([[Setup for indentLine]], false)
 time([[packadd for indentLine]], true)
 vim.cmd [[packadd indentLine]]
 time([[packadd for indentLine]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('kadobot.trouble')
-time([[Config for trouble.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('kadobot.telescope')
-time([[Config for telescope.nvim]], false)
 -- Config for: lightline.vim
 time([[Config for lightline.vim]], true)
 require('kadobot.lightline')
@@ -356,22 +346,38 @@ time([[Config for lightline.vim]], false)
 time([[Config for nvim-treesitter]], true)
 require('kadobot.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('kadobot.lsp')
-time([[Config for nvim-lspconfig]], false)
 -- Config for: lightspeed.nvim
 time([[Config for lightspeed.nvim]], true)
 require('kadobot.lightspeed')
 time([[Config for lightspeed.nvim]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('kadobot.barbar')
-time([[Config for barbar.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('kadobot.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('kadobot.cmp')
 time([[Config for nvim-cmp]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('kadobot.trouble')
+time([[Config for trouble.nvim]], false)
+-- Config for: stabilize.nvim
+time([[Config for stabilize.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0", "config", "stabilize.nvim")
+time([[Config for stabilize.nvim]], false)
+-- Config for: barbar.nvim
+time([[Config for barbar.nvim]], true)
+require('kadobot.barbar')
+time([[Config for barbar.nvim]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+require('kadobot.dashboard')
+time([[Config for dashboard-nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('kadobot.lsp')
+time([[Config for nvim-lspconfig]], false)
 if should_profile then save_profiles() end
 
 end)
