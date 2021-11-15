@@ -5,7 +5,9 @@ let mapleader=" "
 lua require('kadobot')
 
 " indentLine indent char
-let g:indentLine_char = "│"
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_concealcursor = 'inc'
+let g:indentLine_conceallevel = 2
 
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
@@ -19,6 +21,8 @@ if has("persistent_undo")
     let &undodir=target_path
     set undofile
 endif
+
+nnoremap n nzz
 
 nnoremap <down> :m .+1<CR>==
 nnoremap <up> :m .-2<CR>==
@@ -39,5 +43,3 @@ nnoremap <silent> <C-h> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-j> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-z> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
-
-let g:Hexokinase_highlighters = ['virtual']

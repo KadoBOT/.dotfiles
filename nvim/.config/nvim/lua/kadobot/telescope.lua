@@ -1,7 +1,7 @@
-local wk = require('which-key')
-
 require("telescope").setup({
     defaults = {
+        layout_strategy = 'flex',
+        scroll_strategy = 'cycle',
         file_sorter = require("telescope.sorters").get_fuzzy_file,
         color_devicons = true,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -18,7 +18,18 @@ require("telescope").setup({
                 ["h"] = require("telescope.actions").move_selection_next,
                 ["<leader>"] = require("telescope.actions").which_key
             }
-        }
+        },
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '-u' -- thats the new thing
+        },
     },
     extensions = {
         frecency = {
@@ -29,9 +40,13 @@ require("telescope").setup({
                 ["dotfiles"] = "/home/ricardoa/Projects/%.dotfiles",
                 ["ts"] = "/home/Projects/ricardoa/typescript",
             }
-        }
+        },
     },
     pickers = {
+        lsp_references = { theme = 'dropdown' },
+        lsp_code_actions = { theme = 'dropdown' },
+        lsp_definitions = { theme = 'dropdown' },
+        lsp_implementations = { theme = 'dropdown' },
         find_files = {
             find_command = {
                 'rg', '--files', '--hidden', '-g', '!.git/', '-g', '!node_modules'
@@ -41,38 +56,15 @@ require("telescope").setup({
             hidden = true
         },
         buffers = {
-            show_all_buffers = true
+            show_all_buffers = true,
+            sort_lastused = true,
+            previewer = false,
         }
     }
 })
 
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('project')
-
-wk.register({
-    ['<leader>h'] = { name = "History" },
-    ['<leader>hc'] = { "<cmd>Telescope command_history<cr>", "Command History" },
-    ['<leader>hs'] = { "<cmd>Telescope search_history<cr>", "Search History" },
-    ['?'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
-    ['<leader>f'] = { name = "Files" },
-    ['<leader>ff'] = { "<cmd>Telescope find_files<cr>", "Find Files" },
-    ['<leader>fr'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-    ['<leader>fb'] = { "<cmd>Telescope buffers<cr>", "Buffers" },
-    ['<leader>fh'] = { '<cmd>Telescope help_tags<cr>', "Help Tags" },
-    ['<leader>fg'] = { '<cmd>Telescope live_grep<cr>', "Live Grep" },
-    ['<leader>ft'] = { "<cmd>Telescope file_browser<cr>", "File Browser" },
-    ['<leader>cs'] = { '<cmd>Telescope lsp_document_symbols<cr>', "Document Symbols"},
-    ['<leader>cS'] = { '<cmd>Telescope lsp_workspace_symbols<cr>', "Workspace Symbols"},
-    ['<leader>fp'] = { '<cmd>Telescope project<cr>', "Projects"},
-    ['<leader>g'] = { name = "Git" },
-    ['<leader>gb'] = { '<cmd>Telescope git_branches<cr>', "Branches"},
-    ['<leader>gt'] = { '<cmd>Telescope git_stash<cr>', "Stash"},
-    ['<leader>gf'] = { '<cmd>Telescope git_files<cr>', "Files"},
-    ['<leader>gs'] = { '<cmd>Telescope git_status<cr>', "Status"},
-    ['<leader>gc'] = { '<cmd>Telescope git_commits<cr>', "Commits"},
-    ['<M-c>'] = { '<cmd>Telescope commands<cr>', "Commands"},
-    ['<C-Space>'] = { '<cmd>Telescope frecency<cr>', "Frecency"},
-})
 
 -- Highlights
 vim.highlight.create('TelescopeMatching', {guifg='#F18F91'}, false)

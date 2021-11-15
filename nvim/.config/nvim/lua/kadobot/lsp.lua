@@ -1,6 +1,7 @@
 require 'kadobot.lspkind'
 
 local nvim_lsp = require 'lspconfig'
+local cmp_lsp = require'cmp_nvim_lsp'
 local wk = require 'which-key'
 
 local sumneko_root_path = '/Users/ricardoambrogi/Projects/lua-language-server'
@@ -107,7 +108,7 @@ local on_attach = function(client, bufnr)
 
     require('lspsaga').init_lsp_saga({
         rename_action_keys = { quit = '<ESC>', exec = '<CR>' },
-        rename_prompt_prefix = 'Rename ?',
+        rename_prompt_prefix = 'Rename ',
         code_action_prompt = {
             enable = true,
             sign = false,
@@ -115,22 +116,15 @@ local on_attach = function(client, bufnr)
             virtual_text = false,
         },
     })
-
-    require 'lsp_signature'.on_attach({
-        bind = false,
-        hint_enable = false,
-        use_lspsaga = true,
-        doc_lines = 4,
-        floating_window_above_cur_line = false,
-        handler_opts = {
-            border = "single" -- double, single, shadow, none
-        },
-        auto_close_after = 5,
-        fix_pos = true,
-        hint_scheme = "Function",
-        hi_parameter = "IncSearch"
-    }, bufnr)
 end
+
+require 'lsp_signature'.setup({
+    bind = true,
+    hint_enable = true,
+    floating_window = false,
+    hint_scheme = "String",
+    hint_prefix = "諸"
+})
 
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 wk.register({
@@ -171,6 +165,7 @@ wk.register({
     name = "Code",
     ['r'] = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
     ['a'] = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
+    ['f'] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format Buffer'},
 }, { prefix = '<leader>c' })
 
 
@@ -182,7 +177,7 @@ for _, lsp in ipairs(servers) do
     flags = {
       debounce_text_changes = 150,
     },
-    capabilities = capabilities
+    capabilities = cmp_lsp.update_capabilities(capabilities)
   }
 end
 

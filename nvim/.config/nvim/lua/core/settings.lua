@@ -11,7 +11,7 @@ o.backspace = "indent,eol,start"
 o.backup = false
 o.bomb = false
 o.clipboard = "unnamedplus"
-o.completeopt = "menuone,noinsert,noselect"
+o.completeopt = "menu,menuone,noselect"
 o.confirm = true
 o.cursorline = true
 o.display:append { "lastline" }
@@ -48,7 +48,7 @@ o.shiftround = true
 o.shiftwidth = 4
 o.shortmess:append { c = true }
 o.showmatch = true
-o.showmode = true
+o.showmode = false
 o.sidescroll = 12
 o.sidescrolloff = 7
 o.smartcase = true

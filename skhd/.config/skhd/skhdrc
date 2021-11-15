@@ -119,8 +119,8 @@ cmd - z : yabai -m window --focus east || yabai -m space --focus next
 
 # Moving windows
 shift + cmd - l : yabai -m window --warp west || {yabai -m window --space prev; yabai -m space --focus prev}
-shift + cmd - h : yabai -m window --warp south
-shift + cmd - j : yabai -m window --warp north
+shift + cmd - h : yabai -m window --warp south || yabai -m window --display prev
+shift + cmd - j : yabai -m window --warp north || yabai -m window --display next
 shift + cmd - z : yabai -m window --warp east || {yabai -m window --space next; yabai -m space --focus next}
 
 # Move focus container to workspace

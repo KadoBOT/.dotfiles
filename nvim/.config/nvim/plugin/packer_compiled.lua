@@ -72,22 +72,22 @@ _G.packer_plugins = {
   auto_mkdir = {
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/auto_mkdir",
-    url = "https://github.com/DataWraith/auto_mkdir"
-  },
-  ["barbar.nvim"] = {
-    config = { "require('kadobot.barbar')" },
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
+    url = "https://github.com/dataWraith/auto_mkdir"
   },
   ["cmp-buffer"] = {
+    after_files = { "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-buffer/after/plugin/cmp_buffer.lua" },
+    load_after = {},
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-calc"] = {
+    after_files = { "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-calc/after/plugin/cmp_calc.lua" },
+    load_after = {},
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cmp-calc",
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-calc",
     url = "https://github.com/hrsh7th/cmp-calc"
   },
   ["cmp-nvim-lsp"] = {
@@ -96,14 +96,26 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
+    after_files = { "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua/after/plugin/cmp_nvim_lua.lua" },
+    load_after = {},
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
+    after_files = { "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-path/after/plugin/cmp_path.lua" },
+    load_after = {},
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cmp-path",
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["cokeline.nvim"] = {
+    config = { "require('kadobot.cokeline')" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/cokeline.nvim",
+    url = "https://github.com/noib3/cokeline.nvim"
   },
   ["dashboard-nvim"] = {
     config = { "require('kadobot.dashboard')" },
@@ -114,14 +126,20 @@ _G.packer_plugins = {
   delimitMate = {
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/delimitMate",
-    url = "https://github.com/Raimondi/delimitMate"
+    url = "https://github.com/raimondi/delimitMate"
   },
   ["doom-one.nvim"] = {
     config = { "require('kadobot.doom-one')" },
     loaded = false,
     needs_bufread = false,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/doom-one.nvim",
-    url = "https://github.com/NTBBloodbath/doom-one.nvim"
+    url = "https://github.com/nTBBloodbath/doom-one.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    config = { "require('kadobot.gitsigns')" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -133,13 +151,7 @@ _G.packer_plugins = {
     loaded = true,
     needs_bufread = false,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/indentLine",
-    url = "https://github.com/Yggdroot/indentLine"
-  },
-  ["lightline.vim"] = {
-    config = { "require('kadobot.lightline')" },
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/lightline.vim",
-    url = "https://github.com/itchyny/lightline.vim"
+    url = "https://github.com/yggdroot/indentLine"
   },
   ["lightspeed.nvim"] = {
     config = { "require('kadobot.lightspeed')" },
@@ -162,6 +174,21 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
   },
+  ["lualine.nvim"] = {
+    config = { "require('kadobot.lualine')" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  neogit = {
+    commands = { "Neogit" },
+    config = { "require('kadobot.neogit')" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
+  },
   ["nord-vim"] = {
     loaded = false,
     needs_bufread = false,
@@ -175,10 +202,15 @@ _G.packer_plugins = {
     url = "https://github.com/christianchiarulli/nvcode-color-schemes.vim"
   },
   ["nvim-cmp"] = {
-    config = { "require('kadobot.cmp')" },
+    after = { "cmp-buffer", "vim-vsnip", "cmp-calc", "cmp-nvim-lua", "cmp-path" },
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
+    only_config = true
+  },
+  ["nvim-colorizer.lua"] = {
+    config = { "require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
     config = { "require('kadobot.lsp')" },
@@ -242,20 +274,33 @@ _G.packer_plugins = {
     url = "https://github.com/luukvbaal/stabilize.nvim"
   },
   ["telescope-frecency.nvim"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-frecency.nvim",
+    load_after = {
+      ["telescope.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope-frecency.nvim",
     url = "https://github.com/nvim-telescope/telescope-frecency.nvim"
   },
   ["telescope-project.nvim"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-project.nvim",
+    load_after = {
+      ["telescope.nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim",
     url = "https://github.com/nvim-telescope/telescope-project.nvim"
   },
   ["telescope.nvim"] = {
+    after = { "telescope-frecency.nvim", "telescope-project.nvim" },
+    commands = { "Telescope" },
     config = { "require('kadobot.telescope')" },
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim",
+    wants = { "popup.nvim", "plenary.nvim", "telescope-frecency.nvim", "telescope-project.nvim" }
   },
   ["trouble.nvim"] = {
     config = { "require('kadobot.trouble')" },
@@ -278,31 +323,6 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-eunuch",
     url = "https://github.com/tpope/vim-eunuch"
   },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
-  },
-  ["vim-gitbranch"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-gitbranch",
-    url = "https://github.com/itchyny/vim-gitbranch"
-  },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
-    url = "https://github.com/airblade/vim-gitgutter"
-  },
-  ["vim-hexokinase"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-hexokinase",
-    url = "https://github.com/RRethy/vim-hexokinase"
-  },
-  ["vim-polyglot"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-polyglot",
-    url = "https://github.com/sheerun/vim-polyglot"
-  },
   ["vim-prettier"] = {
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-prettier",
@@ -319,8 +339,10 @@ _G.packer_plugins = {
     url = "https://github.com/christoomey/vim-tmux-navigator"
   },
   ["vim-vsnip"] = {
+    load_after = {},
     loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
   },
   ["which-key.nvim"] = {
@@ -331,6 +353,38 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+local module_lazy_loads = {
+  ["^telescope"] = "telescope.nvim"
+}
+local lazy_load_called = {['packer.load'] = true}
+local function lazy_load_module(module_name)
+  local to_load = {}
+  if lazy_load_called[module_name] then return nil end
+  lazy_load_called[module_name] = true
+  for module_pat, plugin_name in pairs(module_lazy_loads) do
+    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
+      to_load[#to_load + 1] = plugin_name
+    end
+  end
+
+  if #to_load > 0 then
+    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+    local loaded_mod = package.loaded[module_name]
+    if loaded_mod then
+      return function(modname) return loaded_mod end
+    end
+  end
+end
+
+if not vim.g.packer_custom_loader_enabled then
+  table.insert(package.loaders, 1, lazy_load_module)
+  vim.g.packer_custom_loader_enabled = true
+end
+
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+require('kadobot.telescope_setup')
+time([[Setup for telescope.nvim]], false)
 -- Setup for: indentLine
 time([[Setup for indentLine]], true)
 vim.g.indentLine_fileTypeExclude = {'dashboard'}
@@ -338,46 +392,65 @@ time([[Setup for indentLine]], false)
 time([[packadd for indentLine]], true)
 vim.cmd [[packadd indentLine]]
 time([[packadd for indentLine]], false)
--- Config for: lightline.vim
-time([[Config for lightline.vim]], true)
-require('kadobot.lightline')
-time([[Config for lightline.vim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('kadobot.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: lightspeed.nvim
-time([[Config for lightspeed.nvim]], true)
-require('kadobot.lightspeed')
-time([[Config for lightspeed.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('kadobot.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('kadobot.cmp')
-time([[Config for nvim-cmp]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('kadobot.trouble')
-time([[Config for trouble.nvim]], false)
+-- Config for: cokeline.nvim
+time([[Config for cokeline.nvim]], true)
+require('kadobot.cokeline')
+time([[Config for cokeline.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('kadobot.lualine')
+time([[Config for lualine.nvim]], false)
 -- Config for: stabilize.nvim
 time([[Config for stabilize.nvim]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0", "config", "stabilize.nvim")
 time([[Config for stabilize.nvim]], false)
--- Config for: barbar.nvim
-time([[Config for barbar.nvim]], true)
-require('kadobot.barbar')
-time([[Config for barbar.nvim]], false)
--- Config for: dashboard-nvim
-time([[Config for dashboard-nvim]], true)
-require('kadobot.dashboard')
-time([[Config for dashboard-nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('kadobot.lsp')
 time([[Config for nvim-lspconfig]], false)
+-- Config for: lightspeed.nvim
+time([[Config for lightspeed.nvim]], true)
+require('kadobot.lightspeed')
+time([[Config for lightspeed.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('kadobot.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('kadobot.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('kadobot.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('kadobot.trouble')
+time([[Config for trouble.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+require('kadobot.dashboard')
+time([[Config for dashboard-nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd cmp-nvim-lua ]]
+vim.cmd [[ packadd cmp-path ]]
+vim.cmd [[ packadd cmp-buffer ]]
+vim.cmd [[ packadd cmp-calc ]]
+vim.cmd [[ packadd vim-vsnip ]]
+time([[Sequenced loading]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require("packer.load")({'neogit'}, { cmd = "Neogit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 if should_profile then save_profiles() end
 
 end)
