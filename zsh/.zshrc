@@ -174,3 +174,4 @@ alias luamake=/Users/ricardoambrogi/Projects/lua-language-server/3rd/luamake/lua
 
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
+

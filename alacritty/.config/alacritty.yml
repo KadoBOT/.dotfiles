@@ -14,14 +14,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-env:
+# env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: xterm-256color
+  # TERM: tmux
 
 window:
   # Window dimensions (changes require restart)
@@ -182,70 +182,38 @@ font:
 draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
+# TokyoNight Alacritty Colors
 colors:
-  search:
-    matches:
-      background: '#06010F'
-      foreground: '#483663'
-    focused_match:
-      background: '#19132F'
-      foreground: '#594367'
-    bar:
-      background: '#2A2445'
-      foreground: '#A68194'
-  hints:
-    start:
-      background: '#06010F'
-      foreground: '#483663'
-    end:
-      background: '#2A2445'
-      foreground: '#A68194'
-  line_indicator:
-    background: '#2A2445'
-    foreground: '#A68194'
+  # Default colors
   primary:
-    background: '#06010F'
-    foreground: '#EDE7ED' # text
-    dim_foreground: '#C5AABD'
-    bright_foreground: '#A68194'
-    dim_background: '#2A2445'
-    bright_background: '#3D325B'
-  vi_mode_cursor:
-    text: '#735EA7'
-    cursor: '#EDE7ED'
-  selection:
-    text: '#4D4380'
-    background: '#2A2445'
-  cursor:
-    text: '#EDE7ED'
-    cursor: '#906D90'
+    background: '0x24283b'
+    foreground: '0xc0caf5'
+
+  # Normal colors
   normal:
-    black: '#06010F'
-    red: '#906D90'
-    green: '#735EA7'
-    yellow: '#3D325B'
-    blue: '#906D90'
-    magenta: '#76506B'
-    cyan: '#5D4250'
-    white: '#302437'
+    black:   '0x1D202F'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xa9b1d6'
+
+  # Bright colors
   bright:
-    black: '#302437' # completion
-    red: '#2F2456'
-    green: '#4D4380'
-    yellow: '#735EA7'
-    blue: '#C5C1E1'
-    magenta: '#EDE7ED'
-    cyan: '#C5AABD'
-    white: '#A68194'
-  dim:
-    black: '#06010F'
-    red: '#19132F'
-    green: '#2A2445'
-    yellow: '#3D325B'
-    blue: '#544998'
-    magenta: '#906D90'
-    cyan: '#76506B'
-    white: '#5D4250'
+    black:   '0x414868'
+    red:     '0xf7768e'
+    green:   '0x9ece6a'
+    yellow:  '0xe0af68'
+    blue:    '0x7aa2f7'
+    magenta: '0xbb9af7'
+    cyan:    '0x7dcfff'
+    white:   '0xc0caf5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff9e64' }
+    - { index: 17, color: '0xdb4b4b' }
 
 # Bell
 #

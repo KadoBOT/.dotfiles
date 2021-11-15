@@ -1,6 +1,6 @@
 require('lualine').setup {
     options = {
-        theme = 'dracula'
+        theme = 'tokyonight'
     },
     sections = {
         lualine_b = {

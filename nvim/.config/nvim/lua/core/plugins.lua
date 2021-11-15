@@ -13,6 +13,7 @@ return require('packer').startup(function (use)
     use {'dataWraith/auto_mkdir'}
     use {'folke/trouble.nvim', config = [[require('kadobot.trouble')]]}
     use {'folke/which-key.nvim'}
+    use {'folke/tokyonight.nvim'}
     use {'ggandor/lightspeed.nvim', config = [[require('kadobot.lightspeed')]] }
     use {'glepnir/dashboard-nvim', config = [[require('kadobot.dashboard')]] }
     use {

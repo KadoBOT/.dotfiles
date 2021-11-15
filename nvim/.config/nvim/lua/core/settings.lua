@@ -2,7 +2,7 @@ local o = vim.opt
 local w = vim.wo
 local g = vim.g
 
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme tokyonight')
 
 o.autoindent = true
 o.autoread = true
