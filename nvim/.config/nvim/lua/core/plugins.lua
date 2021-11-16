@@ -29,6 +29,7 @@ return require('packer').startup(function (use)
         },
         config = [[require('kadobot.cmp')]]
     }
+    use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
     use {'luukvbaal/stabilize.nvim', config = function () require('stabilize').setup() end }
     use {'mbbill/undotree'}

@@ -9,7 +9,7 @@ require("telescope").setup({
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
         use_less = true,
         winblend = 0,
-        file_ignore_patterns = { "%.git", "node_modules/" },
+        file_ignore_patterns = { "%.git", "node_modules/", "dist/", "reports/" },
         prompt_prefix = "   ",
         selection_caret = " ",
         mappings = {
@@ -28,7 +28,7 @@ require("telescope").setup({
             '--column',
             '--smart-case',
             '--hidden',
-            '-u' -- thats the new thing
+            '-u'
         },
     },
     extensions = {
