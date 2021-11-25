@@ -43,10 +43,6 @@ require("telescope").setup({
         },
     },
     pickers = {
-        lsp_references = { theme = 'dropdown' },
-        lsp_code_actions = { theme = 'dropdown' },
-        lsp_definitions = { theme = 'dropdown' },
-        lsp_implementations = { theme = 'dropdown' },
         find_files = {
             find_command = {
                 'rg', '--files', '--hidden', '-g', '!.git/', '-g', '!node_modules'
@@ -59,12 +55,16 @@ require("telescope").setup({
             show_all_buffers = true,
             sort_lastused = true,
             previewer = false,
+        },
+        oldfiles = {
+            only_cwd = true
         }
     }
 })
 
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('project')
+-- require('telescope').load_extension('aerial')
 
 -- Highlights
 vim.highlight.create('TelescopeMatching', {guifg='#F18F91'}, false)

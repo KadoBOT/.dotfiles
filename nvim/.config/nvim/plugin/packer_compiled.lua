@@ -123,11 +123,6 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
     url = "https://github.com/glepnir/dashboard-nvim"
   },
-  delimitMate = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/delimitMate",
-    url = "https://github.com/raimondi/delimitMate"
-  },
   ["doom-one.nvim"] = {
     config = { "require('kadobot.doom-one')" },
     loaded = false,
@@ -201,8 +196,14 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/nvcode-color-schemes.vim",
     url = "https://github.com/christianchiarulli/nvcode-color-schemes.vim"
   },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\nå\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0Pautocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }\bcmd\bvim\21disable_filetype\1\3\0\0\20TelescopePrompt\vguihua\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
-    after = { "cmp-calc", "cmp-nvim-lua", "cmp-path", "vim-vsnip", "cmp-buffer" },
+    after = { "cmp-buffer", "cmp-calc", "vim-vsnip", "cmp-path", "cmp-nvim-lua" },
     loaded = true,
     only_config = true
   },
@@ -252,6 +253,14 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["persistence.nvim"] = {
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16persistence\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/persistence.nvim",
+    url = "https://github.com/folke/persistence.nvim"
+  },
   playground = {
     loaded = false,
     needs_bufread = true,
@@ -273,12 +282,6 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/sql.nvim",
     url = "https://github.com/tami5/sql.nvim"
   },
-  ["stabilize.nvim"] = {
-    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0" },
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/stabilize.nvim",
-    url = "https://github.com/luukvbaal/stabilize.nvim"
-  },
   ["telescope-frecency.nvim"] = {
     load_after = {
       ["telescope.nvim"] = true
@@ -296,6 +299,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim",
     url = "https://github.com/nvim-telescope/telescope-project.nvim"
+  },
+  ["telescope-symbols.nvim"] = {
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",
+    url = "https://github.com/nvim-telescope/telescope-symbols.nvim"
   },
   ["telescope.nvim"] = {
     after = { "telescope-frecency.nvim", "telescope-project.nvim" },
@@ -365,6 +373,7 @@ _G.packer_plugins = {
 
 time([[Defining packer_plugins]], false)
 local module_lazy_loads = {
+  ["^persistence"] = "persistence.nvim",
   ["^telescope"] = "telescope.nvim"
 }
 local lazy_load_called = {['packer.load'] = true}
@@ -392,10 +401,6 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Setup for: telescope.nvim
-time([[Setup for telescope.nvim]], true)
-require('kadobot.telescope_setup')
-time([[Setup for telescope.nvim]], false)
 -- Setup for: indentLine
 time([[Setup for indentLine]], true)
 vim.g.indentLine_fileTypeExclude = {'dashboard'}
@@ -403,50 +408,54 @@ time([[Setup for indentLine]], false)
 time([[packadd for indentLine]], true)
 vim.cmd [[packadd indentLine]]
 time([[packadd for indentLine]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('kadobot.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: dashboard-nvim
-time([[Config for dashboard-nvim]], true)
-require('kadobot.dashboard')
-time([[Config for dashboard-nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('kadobot.lsp')
-time([[Config for nvim-lspconfig]], false)
--- Config for: lightspeed.nvim
-time([[Config for lightspeed.nvim]], true)
-require('kadobot.lightspeed')
-time([[Config for lightspeed.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('kadobot.nvim-tree')
-time([[Config for nvim-tree.lua]], false)
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+require('kadobot.telescope_setup')
+time([[Setup for telescope.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('kadobot.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('kadobot.gitsigns')
-time([[Config for gitsigns.nvim]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+require('kadobot.dashboard')
+time([[Config for dashboard-nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 require('kadobot.trouble')
 time([[Config for trouble.nvim]], false)
--- Config for: stabilize.nvim
-time([[Config for stabilize.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14stabilize\frequire\0", "config", "stabilize.nvim")
-time([[Config for stabilize.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('kadobot.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: lightspeed.nvim
+time([[Config for lightspeed.nvim]], true)
+require('kadobot.lightspeed')
+time([[Config for lightspeed.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('kadobot.cmp')
 time([[Config for nvim-cmp]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('kadobot.lsp')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('kadobot.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\nå\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0Pautocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }\bcmd\bvim\21disable_filetype\1\3\0\0\20TelescopePrompt\vguihua\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('kadobot.nvim-tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
+time([[Config for nvim-colorizer.lua]], false)
 -- Config for: cokeline.nvim
 time([[Config for cokeline.nvim]], true)
 require('kadobot.cokeline')
@@ -466,6 +475,13 @@ pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'persistence.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)

@@ -5,7 +5,14 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = true,
     },
-    incremental_selection = { enable = true },
+    incremental_selection = { enable = true,
+        keymaps = {
+            init_selection = '<TAB>',
+            scope_incremental = '<CR>',
+            node_incremental = '<TAB>',
+            node_decremental = '<S-TAB>',
+        }
+    },
     refactor = {
         highlight_definitions = { enable = true },
     },

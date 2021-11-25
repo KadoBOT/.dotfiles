@@ -6,6 +6,7 @@ wk.register({
     ['<leader>hs'] = { "<cmd>Telescope search_history<cr>", "Search History" },
     ['?'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
     ["'"] = { '<cmd>Telescope frecency<cr>', "Frecency"},
+    ['!'] = { '<cmd>Telescope lsp_document_symbols<CR>', 'Document symbols'},
     ['<leader>f'] = { name = "Files" },
     ['<leader>ff'] = { "<cmd>Telescope find_files<cr>", "Find Files" },
     ['<leader>fr'] = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },

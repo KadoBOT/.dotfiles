@@ -1,4 +1,10 @@
-require('trouble').setup {}
+require('trouble').setup {
+    action_keys = {
+        previous = 'h',
+        next = 'j',
+    },
+    use_lsp_diagnostic_signs = true
+}
 local wk = require('which-key')
 
 wk.register({

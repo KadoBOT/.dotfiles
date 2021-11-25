@@ -1,6 +1,7 @@
 require('lualine').setup {
     options = {
-        theme = 'tokyonight'
+        theme = 'tokyonight',
+        disabled_filetypes = { 'TelescopePrompt', 'vista' }
     },
     sections = {
         lualine_b = {

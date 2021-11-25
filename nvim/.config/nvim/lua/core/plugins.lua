@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 return require('packer').startup(function (use)
@@ -11,6 +11,14 @@ return require('packer').startup(function (use)
     use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
     use {'christoomey/vim-tmux-navigator'}
     use {'dataWraith/auto_mkdir'}
+    use({
+        "folke/persistence.nvim",
+        event = "BufReadPre", -- this will only start session saving when an actual file was opened
+        module = "persistence",
+        config = function()
+            require("persistence").setup()
+        end,
+    })
     use {'folke/trouble.nvim', config = [[require('kadobot.trouble')]]}
     use {'folke/which-key.nvim'}
     use {'folke/tokyonight.nvim'}
@@ -31,7 +39,6 @@ return require('packer').startup(function (use)
     }
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
-    use {'luukvbaal/stabilize.nvim', config = function () require('stabilize').setup() end }
     use {'mbbill/undotree'}
     use {'nTBBloodbath/doom-one.nvim', config = [[require('kadobot.doom-one')]], opt = true }
     use {'navarasu/onedark.nvim', opt = true}
@@ -72,7 +79,8 @@ return require('packer').startup(function (use)
                 'telescope-frecency.nvim',
                 'telescope-project.nvim',
                 'nvim-lua/plenary.nvim',
-                'nvim-lua/popup.nvim'
+                'nvim-lua/popup.nvim',
+                'nvim-telescope/telescope-symbols.nvim'
             },
             wants = {
                 'popup.nvim',
@@ -107,7 +115,7 @@ return require('packer').startup(function (use)
     }
     use {'prettier/vim-prettier'}
     use {'psliwka/vim-smoothie'}
-    use {'raimondi/delimitMate'}
+    -- use {'raimondi/delimitMate'}
     use {'tpope/vim-commentary'}
     use {'tpope/vim-eunuch'}
     use {
@@ -119,9 +127,16 @@ return require('packer').startup(function (use)
         },
         { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('kadobot.neogit')]] },
     }
+    use {'windwp/nvim-autopairs', config = function ()
+        require'nvim-autopairs'.setup({
+            check_ts = true,
+            disable_filetype = { "TelescopePrompt" , "guihua" }
+        })
+        vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
+    end}
     use {'yggdroot/indentLine', setup = [[vim.g.indentLine_fileTypeExclude = {'dashboard'}]]}
 
-    if packer_bootstrap then
+    if Packer_bootstrap then
         require('packer').sync()
     end
 end)

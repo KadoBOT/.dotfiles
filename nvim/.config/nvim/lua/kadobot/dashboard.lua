@@ -22,22 +22,26 @@ local custom_header = {
 vim.g.dashboard_default_executive = "telescope"
 
 vim.g.dashboard_custom_section = {
-  a = {
-    description = { "  Find File                  SPC f f" },
-    command = "Telescope find_files",
-  },
-  b = {
-    description = { "  Find Project               SPC f p" },
-    command = "Telescope project",
-  },
-  c = {
-    description = { "  Recents                    SPC f r" },
-    command = "Telescope oldfiles",
-  },
-  d = {
-    description = { "﬘  New Buffer                 SPC g g" },
-    command = "enew",
-  },
+    a = {
+        description = { "  Find File                  SPC f f" },
+        command = "Telescope find_files",
+    },
+    b = {
+        description = { "  Find Project               SPC f p" },
+        command = "Telescope project",
+    },
+    c = {
+        description = { "  Recents                    SPC f r" },
+        command = "Telescope oldfiles",
+    },
+    d = {
+        description = { "פּ  File Browser               SPC f t" },
+        command = "Telescope file_browser",
+    },
+    e = {
+        description = { "  Restore Dir Session               " },
+        command = "lua require('persistence').load()"
+    }
 }
 
 vim.g.dashboard_custom_footer = { "\"It's not who I am underneath, but what I do that defines me.\"" }
