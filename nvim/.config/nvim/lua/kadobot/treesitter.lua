@@ -4,6 +4,7 @@ require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = true,
+        use_languagetree = true
     },
     incremental_selection = { enable = true,
         keymaps = {
@@ -15,6 +16,13 @@ require'nvim-treesitter.configs'.setup {
     },
     refactor = {
         highlight_definitions = { enable = true },
+        highlight_current_scope = { enable = true },
     },
-    textobjects = { enable = true }
+    textobjects = { enable = true },
+    autotag = {
+        enable = true
+    },
+    context_commentstring = {
+        enable = true
+    }
 }

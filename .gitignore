@@ -1,2 +1,2 @@
 .DS_STORE
-./nvim/.config/nvim/sessions
+nvim/.config/nvim/sessions/

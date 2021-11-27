@@ -21,6 +21,7 @@ require("telescope").setup({
         },
         vimgrep_arguments = {
             'rg',
+            '--ignore',
             '--color=never',
             '--no-heading',
             '--with-filename',
@@ -32,6 +33,17 @@ require("telescope").setup({
         },
     },
     extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        },
+        fzf_writer = {
+            minimum_grep_characters = 2,
+            minimum_files_characters = 2,
+            use_highlighter = true
+        },
         frecency = {
             ignore_patterns = {"*%.git/*", "*/node_modules/*", "*/tmp/*", "*cache/*"},
             workspaces = {
@@ -64,6 +76,7 @@ require("telescope").setup({
 
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('project')
+require('telescope').load_extension('fzf')
 -- require('telescope').load_extension('aerial')
 
 -- Highlights

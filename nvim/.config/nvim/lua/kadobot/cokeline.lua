@@ -18,10 +18,10 @@ require('cokeline').setup({
             text = '⎹',
             hl = {
                 fg = function(buffer)
-                    if buffer.lsp.errors ~= 0 then
+                    if buffer.diagnostics.errors ~= 0 then
                         return get_hex('Error', 'fg')
                     end
-                    if buffer.lsp.warnings ~= 0 then
+                    if buffer.diagnostics.warnings ~= 0 then
                         return get_hex('WarningMsg', 'fg')
                     end
                 end,
@@ -52,7 +52,7 @@ require('cokeline').setup({
                     if buffer.is_focused then
                         style = 'bold'
                     end
-                    if buffer.lsp.errors ~= 0 then
+                    if buffer.diagnostics.errors ~= 0 then
                         if style then
                             style = style .. ',underline'
                         else

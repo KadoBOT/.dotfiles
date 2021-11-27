@@ -5,8 +5,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function (use)
-    use {'lewis6991/impatient.nvim'}
-    use {'wbthomason/packer.nvim'}
+    use {
+        'lewis6991/impatient.nvim',
+        'wbthomason/packer.nvim',
+        'nathom/filetype.nvim',
+        'nvim-lua/plenary.nvim',
+    }
     use {'arcticicestudio/nord-vim', opt = true }
     use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
     use {'christoomey/vim-tmux-navigator'}
@@ -80,13 +84,16 @@ return require('packer').startup(function (use)
                 'telescope-project.nvim',
                 'nvim-lua/plenary.nvim',
                 'nvim-lua/popup.nvim',
-                'nvim-telescope/telescope-symbols.nvim'
+                'nvim-telescope/telescope-symbols.nvim',
+                'telescope-fzf-native.nvim',
+                'telescope-fzf-writer.nvim',
             },
             wants = {
                 'popup.nvim',
                 'plenary.nvim',
                 'telescope-frecency.nvim',
-                'telescope-project.nvim'
+                'telescope-project.nvim',
+                'telescope-fzf-native.nvim',
             },
             config = [[require('kadobot.telescope')]],
             setup = [[require('kadobot.telescope_setup')]],
@@ -98,10 +105,18 @@ return require('packer').startup(function (use)
             after = 'telescope.nvim',
         },
         {
+            'nvim-telescope/telescope-fzf-writer.nvim',
+            after = 'telescope.nvim',
+        },
+        {
             'nvim-telescope/telescope-frecency.nvim',
             after = 'telescope.nvim',
             requires = 'tami5/sql.nvim',
         },
+        {
+            'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make'
+        }
     }
     use {
         'nvim-treesitter/nvim-treesitter',
