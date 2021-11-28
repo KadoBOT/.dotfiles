@@ -208,7 +208,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-calc", "cmp-path", "cmp-nvim-lua", "cmp-buffer", "vim-vsnip" },
+    after = { "cmp-buffer", "vim-vsnip", "cmp-path", "cmp-nvim-lua", "cmp-calc" },
     loaded = true,
     only_config = true
   },
@@ -431,10 +431,6 @@ time([[Setup for indentLine]], false)
 time([[packadd for indentLine]], true)
 vim.cmd [[packadd indentLine]]
 time([[packadd for indentLine]], false)
--- Config for: cokeline.nvim
-time([[Config for cokeline.nvim]], true)
-require('kadobot.cokeline')
-time([[Config for cokeline.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
@@ -447,10 +443,6 @@ time([[Config for dashboard-nvim]], false)
 time([[Config for nvim-lspconfig]], true)
 require('kadobot.lsp')
 time([[Config for nvim-lspconfig]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\nå\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0Pautocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }\bcmd\bvim\21disable_filetype\1\3\0\0\20TelescopePrompt\vguihua\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 require('kadobot.trouble')
@@ -459,33 +451,41 @@ time([[Config for trouble.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 require('kadobot.nvim-tree')
 time([[Config for nvim-tree.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('kadobot.gitsigns')
-time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('kadobot.treesitter')
 time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\nå\1\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\0016\0\6\0009\0\a\0'\2\b\0B\0\2\1K\0\1\0Pautocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }\bcmd\bvim\21disable_filetype\1\3\0\0\20TelescopePrompt\vguihua\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('kadobot.gitsigns')
+time([[Config for gitsigns.nvim]], false)
 -- Config for: lightspeed.nvim
 time([[Config for lightspeed.nvim]], true)
 require('kadobot.lightspeed')
 time([[Config for lightspeed.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('kadobot.cmp')
-time([[Config for nvim-cmp]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('kadobot.lualine')
 time([[Config for lualine.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('kadobot.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: cokeline.nvim
+time([[Config for cokeline.nvim]], true)
+require('kadobot.cokeline')
+time([[Config for cokeline.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
+vim.cmd [[ packadd cmp-nvim-lua ]]
 vim.cmd [[ packadd vim-vsnip ]]
 vim.cmd [[ packadd cmp-path ]]
 vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-calc ]]
-vim.cmd [[ packadd cmp-nvim-lua ]]
 time([[Sequenced loading]], false)
 
 -- Command lazy-loads

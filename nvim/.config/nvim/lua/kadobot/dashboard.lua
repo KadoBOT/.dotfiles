@@ -35,10 +35,14 @@ vim.g.dashboard_custom_section = {
         command = "Telescope oldfiles",
     },
     d = {
-        description = { "פּ  File Browser               SPC f t" },
+        description = { "  File Browser               SPC f t" },
         command = "Telescope file_browser",
     },
     e = {
+        description = { "פּ  File Tree                        ;" },
+        command = "NvimTreeToggle"
+    },
+    f = {
         description = { "  Restore Dir Session               " },
         command = "lua require('persistence').load()"
     }

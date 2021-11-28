@@ -11,7 +11,14 @@ return require('packer').startup(function (use)
         'nathom/filetype.nvim',
         'nvim-lua/plenary.nvim',
     }
-    use {'arcticicestudio/nord-vim', opt = true }
+
+    use {
+        { 'arcticicestudio/nord-vim', opt = true },
+        {'nTBBloodbath/doom-one.nvim', config = [[require('kadobot.doom-one')]], opt = true },
+        {'navarasu/onedark.nvim', opt = true},
+        {'folke/tokyonight.nvim'}
+    }
+
     use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
     use {'christoomey/vim-tmux-navigator'}
     use {'dataWraith/auto_mkdir'}
@@ -25,7 +32,6 @@ return require('packer').startup(function (use)
     })
     use {'folke/trouble.nvim', config = [[require('kadobot.trouble')]]}
     use {'folke/which-key.nvim'}
-    use {'folke/tokyonight.nvim'}
     use {'ggandor/lightspeed.nvim', config = [[require('kadobot.lightspeed')]] }
     use {'glepnir/dashboard-nvim', config = [[require('kadobot.dashboard')]] }
     use {
@@ -44,8 +50,6 @@ return require('packer').startup(function (use)
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
     use {'mbbill/undotree'}
-    use {'nTBBloodbath/doom-one.nvim', config = [[require('kadobot.doom-one')]], opt = true }
-    use {'navarasu/onedark.nvim', opt = true}
     use {
         'neovim/nvim-lspconfig',
         requires = {

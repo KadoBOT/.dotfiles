@@ -1,4 +1,3 @@
-local ntree = require'nvim-tree'
 local wk = require'which-key'
 local g = vim.g
 
@@ -19,13 +18,13 @@ g.nvim_tree_icons = {
     default = '',
     symlink = '',
     git = {
-        unstaged = '✗',
-        staged = '✓',
-        unmerged = '',
-        renamed = '➜',
-        untracked = '★',
+        unstaged = '',
+        staged = '',
+        unmerged = '',
+        renamed = '',
+        untracked = '',
         deleted = '',
-        ignored = '◌',
+        ignored = '',
     },
     folder = {
         arrow_open = '',
@@ -58,7 +57,7 @@ wk.register({
     ["r"] = {":NvimTreeRefresh<CR>", "Refresh"},
 }, { prefix = "<leader>t"})
 
-ntree.setup{
+require'nvim-tree'.setup{
     auto_close = true,
     diagnostics = {
         enable = true
