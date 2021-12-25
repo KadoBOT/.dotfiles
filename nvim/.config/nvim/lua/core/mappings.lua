@@ -18,7 +18,8 @@ wk.register({
         name = 'History',
         c = 'Command',
         s = 'Search'
-    }
+    },
+    z = {":Bdelete<CR>", "Delete Buffer"}
 }, { prefix = "<leader>" })
 
 

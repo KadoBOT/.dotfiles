@@ -13,8 +13,9 @@ o.bomb = false
 o.breakindent = true
 o.clipboard = "unnamedplus"
 o.cmdheight = 1
-o.completeopt = "menuone,noselect,noinsert"
+o.completeopt = "menuone,noselect"
 o.confirm = true
+o.conceallevel = 0
 o.cursorline = true
 o.display:append { "lastline" }
 o.encoding = "utf-8"
@@ -39,6 +40,8 @@ o.hlsearch = true
 o.ignorecase = true
 o.inccommand = "split"
 o.incsearch = true
+g.indentLine_char_list = {'|', '¦', '┆', '┊'}
+g.indentLine_concealcursor = 'inc'
 o.lazyredraw = true
 o.laststatus = 2
 o.linebreak = true
@@ -75,6 +78,7 @@ o.showbreak = string.rep(' ', 4)
 o.showcmd = true
 o.showmatch = true
 o.showmode = false
+o.showtabline = 2
 o.sidescroll = 12
 o.sidescrolloff = 15
 o.signcolumn = "yes"
@@ -93,10 +97,10 @@ o.swapfile = false
 o.tabstop = 4
 o.termguicolors = true
 o.textwidth = 120
-o.timeoutlen = 500
+o.timeoutlen = 100
 o.title = true
 o.ttyfast = true
-o.updatetime = 200
+o.updatetime = 100
 o.visualbell = true
 o.wildignore:append { "**/.git/*" }
 o.wildignore:append { "**/node_modules/*" }
@@ -118,6 +122,7 @@ local disabled_built_ins = {
     "netrwPlugin",
     "netrwSettings",
     "rrhelper",
+    "spellfile_plugin",
     "tar",
     "tarPlugin",
     "vimball",

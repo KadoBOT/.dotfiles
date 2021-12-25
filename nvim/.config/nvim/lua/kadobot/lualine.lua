@@ -7,14 +7,18 @@ require('lualine').setup {
         lualine_b = {
             'branch',
             'diff',
-            {'diagnostics', sources={'nvim_lsp'}}
+            {'diagnostics', sources={'nvim_diagnostic'}}
         },
         lualine_c = {
             {
                 'filename',
                 path = 1
             }
-        }
+        },
     },
-    extensions = {'fugitive'}
+    extensions = {
+        "fugitive",
+        "fzf",
+        "nvim-tree",
+    }
 }

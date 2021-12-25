@@ -16,7 +16,7 @@ require("telescope").setup({
             n = {
                 ["j"] = require("telescope.actions").move_selection_previous,
                 ["h"] = require("telescope.actions").move_selection_next,
-                ["<leader>"] = require("telescope.actions").which_key
+                ["<leader>"] = require("telescope.actions").which_key,
             }
         },
         vimgrep_arguments = {

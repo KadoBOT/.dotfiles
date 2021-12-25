@@ -1,10 +1,11 @@
 require('trouble').setup {
     action_keys = {
-        previous = 'h',
-        next = 'j',
+        previous = 'j',
+        next = 'h',
     },
-    use_lsp_diagnostic_signs = true
+    use_diagnostic_signs = true
 }
+
 local wk = require('which-key')
 
 wk.register({

@@ -1,12 +1,17 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 return require('packer').startup(function (use)
     use {
-        'lewis6991/impatient.nvim',
+        {
+            'lewis6991/impatient.nvim',
+            config = function () 
+                require('impatient').enable_profile()
+            end,
+        },
         'wbthomason/packer.nvim',
         'nathom/filetype.nvim',
         'nvim-lua/plenary.nvim',
@@ -16,7 +21,8 @@ return require('packer').startup(function (use)
         { 'arcticicestudio/nord-vim', opt = true },
         {'nTBBloodbath/doom-one.nvim', config = [[require('kadobot.doom-one')]], opt = true },
         {'navarasu/onedark.nvim', opt = true},
-        {'folke/tokyonight.nvim'}
+        {'folke/tokyonight.nvim' },
+        {'rebelot/kanagawa.nvim', opt = true}
     }
 
     use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
@@ -38,18 +44,21 @@ return require('packer').startup(function (use)
         'hrsh7th/nvim-cmp',
         requires = {
             {'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+            {'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
             {'hrsh7th/cmp-calc', after = 'nvim-cmp' },
             'hrsh7th/cmp-nvim-lsp',
+            'onsails/lspkind-nvim',
             {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
             {'hrsh7th/cmp-path', after = 'nvim-cmp' },
-            'onsails/lspkind-nvim',
             {'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
+            'windwp/nvim-autopairs'
         },
         config = [[require('kadobot.cmp')]]
     }
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
     use {'mbbill/undotree'}
+    use {'moll/vim-bbye'}
     use {
         'neovim/nvim-lspconfig',
         requires = {
@@ -61,7 +70,7 @@ return require('packer').startup(function (use)
         config = [[require('kadobot.lsp')]]
     }
     use {
-        'noib3/cokeline.nvim',
+        'noib3/nvim-cokeline',
         requires = {
             'kyazdani42/nvim-web-devicons',
             'neovim/nvim-lspconfig'
@@ -133,8 +142,6 @@ return require('packer').startup(function (use)
         config = [[require('kadobot.treesitter')]]
     }
     use {'prettier/vim-prettier'}
-    use {'psliwka/vim-smoothie'}
-    -- use {'raimondi/delimitMate'}
     use {'tpope/vim-commentary'}
     use {'tpope/vim-eunuch'}
     use {
@@ -146,14 +153,22 @@ return require('packer').startup(function (use)
         },
         { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('kadobot.neogit')]] },
     }
-    use {'windwp/nvim-autopairs', config = function ()
-        require'nvim-autopairs'.setup({
-            check_ts = true,
-            disable_filetype = { "TelescopePrompt" , "guihua" }
-        })
-        vim.cmd("autocmd FileType guihua lua require('cmp').setup.buffer { enabled = false }")
-    end}
+    use {'windwp/nvim-autopairs', config = [[ require'kadobot.autopairs' ]]}
     use {'yggdroot/indentLine', setup = [[vim.g.indentLine_fileTypeExclude = {'dashboard'}]]}
+
+    -- use {
+    --     'KadoBOT/nvim-spotify', 
+    --     requires = 'nvim-telescope/telescope.nvim',
+    --     config = [[require'kadobot.nvim-spotify']],
+    --     run = 'make'
+    -- }
+
+    -- use {
+    --     '~/Projects/nvim-spotify', 
+    --     requires = 'nvim-telescope/telescope.nvim',
+    --     config = [[require'kadobot.nvim-spotify']],
+    --     run = 'make'
+    -- }
 
     if Packer_bootstrap then
         require('packer').sync()

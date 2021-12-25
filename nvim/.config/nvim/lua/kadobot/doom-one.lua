@@ -9,6 +9,6 @@ require('doom-one').setup {
     startify = true,
     whichkey = true,
     indent_blankline = true,
-    lspsaga = true,
+    -- lspsaga = true,
   },
 }

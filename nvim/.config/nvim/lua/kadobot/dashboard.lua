@@ -23,28 +23,32 @@ vim.g.dashboard_default_executive = "telescope"
 
 vim.g.dashboard_custom_section = {
     a = {
+        description = { "  Restore Dir Session               " },
+        command = "lua require('persistence').load()"
+    },
+    b = {
         description = { "  Find File                  SPC f f" },
         command = "Telescope find_files",
     },
-    b = {
+    c = {
         description = { "  Find Project               SPC f p" },
         command = "Telescope project",
     },
-    c = {
+    d = {
         description = { "  Recents                    SPC f r" },
         command = "Telescope oldfiles",
     },
-    d = {
+    e = {
         description = { "  File Browser               SPC f t" },
         command = "Telescope file_browser",
     },
-    e = {
+    f = {
+        description = { "  Find Word                  SPC f g" },
+        command = "Telescope live_grep",
+    },
+    g = {
         description = { "פּ  File Tree                        ;" },
         command = "NvimTreeToggle"
-    },
-    f = {
-        description = { "  Restore Dir Session               " },
-        command = "lua require('persistence').load()"
     }
 }
 

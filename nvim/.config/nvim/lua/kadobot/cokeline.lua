@@ -1,4 +1,4 @@
-local get_hex = require('cokeline/utils').get_hex
+local get_hex = require('cokeline.utils').get_hex
 local wk = require('which-key')
 
 require('cokeline').setup({
@@ -79,7 +79,7 @@ require('cokeline').setup({
             },
             delete_buffer_on_left_click = true,
         }
-    },
+    }
 })
 
 wk.register({

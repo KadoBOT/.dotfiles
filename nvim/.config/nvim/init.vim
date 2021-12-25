@@ -4,11 +4,6 @@ let mapleader=" "
 " Config
 lua require('kadobot')
 
-" indentLine indent char
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 2
-
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
 
