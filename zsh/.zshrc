@@ -14,8 +14,10 @@ export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 export BROWSER=brave
+export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
+export TERM=alacritty-direct
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -178,3 +180,4 @@ if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+

@@ -21,7 +21,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  # TERM: tmux
+  # TERM: tmux-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -46,8 +46,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 2
-    y: 2
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -91,12 +91,12 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
-  gtk_theme_variant: dark
+  # gtk_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 10000
+  history: 2000
 
   # Scrolling distance multiplier.
   multiplier: 3
@@ -111,10 +111,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: "IBM Plex Mono"
-    family: "SauceCodePro Nerd Font Mono"
-    # family: "SauceCodePro Nerd Font Mono"
-    style: Regular
+    family: "BlexMono NF"
+    style: Book
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -176,44 +174,79 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Tomorrow Night)
-# TokyoNight Alacritty Colors
-colors:
-  # Default colors
-  primary:
-    background: '0x24283b'
-    foreground: '0xc0caf5'
+schemes:
+  kanagawa: &kanagawa
+    # Kanagawa Alacritty Colors
+    primary:
+      background: '0x1f1f28'
+      foreground: '0xdcd7ba'
 
-  # Normal colors
-  normal:
-    black:   '0x1D202F'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xbb9af7'
-    cyan:    '0x7dcfff'
-    white:   '0xa9b1d6'
+    normal:
+      black:   '0x090618'
+      red:     '0xc34043'
+      green:   '0x76946a'
+      yellow:  '0xc0a36e'
+      blue:    '0x7e9cd8'
+      magenta: '0x957fb8'
+      cyan:    '0x6a9589'
+      white:   '0xc8c093'
 
-  # Bright colors
-  bright:
-    black:   '0x414868'
-    red:     '0xf7768e'
-    green:   '0x9ece6a'
-    yellow:  '0xe0af68'
-    blue:    '0x7aa2f7'
-    magenta: '0xbb9af7'
-    cyan:    '0x7dcfff'
-    white:   '0xc0caf5'
+    bright:
+      black:   '0x727169'
+      red:     '0xe82424'
+      green:   '0x98bb6c'
+      yellow:  '0xe6c384'
+      blue:    '0x7fb4ca'
+      magenta: '0x938aa9'
+      cyan:    '0x7aa89f'
+      white:   '0xdcd7ba'
 
-  indexed_colors:
-    - { index: 16, color: '0xff9e64' }
-    - { index: 17, color: '0xdb4b4b' }
+    selection:
+      background: '0x2d4f67'
+      foreground: '0xc8c093'
+
+    indexed_colors:
+      - { index: 16, color: '0xffa066' }
+      - { index: 17, color: '0xff5d62' }
+  # TokyoNight Alacritty Colors
+  tokyo_night: &tokyo_night
+    # Default colors
+    primary:
+      background: '0x24283b'
+      foreground: '0xc0caf5'
+
+    # Normal colors
+    normal:
+      black:   '0x1D202F'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xa9b1d6'
+
+    # Bright colors
+    bright:
+      black:   '0x414868'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xc0caf5'
+
+    indexed_colors:
+      - { index: 16, color: '0xff9e64' }
+      - { index: 17, color: '0xdb4b4b' }
+
+colors: *kanagawa
 
 # Bell
 #
@@ -282,7 +315,7 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Beam
+    shape: Block
 
     # Cursor blinking state
     #
@@ -640,8 +673,8 @@ key_bindings:
   - { key: V,         mods: Control|Shift,          action: Paste          }
   - { key: C,         mods: Control|Shift,          action: Copy           }
   - { key: D,         mods: Alt,                    chars: "\x01\x63"      }
-  - { key: X,         mods: Alt,                    chars: "\x01\x26"      }
-  - { key: X,         mods: Alt|Shift,              chars: "\x01\x78"      }
+  - { key: X,         mods: Alt|Shift,              chars: "\x01\x26"      }
+  - { key: X,         mods: Alt,                    chars: "\x01\x78"      }
   - { key: Key1,      mods: Alt,                    chars: "\x01\x31"      }
   - { key: Key2,      mods: Alt,                    chars: "\x01\x32"      }
   - { key: Key3,      mods: Alt,                    chars: "\x01\x33"      }

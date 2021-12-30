@@ -53,6 +53,7 @@ cmp.setup {
         { name = 'buffer' },
         { name = 'path' },
         { name = 'nvim_lua' },
+        { name = 'rg'}
     },
     completion = {
         keyword_length = 1,

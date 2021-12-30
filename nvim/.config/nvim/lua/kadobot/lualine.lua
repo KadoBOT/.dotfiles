@@ -1,6 +1,10 @@
+local status = require'nvim-spotify'.status
+
+status:start()
+
 require('lualine').setup {
     options = {
-        theme = 'tokyonight',
+        theme = 'kanagawa',
         disabled_filetypes = { 'TelescopePrompt', 'vista' }
     },
     sections = {
@@ -12,9 +16,12 @@ require('lualine').setup {
         lualine_c = {
             {
                 'filename',
-                path = 1
+                path = 1,
             }
         },
+        lualine_x = {
+            status.listen
+        }
     },
     extensions = {
         "fugitive",

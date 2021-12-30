@@ -21,8 +21,8 @@ return require('packer').startup(function (use)
         { 'arcticicestudio/nord-vim', opt = true },
         {'nTBBloodbath/doom-one.nvim', config = [[require('kadobot.doom-one')]], opt = true },
         {'navarasu/onedark.nvim', opt = true},
-        {'folke/tokyonight.nvim' },
-        {'rebelot/kanagawa.nvim', opt = true}
+        {'folke/tokyonight.nvim', opt = true },
+        {'rebelot/kanagawa.nvim'}
     }
 
     use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
@@ -57,6 +57,12 @@ return require('packer').startup(function (use)
     }
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
+    use {
+        'lukas-reineke/cmp-rg',
+        requires = {
+            'hrsh7th/nvim-cmp'
+        }
+    }
     use {'mbbill/undotree'}
     use {'moll/vim-bbye'}
     use {
@@ -85,7 +91,8 @@ return require('packer').startup(function (use)
         'nvim-lualine/lualine.nvim',
         requires = {
             { 'kyazdani42/nvim-web-devicons', opt = true },
-            'tpope/vim-fugitive'
+            'tpope/vim-fugitive',
+            '~/Projects/nvim-spotify', 
         },
         config = [[require('kadobot.lualine')]]
     }
@@ -156,12 +163,12 @@ return require('packer').startup(function (use)
     use {'windwp/nvim-autopairs', config = [[ require'kadobot.autopairs' ]]}
     use {'yggdroot/indentLine', setup = [[vim.g.indentLine_fileTypeExclude = {'dashboard'}]]}
 
-    -- use {
-    --     'KadoBOT/nvim-spotify', 
-    --     requires = 'nvim-telescope/telescope.nvim',
-    --     config = [[require'kadobot.nvim-spotify']],
-    --     run = 'make'
-    -- }
+    use {
+        'KadoBOT/nvim-spotify', 
+        requires = 'nvim-telescope/telescope.nvim',
+        config = [[require'kadobot.nvim-spotify']],
+        run = 'make'
+    }
 
     -- use {
     --     '~/Projects/nvim-spotify', 
@@ -169,7 +176,6 @@ return require('packer').startup(function (use)
     --     config = [[require'kadobot.nvim-spotify']],
     --     run = 'make'
     -- }
-
     if Packer_bootstrap then
         require('packer').sync()
     end
