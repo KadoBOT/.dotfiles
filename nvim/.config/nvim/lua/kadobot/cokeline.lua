@@ -4,18 +4,18 @@ local wk = require('which-key')
 require('cokeline').setup({
     default_hl = {
         focused = {
-            fg = get_hex('Normal', 'fg'),
-            bg = get_hex('ColorColumn', 'bg'),
+            fg = get_hex('CursorLine', 'fg'),
+            bg = get_hex('CursorColumn', 'bg'),
         },
         unfocused = {
-            fg = get_hex('Comment', 'fg'),
+            fg = get_hex('SignColumn', 'fg'),
             bg = get_hex('ColorColumn', 'bg'),
         },
     },
 
     components = {
         {
-            text = '⎹',
+            text = '',
             hl = {
                 fg = function(buffer)
                     if buffer.diagnostics.errors ~= 0 then
@@ -73,12 +73,16 @@ require('cokeline').setup({
             hl = {
                 fg = function (buffer)
                     if buffer.is_modified then
-                        return get_hex('WarningMsg', 'fg')
+                        return get_hex('CursorLineNr', 'fg')
                     end
                 end,
             },
             delete_buffer_on_left_click = true,
         }
+    },
+
+    mappings = {
+        cycle_prev_next = false
     }
 })
 

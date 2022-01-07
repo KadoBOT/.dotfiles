@@ -11,7 +11,7 @@ require("telescope").setup({
         winblend = 0,
         file_ignore_patterns = { "%.git", "node_modules/", "dist/", "reports/" },
         prompt_prefix = "   ",
-        selection_caret = " ",
+        selection_caret = " ",
         mappings = {
             n = {
                 ["j"] = require("telescope.actions").move_selection_previous,
@@ -75,7 +75,6 @@ require("telescope").setup({
 })
 
 require('telescope').load_extension('frecency')
-require('telescope').load_extension('project')
 require('telescope').load_extension('fzf')
 -- require('telescope').load_extension('aerial')
 

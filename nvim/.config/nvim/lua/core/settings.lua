@@ -7,7 +7,7 @@ vim.cmd('colorscheme kanagawa')
 o.autoindent = true
 o.autoread = true
 o.background = "dark"
-o.backspace = {"indent", "eol,start"}
+o.backspace = "indent,eol,start"
 o.backup = false
 o.bomb = false
 o.breakindent = true
@@ -15,8 +15,10 @@ o.clipboard = "unnamedplus"
 o.cmdheight = 1
 o.completeopt = "menuone,noselect"
 o.confirm = true
-o.conceallevel = 0
-o.cursorline = true
+o.conceallevel = 2
+-- o.cursorline = true
+o.cursorcolumn = false
+o.cursorline = false
 o.display:append { "lastline" }
 o.encoding = "utf-8"
 o.errorbells = false
@@ -25,7 +27,7 @@ o.fileformats:append { "mac" }
 o.fillchars:append("vert:│")
 -- o.foldenable = false
 -- o.foldexpr = "nvim_treesitter#foldexpr()"
--- o.foldlevel = 20
+-- o.foldlevel = 0
 o.foldlevelstart = 99
 o.foldmethod = "indent"
 o.foldminlines = 1
@@ -67,8 +69,11 @@ o.numberwidth = 2
 o.path = '.,**'
 o.pumheight = 15
 o.pumblend = 17
+-- o.re = 1
+o.redrawtime = 10000
 o.relativenumber = false
 o.ruler = false
+o.scrolljump = 5
 o.scrolloff = 12
 o.shell = vim.env.SHELL
 o.shiftround = true
@@ -92,7 +97,7 @@ o.splitright = true
 o.softtabstop = 4
 o.startofline = false
 o.syntax = 'enable'
-o.synmaxcol = 512
+o.synmaxcol = 180
 o.swapfile = false
 o.tabstop = 4
 o.termguicolors = true
@@ -100,7 +105,7 @@ o.textwidth = 120
 o.timeoutlen = 100
 o.title = true
 o.ttyfast = true
-o.updatetime = 100
+o.updatetime = 300
 o.visualbell = true
 o.wildignore:append { "**/.git/*" }
 o.wildignore:append { "**/node_modules/*" }

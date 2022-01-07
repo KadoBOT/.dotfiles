@@ -106,7 +106,7 @@
 # ]
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/Alacritty.app/Contents/MacOS/alacritty
+cmd - return : /Applications/MacPorts/Alacritty.app/Contents/MacOS/alacritty
 
 # open chrome
 cmd + shift - return : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
@@ -183,3 +183,52 @@ alt - w : yabai -m window --close
 
 # restart yabai
 ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# tmux shortcuts
+alt - l [ 
+    "alacritty" : tmux previous-window
+]
+
+alt - z [ 
+    "alacritty" : tmux next-window 
+]
+
+alt - h [ 
+    "alacritty" : tmux resize-pane -D 5
+]
+
+alt - j [ 
+    "alacritty" : tmux resize-pane -U 5
+]
+
+shift + alt - l [ 
+    "alacritty" : tmux swap-pane -s {left-of}
+]
+
+shift + alt - z [ 
+    "alacritty" : tmux swap-pane -s {right-of}
+]
+
+shift + alt - h [ 
+    "alacritty" : tmux swap-pane -D
+]
+
+shift + alt - j [ 
+    "alacritty" : tmux swap-pane -U
+]
+
+alt - x [ 
+    "alacritty" : tmux killp
+]
+
+shift + alt - x [ 
+    "alacritty" : tmux killw
+]
+
+alt - s [ 
+    "alacritty" : tmux split-window -c "#{pane_current_path}"
+]
+
+shift + alt - s [ 
+    "alacritty" : tmux split-window -h -c "#{pane_current_path}"
+]

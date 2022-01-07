@@ -221,7 +221,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "cmp-buffer", "cmp-path", "cmp-calc", "cmp-nvim-lua", "cmp-cmdline", "vim-vsnip" },
+    after = { "cmp-buffer", "cmp-calc", "cmp-cmdline", "cmp-nvim-lua", "vim-vsnip", "cmp-path" },
     loaded = true,
     only_config = true
   },
@@ -335,22 +335,13 @@ _G.packer_plugins = {
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope-fzf-writer.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-writer.nvim"
   },
-  ["telescope-project.nvim"] = {
-    load_after = {
-      ["telescope.nvim"] = true
-    },
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope-project.nvim",
-    url = "https://github.com/nvim-telescope/telescope-project.nvim"
-  },
   ["telescope-symbols.nvim"] = {
     loaded = true,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",
     url = "https://github.com/nvim-telescope/telescope-symbols.nvim"
   },
   ["telescope.nvim"] = {
-    after = { "telescope-frecency.nvim", "telescope-fzf-writer.nvim", "telescope-project.nvim" },
+    after = { "telescope-frecency.nvim", "telescope-fzf-writer.nvim" },
     commands = { "Telescope" },
     config = { "require('kadobot.telescope')" },
     loaded = false,
@@ -358,7 +349,7 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim",
-    wants = { "popup.nvim", "plenary.nvim", "telescope-frecency.nvim", "telescope-project.nvim", "telescope-fzf-native.nvim" }
+    wants = { "popup.nvim", "plenary.nvim", "telescope-frecency.nvim", "telescope-fzf-native.nvim" }
   },
   ["tokyonight.nvim"] = {
     loaded = false,
@@ -368,19 +359,18 @@ _G.packer_plugins = {
   },
   ["trouble.nvim"] = {
     config = { "require('kadobot.trouble')" },
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
   undotree = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/undotree",
+    commands = { "UndotreeShow" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-bbye"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-bbye",
-    url = "https://github.com/moll/vim-bbye"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -393,9 +383,17 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-eunuch"
   },
   ["vim-prettier"] = {
-    loaded = true,
-    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-prettier",
+    commands = { "Prettier" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier",
     url = "https://github.com/prettier/vim-prettier"
+  },
+  ["vim-smoothie"] = {
+    loaded = true,
+    path = "/Users/ricardoambrogi/.local/share/nvim/site/pack/packer/start/vim-smoothie",
+    url = "https://github.com/psliwka/vim-smoothie"
   },
   ["vim-tmux-navigator"] = {
     loaded = true,
@@ -457,50 +455,6 @@ time([[packadd for indentLine]], false)
 time([[Setup for telescope.nvim]], true)
 require('kadobot.telescope_setup')
 time([[Setup for telescope.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('kadobot.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('kadobot.lsp')
-time([[Config for nvim-lspconfig]], false)
--- Config for: impatient.nvim
-time([[Config for impatient.nvim]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\19enable_profile\14impatient\frequire\0", "config", "impatient.nvim")
-time([[Config for impatient.nvim]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('kadobot.trouble')
-time([[Config for trouble.nvim]], false)
--- Config for: nvim-spotify
-time([[Config for nvim-spotify]], true)
-require'kadobot.nvim-spotify'
-time([[Config for nvim-spotify]], false)
--- Config for: dashboard-nvim
-time([[Config for dashboard-nvim]], true)
-require('kadobot.dashboard')
-time([[Config for dashboard-nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
- require'kadobot.autopairs' 
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('kadobot.nvim-tree')
-time([[Config for nvim-tree.lua]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('kadobot.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('kadobot.cmp')
-time([[Config for nvim-cmp]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('kadobot.treesitter')
@@ -513,28 +467,125 @@ time([[Config for nvim-cokeline]], false)
 time([[Config for lightspeed.nvim]], true)
 require('kadobot.lightspeed')
 time([[Config for lightspeed.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('kadobot.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('kadobot.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: impatient.nvim
+time([[Config for impatient.nvim]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\19enable_profile\14impatient\frequire\0", "config", "impatient.nvim")
+time([[Config for impatient.nvim]], false)
+-- Config for: nvim-spotify
+time([[Config for nvim-spotify]], true)
+require'kadobot.nvim-spotify'
+time([[Config for nvim-spotify]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('kadobot.lsp')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: dashboard-nvim
+time([[Config for dashboard-nvim]], true)
+require('kadobot.dashboard')
+time([[Config for dashboard-nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('kadobot.nvim-tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('kadobot.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+ require'kadobot.autopairs' 
+time([[Config for nvim-autopairs]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd cmp-cmdline ]]
-vim.cmd [[ packadd vim-vsnip ]]
+vim.cmd [[ packadd cmp-buffer ]]
 vim.cmd [[ packadd cmp-calc ]]
 vim.cmd [[ packadd cmp-path ]]
+vim.cmd [[ packadd vim-vsnip ]]
+vim.cmd [[ packadd cmp-cmdline ]]
 vim.cmd [[ packadd cmp-nvim-lua ]]
-vim.cmd [[ packadd cmp-buffer ]]
 time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file UndotreeShow lua require("packer.load")({'undotree'}, { cmd = "UndotreeShow", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Neogit lua require("packer.load")({'neogit'}, { cmd = "Neogit", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Prettier lua require("packer.load")({'vim-prettier'}, { cmd = "Prettier", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType js ++once lua require("packer.load")({'vim-prettier'}, { ft = "js" }, _G.packer_plugins)]]
+vim.cmd [[au FileType ts ++once lua require("packer.load")({'vim-prettier'}, { ft = "ts" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'persistence.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
+vim.cmd [[augroup filetypedetect]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/css.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/css.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/css.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/graphql.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/graphql.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/graphql.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/html.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/html.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/html.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/javascript.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/javascript.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/javascript.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/json.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/json.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/json.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/less.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/less.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/less.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/lua.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/lua.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/lua.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/markdown.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/markdown.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/markdown.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/php.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/php.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/php.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/ruby.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/ruby.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/ruby.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/scss.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/scss.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/scss.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/svelte.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/svelte.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/svelte.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/typescript.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/typescript.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/typescript.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/vue.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/vue.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/vue.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/xml.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/xml.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/xml.vim]], false)
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/yaml.vim]], true)
+vim.cmd [[source /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/yaml.vim]]
+time([[Sourcing ftdetect script at: /Users/ricardoambrogi/.local/share/nvim/site/pack/packer/opt/vim-prettier/ftdetect/yaml.vim]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
 

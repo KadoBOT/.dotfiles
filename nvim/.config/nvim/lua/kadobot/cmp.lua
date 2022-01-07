@@ -51,11 +51,31 @@ cmp.setup {
     sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
+        { name = 'rg'},
         { name = 'path' },
-        { name = 'nvim_lua' },
-        { name = 'rg'}
+        { name = 'vsnip' }
     },
     completion = {
         keyword_length = 1,
+    },
+    experimental = {
+        ghost_text = true,
+        native_menu = true
     }
 }
+
+-- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+--   cmp.setup.cmdline('/', {
+--     sources = {
+--       { name = 'buffer' }
+--     }
+--   })
+
+--   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+--   cmp.setup.cmdline(':', {
+--     sources = cmp.config.sources({
+--       { name = 'path' }
+--     }, {
+--       { name = 'cmdline' }
+--     })
+--   })

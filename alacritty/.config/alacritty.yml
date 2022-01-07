@@ -37,17 +37,17 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  #position:
-  #  x: 0
-  #  y: 0
+  # position:
+  #   x: 2
+  #   y: 0
 
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 0
-    y: 0
+  # padding:
+  #   x: 1
+  #   y: 0
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true
@@ -55,9 +55,9 @@ window:
   # Window decorations
   #
   # Values for `decorations`:
+  #
   #     - full: Borders and title bar
   #     - none: Neither borders nor title bar
-  #
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
@@ -91,7 +91,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
-  # gtk_theme_variant: dark
+  gtk_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -111,8 +111,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "BlexMono NF"
-    style: Book
+    family: "DankMono Nerd Font"
+    # family: "DM Mono"
+    style: Regular
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -154,21 +155,21 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 16
+  size: 19
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  #offset:
-  #  x: 0
-  #  y: 0
+  offset:
+    x: 1
+    y: 5
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   glyph_offset:
     x: 0
-    y: 0
+    y: 1
 
   # Thin stroke font rendering (macOS only)
   #
@@ -177,7 +178,7 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 schemes:
   kanagawa: &kanagawa
@@ -315,7 +316,7 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Block
+    shape: Beam
 
     # Cursor blinking state
     #
@@ -673,8 +674,8 @@ key_bindings:
   - { key: V,         mods: Control|Shift,          action: Paste          }
   - { key: C,         mods: Control|Shift,          action: Copy           }
   - { key: D,         mods: Alt,                    chars: "\x01\x63"      }
-  - { key: X,         mods: Alt|Shift,              chars: "\x01\x26"      }
-  - { key: X,         mods: Alt,                    chars: "\x01\x78"      }
+  # - { key: X,         mods: Alt|Shift,              chars: "\x01\x26"      }
+  # - { key: X,         mods: Alt,                    chars: "\x01\x78"      }
   - { key: Key1,      mods: Alt,                    chars: "\x01\x31"      }
   - { key: Key2,      mods: Alt,                    chars: "\x01\x32"      }
   - { key: Key3,      mods: Alt,                    chars: "\x01\x33"      }
@@ -685,12 +686,12 @@ key_bindings:
   - { key: Key8,      mods: Alt,                    chars: "\x01\x38"      }
   - { key: Key9,      mods: Alt,                    chars: "\x01\x39"      }
   - { key: Key0,      mods: Alt,                    chars: "\x01\x30"      }
-  - { key: S,         mods: Alt,                    chars: "\x01\x25"      }
-  - { key: S,         mods: Alt|Shift,              chars: "\x01\x22"      }
-  - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
-  - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
-  - { key: Z,         mods: Alt,                    chars: "\x01\x6e"      }
-  - { key: L,         mods: Alt,                    chars: "\x01\x70"      }
+  # - { key: S,         mods: Alt,                    chars: "\x01\x25"      }
+  # - { key: S,         mods: Alt|Shift,              chars: "\x01\x22"      }
+  # - { key: H,         mods: Alt|Shift,              chars: "\x01\x7b"      }
+  # - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
+  # - { key: Z,         mods: Alt,                    chars: "\x01\x6e"      }
+  # - { key: L,         mods: Alt,                    chars: "\x01\x70"      }
   - { key: Up,        mods: Alt,                    chars: "\x01\x1b[1;5A" }
   - { key: Down,      mods: Alt,                    chars: "\x01\x1b[1;5B" }
   - { key: Left,      mods: Alt,                    chars: "\x01\x1b[1;5D" }
