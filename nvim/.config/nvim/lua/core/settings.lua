@@ -12,7 +12,7 @@ o.backup = false
 o.bomb = false
 o.breakindent = true
 o.clipboard = "unnamedplus"
-o.cmdheight = 1
+o.cmdheight = 2
 o.completeopt = "menuone,noselect"
 o.confirm = true
 o.conceallevel = 2
@@ -23,6 +23,7 @@ o.display:append { "lastline" }
 o.encoding = "utf-8"
 o.errorbells = false
 o.expandtab = true
+o.fileencoding = "utf-8"
 o.fileformats:append { "mac" }
 o.fillchars:append("vert:│")
 -- o.foldenable = false
@@ -36,14 +37,12 @@ o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').
 o.formatoptions:remove {'a','t','o','2'}
 o.formatoptions:append('cqrnj')
 o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
-o.history = 1000
+o.history = 2000
 o.hidden = true
 o.hlsearch = true
 o.ignorecase = true
 o.inccommand = "split"
 o.incsearch = true
-g.indentLine_char_list = {'|', '¦', '┆', '┊'}
-g.indentLine_concealcursor = 'inc'
 o.lazyredraw = true
 o.laststatus = 2
 o.linebreak = true
@@ -62,12 +61,12 @@ o.magic = true
 o.mat = 2
 o.matchpairs:append { "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" }
 o.modeline = false
-o.mouse = "nicr"
+o.mouse = "a"
 o.nrformats:remove { "octal" }
 w.number = true
-o.numberwidth = 2
+o.numberwidth = 4
 o.path = '.,**'
-o.pumheight = 15
+o.pumheight = 10
 o.pumblend = 17
 -- o.re = 1
 o.redrawtime = 10000
@@ -78,20 +77,20 @@ o.scrolloff = 12
 o.shell = vim.env.SHELL
 o.shiftround = true
 o.shiftwidth = 4
-o.shortmess:append("aIc")
+o.shortmess:append("c")
 o.showbreak = string.rep(' ', 4)
 o.showcmd = true
 o.showmatch = true
 o.showmode = false
-o.showtabline = 2
+o.showtabline = 4
 o.sidescroll = 12
 o.sidescrolloff = 15
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
 o.smarttab = true
-o.spell = true
-o.spelllang = "en_us"
+-- o.spell = true
+-- o.spelllang = "en_us"
 o.splitbelow = true
 o.splitright = true
 o.softtabstop = 4
@@ -105,7 +104,7 @@ o.textwidth = 120
 o.timeoutlen = 100
 o.title = true
 o.ttyfast = true
-o.updatetime = 300
+o.updatetime = 200
 o.visualbell = true
 o.wildignore:append { "**/.git/*" }
 o.wildignore:append { "**/node_modules/*" }

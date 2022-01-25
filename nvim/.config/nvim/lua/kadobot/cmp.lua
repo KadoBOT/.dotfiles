@@ -20,7 +20,6 @@ cmp.setup {
         ['<C-s>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
         ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
         ['<Tab>'] = cmp.mapping(function (fallback)
@@ -42,40 +41,86 @@ cmp.setup {
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind
+            vim_item.kind = string.format("%s %s", lspkind.presets.default[vim_item.kind], vim_item.kind)
+            vim_item.menu = ({
+                -- nvim_lsp = "[LSP]",
+                -- nvim_lua = "[Nvim]",
+                -- luasnip = "[Snippet]",
+                -- buffer = "[Buffer]",
+                -- path = "[Path]",
+                -- emoji = "[Emoji]",
+
+                nvim_lsp = "",
+                nvim_lua = "",
+                luasnip = "",
+                buffer = "",
+                path = "",
+                emoji = "",
+            })[entry.source.name]
 
             return vim_item
         end
     },
     -- You should specify your *installed* sources.
-    sources = {
+    sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'buffer' },
-        { name = 'rg'},
+        { name = 'nvim_lua' },
         { name = 'path' },
-        { name = 'vsnip' }
-    },
+    }, {
+        {
+            -- name = 'fuzzy_buffer',
+            name = 'buffer',
+            options = {
+                get_bufnrs = function()
+                    local bufs = {}
+                    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                        local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
+                        if buftype ~= 'nofile' and buftype ~= 'prompt' then
+                            bufs[#bufs + 1] = buf
+                        end
+                    end
+                    return bufs
+                end,
+            },
+        },
+    }),
     completion = {
-        keyword_length = 1,
+        keyword_length = 3,
     },
+    confirm_opts = {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = false,
+    },
+    documentation = false,
     experimental = {
         ghost_text = true,
-        native_menu = true
+        native_menu = false
     }
 }
 
--- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
---   cmp.setup.cmdline('/', {
---     sources = {
---       { name = 'buffer' }
---     }
---   })
+local config = {
+  sources = cmp.config.sources({
+    {
+      -- name = 'fuzzy_buffer',
+      name = 'buffer',
+      options = {
+        get_bufnrs = function()
+          return { vim.api.nvim_get_current_buf() }
+        end,
+      },
+    },
+  }, {
+    { name = 'nvim_lsp_document_symbol' },
+  }),
+}
 
---   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---   cmp.setup.cmdline(':', {
---     sources = cmp.config.sources({
---       { name = 'path' }
---     }, {
---       { name = 'cmdline' }
---     })
---   })
+cmp.setup.cmdline('/', config)
+cmp.setup.cmdline('?', config)
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    -- { name = 'fuzzy_path' },
+    { name = 'path' },
+  }, {
+    { name = 'cmdline' },
+  }),
+})

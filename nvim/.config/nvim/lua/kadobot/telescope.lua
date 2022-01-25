@@ -44,15 +44,6 @@ require("telescope").setup({
             minimum_files_characters = 2,
             use_highlighter = true
         },
-        frecency = {
-            ignore_patterns = {"*%.git/*", "*/node_modules/*", "*/tmp/*", "*cache/*"},
-            workspaces = {
-                ["projects"] = "/home/ricardoa/Projects/",
-                ["go"] = "/home//ricardoa/Projects/go",
-                ["dotfiles"] = "/home/ricardoa/Projects/%.dotfiles",
-                ["ts"] = "/home/Projects/ricardoa/typescript",
-            }
-        },
     },
     pickers = {
         find_files = {
@@ -74,9 +65,7 @@ require("telescope").setup({
     }
 })
 
-require('telescope').load_extension('frecency')
 require('telescope').load_extension('fzf')
--- require('telescope').load_extension('aerial')
 
 -- Highlights
 vim.highlight.create('TelescopeMatching', {guifg='#F18F91'}, false)

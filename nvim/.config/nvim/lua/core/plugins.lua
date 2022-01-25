@@ -25,9 +25,7 @@ return require('packer').startup(function (use)
         {'rebelot/kanagawa.nvim'}
     }
 
-    use {'christianchiarulli/nvcode-color-schemes.vim', opt = true }
     use {'christoomey/vim-tmux-navigator'}
-    use {'dataWraith/auto_mkdir'}
     use({
         "folke/persistence.nvim",
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -36,7 +34,6 @@ return require('packer').startup(function (use)
             require("persistence").setup()
         end,
     })
-    use {'folke/trouble.nvim', config = [[require('kadobot.trouble')]], opt = true}
     use {'folke/which-key.nvim'}
     use {'ggandor/lightspeed.nvim', config = [[require('kadobot.lightspeed')]] }
     use {'glepnir/dashboard-nvim', config = [[require('kadobot.dashboard')]] }
@@ -44,25 +41,23 @@ return require('packer').startup(function (use)
         'hrsh7th/nvim-cmp',
         requires = {
             {'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
-            {'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
-            {'hrsh7th/cmp-calc', after = 'nvim-cmp' },
             'hrsh7th/cmp-nvim-lsp',
             'onsails/lspkind-nvim',
-            {'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
             {'hrsh7th/cmp-path', after = 'nvim-cmp' },
             {'hrsh7th/vim-vsnip', after = 'nvim-cmp' },
-            'windwp/nvim-autopairs'
         },
         config = [[require('kadobot.cmp')]]
     }
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = [[require('kadobot.nvim-tree')]] }
     use {'kyazdani42/nvim-web-devicons' }
-    use {
-        'lukas-reineke/cmp-rg',
-        requires = {
-            'hrsh7th/nvim-cmp'
+    use {'lukas-reineke/indent-blankline.nvim', config = function ()
+        require'indent_blankline'.setup{
+            filetype_exclude = { 'lspinfo', 'packer', 'checkhealth', 'help', 'dashboard', 'telescope', '' },
+            show_current_context = true,
+            show_current_context_start = true,
+            use_treesitter = true
         }
-    }
+    end}
     use {'mbbill/undotree', opt = true, cmd = {'UndotreeShow'}}
     use {
         'neovim/nvim-lspconfig',
@@ -74,24 +69,19 @@ return require('packer').startup(function (use)
         },
         config = [[require('kadobot.lsp')]]
     }
-    use {
-        'noib3/nvim-cokeline',
+    use { 
+        'kdheepak/tabline.nvim',
+        config = [[require('kadobot.tabline')]],
         requires = {
-            'kyazdani42/nvim-web-devicons',
-            'neovim/nvim-lspconfig'
-        },
-        config = [[require('kadobot.cokeline')]]
-    }
-    use {
-        'norcalli/nvim-colorizer.lua',
-        config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html', 'typescript'}]],
+            { 'hoob3rt/lualine.nvim', opt = true},
+            {'kyazdani42/nvim-web-devicons', opt = true}
+        }
     }
     use {
         'nvim-lualine/lualine.nvim',
         requires = {
             {'kyazdani42/nvim-web-devicons'},
-            'tpope/vim-fugitive',
-            'KadoBOT/nvim-spotify',
+            'tpope/vim-fugitive'
         },
         config = [[require('kadobot.lualine')]]
     }
@@ -99,7 +89,6 @@ return require('packer').startup(function (use)
         {
             'nvim-telescope/telescope.nvim',
             requires = {
-                'telescope-frecency.nvim',
                 'nvim-lua/plenary.nvim',
                 'nvim-lua/popup.nvim',
                 'nvim-telescope/telescope-symbols.nvim',
@@ -109,7 +98,6 @@ return require('packer').startup(function (use)
             wants = {
                 'popup.nvim',
                 'plenary.nvim',
-                'telescope-frecency.nvim',
                 'telescope-fzf-native.nvim',
             },
             config = [[require('kadobot.telescope')]],
@@ -122,11 +110,6 @@ return require('packer').startup(function (use)
             after = 'telescope.nvim',
         },
         {
-            'nvim-telescope/telescope-frecency.nvim',
-            after = 'telescope.nvim',
-            requires = 'tami5/sql.nvim',
-        },
-        {
             'nvim-telescope/telescope-fzf-native.nvim',
             run = 'make'
         }
@@ -135,14 +118,11 @@ return require('packer').startup(function (use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         requires = {
-            { 'nvim-treesitter/nvim-treesitter-refactor', opt = true },
-            { 'nvim-treesitter/playground', opt = true },
             'neovim/nvim-lspconfig'
         },
         config = [[require('kadobot.treesitter')]]
     }
     use {'psliwka/vim-smoothie'}
-    use {'prettier/vim-prettier', opt = true, cmd = { 'Prettier' }, ft = {'ts', 'js'}}
     use {'tpope/vim-commentary'}
     use {'tpope/vim-eunuch'}
     use {
@@ -155,21 +135,6 @@ return require('packer').startup(function (use)
         { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('kadobot.neogit')]] },
     }
     use {'windwp/nvim-autopairs', config = [[ require'kadobot.autopairs' ]]}
-    use {'yggdroot/indentLine', setup = [[vim.g.indentLine_fileTypeExclude = {'dashboard'}]]}
-
-    use {
-        'KadoBOT/nvim-spotify',
-        requires = 'nvim-telescope/telescope.nvim',
-        config = [[require'kadobot.nvim-spotify']],
-        run = 'make'
-    }
-
-    -- use {
-    --     '~/Projects/nvim-spotify',
-    --     requires = 'nvim-telescope/telescope.nvim',
-    --     config = [[require'kadobot.nvim-spotify']],
-    --     run = 'make'
-    -- }
 
     if Packer_bootstrap then
         require('packer').sync()

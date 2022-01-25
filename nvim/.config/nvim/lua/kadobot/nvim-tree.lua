@@ -66,9 +66,46 @@ require'nvim-tree'.setup{
         enable = true,
         update_cwd = true
     },
+    update_to_buf_dir = {
+        enable = true,
+        auto_open = true
+    },
+    update_cwd = true,
     view = {
         side = 'right',
         auto_resize = true,
-        width = 50
+        width = 50,
+        hide_root_folder = false,
+    },
+    quit_on_open = 0,
+    git_hl = 1,
+    disable_window_picker = 0,
+    root_folder_modifier = ":t",
+    show_icons = {
+        git = 1,
+        folders = 1,
+        files = 1,
+        folder_arrows = 1,
+        tree_width = 50
+    },
+    disable_netrw = true,
+    hijack_netrw = true,
+    open_on_setup = false,
+    ignore_ft_on_setup = {
+        "dashboard"
+    },
+    hijack_cursor = false,
+    system_open = {
+        cmd = nil,
+        args = {}
+    },
+    filters = {
+        dotfiles = false,
+        custom = {}
+    },
+    git = {
+        enable = true,
+        ignore = true,
+        timeout = 500
     }
 }

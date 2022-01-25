@@ -53,5 +53,6 @@ vim.g.dashboard_custom_section = {
 }
 
 vim.g.dashboard_custom_footer = { "\"It's not who I am underneath, but what I do that defines me.\"" }
+-- vim.g.dashboard_custom_footer = { vim.g.tip_of_the_day }
 
 vim.g.dashboard_custom_header = custom_header

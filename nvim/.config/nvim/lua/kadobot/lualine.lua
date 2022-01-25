@@ -1,4 +1,4 @@
-local status = require'nvim-spotify'.status
+-- local status = require'nvim-spotify'.status
 
 -- status:start()
 
@@ -17,11 +17,8 @@ require('lualine').setup {
             {
                 'filename',
                 path = 1,
-            }
-        },
-        -- lualine_x = {
-        --     status.listen
-        -- }
+            }        
+        }
     },
     extensions = {
         "fugitive",
