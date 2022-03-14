@@ -43,7 +43,7 @@ o.hlsearch = true
 o.ignorecase = true
 o.inccommand = "split"
 o.incsearch = true
-o.lazyredraw = true
+o.lazyredraw = false
 o.laststatus = 2
 o.linebreak = true
 o.list = true
@@ -61,7 +61,7 @@ o.magic = true
 o.mat = 2
 o.matchpairs:append { "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" }
 o.modeline = false
-o.mouse = "a"
+o.mouse = "nv"
 o.nrformats:remove { "octal" }
 w.number = true
 o.numberwidth = 4
@@ -101,13 +101,15 @@ o.swapfile = false
 o.tabstop = 4
 o.termguicolors = true
 o.textwidth = 120
+o.ttimeout = true
 o.timeoutlen = 100
+o.ttimeoutlen = 10
 o.title = true
 o.ttyfast = true
 o.updatetime = 200
+o.virtualedit = "block"
 o.visualbell = true
-o.wildignore:append { "**/.git/*" }
-o.wildignore:append { "**/node_modules/*" }
+o.wildignore:append { "node_modules/**,.git/**" }
 o.wildmenu = true
 -- o.wildmode:append {"full,longest"}
 o.wildoptions = 'pum'

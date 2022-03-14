@@ -83,12 +83,13 @@ setopt globdots
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    docker
-    docker-compose
-    gcloud
-    kubectl
-    minikube
-    helm
+    # docker
+    # docker-compose
+    # gcloud
+    # kubectl
+    # minikube
+    # helm
+    common-aliases
     terraform
     aws
     vi-mode
@@ -173,3 +174,5 @@ if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 eval "$(starship init zsh)"
+
+eval $(thefuck --alias)

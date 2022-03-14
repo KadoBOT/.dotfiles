@@ -1,9 +1,23 @@
 require('bufferline').setup{
     options = {
         diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            return "[" .. count .. "]"
+        diagnostics_indicator = function(count, _level, _diagnostics_dict, _context)
+            return "(" .. count .. ")"
         end,
+        separator_style = "thick",
+        modified_icon = "",
+        close_icon = "",
+        indicator_icon = "",
+        right_trunc_marker = '',
+        left_trunc_marker = '',
+        offsets = {
+        {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                highlight = "Directory",
+                text_align = "left"
+            }
+        }
     }
 }
 

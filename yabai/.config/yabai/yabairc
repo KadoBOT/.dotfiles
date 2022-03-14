@@ -41,7 +41,7 @@ yabai -m config mouse_action2               resize
 
 # yabai -m config window_placement second_child
 
-yabai -m config external_bar all:26:0
+# yabai -m config external_bar all:26:0
 
 # ===== Rules ==================================
 
