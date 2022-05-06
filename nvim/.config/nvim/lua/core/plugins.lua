@@ -20,7 +20,19 @@ return require("packer").startup(function(use)
 			end,
 		},
 		"wbthomason/packer.nvim",
-		"nathom/filetype.nvim",
+		{
+			"nathom/filetype.nvim",
+			config = function()
+				vim.g.did_load_filetypes = 1
+				require("filetype").setup({
+					overrides = {
+						extensions = {
+							v = "vlang",
+						},
+					},
+				})
+			end,
+		},
 		"nvim-lua/plenary.nvim",
 		{
 			"antoinemadec/FixCursorHold.nvim",
@@ -29,11 +41,20 @@ return require("packer").startup(function(use)
 				vim.g.cursorhold_updatetime = 100
 			end,
 		},
+		{
+			"folke/persistence.nvim",
+			event = "BufReadPre", -- this will only start session saving when an actual file was opened
+			module = "persistence",
+			config = function()
+				require("persistence").setup()
+			end,
+		},
+		{ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] },
 	})
 	use({
 		"abecodes/tabout.nvim",
-		wants = { "nvim-treesitter" },
 		after = { "nvim-cmp" },
+		wants = { "nvim-treesitter" },
 		config = function()
 			require("tabout").setup({})
 		end,
@@ -43,24 +64,17 @@ return require("packer").startup(function(use)
 		{ "nTBBloodbath/doom-one.nvim", config = [[require('kadobot.doom-one')]], opt = true },
 		{ "navarasu/onedark.nvim", opt = true },
 		{ "folke/tokyonight.nvim", opt = true },
-		{ "rebelot/kanagawa.nvim" },
 	})
 	use({
 		"akinsho/bufferline.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
+		tag = "v2.*",
 		config = [[require('kadobot.bufferline')]],
 	})
 	use({ "christoomey/vim-tmux-navigator" })
-	use({
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		module = "persistence",
-		config = function()
-			require("persistence").setup()
-		end,
-	})
+	use({ "editorconfig/editorconfig-vim" })
 	use({ "folke/trouble.nvim", config = [[require'kadobot.trouble']] })
-	use({ "folke/which-key.nvim" })
+	use({ "folke/which-key.nvim", config = [[require('kadobot.which-key')]] })
 	use({ "ggandor/lightspeed.nvim", config = [[require('kadobot.lightspeed')]] })
 	use({ "glepnir/dashboard-nvim", config = [[require('kadobot.dashboard')]] })
 	use({
@@ -71,12 +85,12 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-nvim-lsp-document-symbol" },
-			{ "ray-x/cmp-treesitter" },
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/vim-vsnip" },
+			{ "ray-x/cmp-treesitter" },
 		},
 		config = [[require('kadobot.cmp')]],
 	})
@@ -86,30 +100,32 @@ return require("packer").startup(function(use)
 			require("fidget").setup({})
 		end,
 	})
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = [[require('kadobot.nvim-tree')]],
-	})
+	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({
 		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("indent_blankline").setup({
-				filetype_exclude = { "lspinfo", "packer", "checkhealth", "help", "dashboard", "telescope", "" },
-				show_current_context = true,
-				show_current_context_start = true,
-				use_treesitter = true,
-			})
-		end,
+		config = [[require('kadobot.indent-blankline')]],
 	})
 	use({ "mbbill/undotree", opt = true, cmd = { "UndotreeShow" } })
 	use({
-		"neovim/nvim-lspconfig",
-		requires = {
-			"hrsh7th/nvim-cmp",
+		"nacro90/numb.nvim",
+		config = function()
+			require("numb").setup()
+		end,
+	})
+	use({
+		{
+			"neovim/nvim-lspconfig",
+			requires = {
+				"hrsh7th/nvim-cmp",
+				"onsails/lspkind-nvim",
+			},
+			config = [[require('kadobot.lsp')]],
 		},
-		config = [[require('kadobot.lsp')]],
+		{
+			"williamboman/nvim-lsp-installer",
+			config = [[require('kadobot.lsp-installer')]],
+		},
 	})
 	use({
 		"numToStr/Comment.nvim",
@@ -127,11 +143,23 @@ return require("packer").startup(function(use)
 		config = [[require('kadobot.lualine')]],
 	})
 	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+		config = [[require('kadobot.neo-tree')]],
+	})
+	use({
 		{
 			"nvim-telescope/telescope.nvim",
 			requires = {
 				"nvim-lua/plenary.nvim",
+				"nvim-telescope/telescope-project.nvim",
 				"nvim-telescope/telescope-symbols.nvim",
+				"nvim-telescope/telescope-file-browser.nvim",
 				"telescope-fzf-native.nvim",
 				"telescope-fzf-writer.nvim",
 			},
@@ -161,15 +189,8 @@ return require("packer").startup(function(use)
 		},
 		config = [[require('kadobot.treesitter')]],
 	})
-	use({ "psliwka/vim-smoothie" })
+	use({ "onsails/lspkind-nvim" })
 	use({ "qpkorr/vim-bufkill" })
-	use({
-		"SmiteshP/nvim-gps",
-		requires = "nvim-treesitter/nvim-treesitter",
-		config = function()
-			require("nvim-gps").setup()
-		end,
-	})
 	use({ "tpope/vim-eunuch" })
 	use({
 		{ "tpope/vim-fugitive" },
@@ -180,7 +201,7 @@ return require("packer").startup(function(use)
 		},
 	})
 	use({ "wellle/targets.vim" })
-	use({ "windwp/nvim-autopairs", config = [[ require'kadobot.autopairs' ]] })
+	use({ "windwp/nvim-autopairs", config = [[require('kadobot.autopairs')]] })
 
 	if Packer_bootstrap then
 		require("packer").sync()

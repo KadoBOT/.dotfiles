@@ -12,29 +12,29 @@ cmp.setup({
 			vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
-	mapping = {
-		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Replace }), { "i", "c" }),
-		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Replace }), { "i", "c" }),
-		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete({ reason = cmp.ContextReason.Manual }), { "i", "c" }),
-		["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+	mapping = cmp.mapping.preset.insert({
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Replace }),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Replace }),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-s>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
+		["<Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			else
 				fallback()
 			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
+		end,
+		["<S-Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			else
-				fallback()
+            else
+                fallback()
 			end
-		end, { "i", "s" }),
-	},
+		end,
+	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
@@ -67,13 +67,14 @@ cmp.setup({
 	},
 	-- You should specify your *installed* sources.
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp_signature_help", priority_weight = 100 },
-		{ name = "nvim_lsp", priority_weight = 110 },
-		{ name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 90 },
-		{ name = "nvim_lua", priority_weight = 99 },
+		{ name = "nvim_lsp", priority_weight = 110, group_index = 1, max_item_count = 25 },
+		{ name = "vsnip", priority_weight = 105, group_index = 1 },
+        { name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 102, group_index = 1 },
+        { name = "nvim_lsp_document_symbol", priority_weight = 98, group_index = 1 },
+        { name = "nvim_lsp_signature_help", priority_weight = 97, group_index = 2 },
+		{ name = "nvim_lua", priority_weight = 95, group_index = 2 },
 	}, {
-		{ name = "nvim_lsp_document_symbol", priority_weight = 95 },
-		{ name = "path", priority_weight = 92 },
+		{ name = "path", priority_weight = 92, group_index = 2 },
 		{
 			-- name = 'fuzzy_buffer',
 			name = "buffer",
@@ -90,9 +91,8 @@ cmp.setup({
 				end,
 			},
 			priority_weight = 70,
+			group_index = 2,
 		},
-		{ name = "luasnip", priority_weight = 80 },
-		{ name = "emoji", priority_weight = 60 },
 	}),
 	completion = {
 		keyword_length = 1,
@@ -103,12 +103,15 @@ cmp.setup({
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	window = {
+		documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered(),
 	},
 	experimental = {
 		ghost_text = true,
-		native_menu = false,
+	},
+	view = {
+		entries = cmp.EntriesConfig,
 	},
 	sorting = {
 		priority_weight = 2,
@@ -130,20 +133,25 @@ cmp.setup({
 })
 
 cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp_document_symbol" },
-	}, {
 		{ name = "buffer" },
-	}),
+	}, {
+		{ name = "nvim_lsp_document_symbol" },
+    }),
 })
 
 cmp.setup.cmdline("?", {
+    mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
-	},
+	}, {
+		{ name = "nvim_lsp_document_symbol" },
+    },
 })
 
 cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {

@@ -53,10 +53,4 @@ noremap h <Down>
 noremap j <Up>
 noremap z <Right>
 
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <C-l> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-h> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-j> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-z> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+set guifont=DankMono\ Nerd\ Font:h16

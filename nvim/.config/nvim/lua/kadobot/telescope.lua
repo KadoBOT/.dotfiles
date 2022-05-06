@@ -1,5 +1,6 @@
 require("telescope").setup({
 	defaults = {
+        dynamic_preview_title = true,
 		layout_strategy = "flex",
 		scroll_strategy = "cycle",
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -12,6 +13,7 @@ require("telescope").setup({
 		file_ignore_patterns = { "%.git", "node_modules/", "dist/", "reports/" },
 		prompt_prefix = "   ",
 		selection_caret = " ",
+        path_display={"smart"},
 		mappings = {
 			n = {
 				["j"] = require("telescope.actions").move_selection_previous,
@@ -28,6 +30,7 @@ require("telescope").setup({
 			"--line-number",
 			"--column",
 			"--smart-case",
+			"--trim",
 			"--hidden",
 			"-u",
 		},
@@ -47,6 +50,17 @@ require("telescope").setup({
 	},
 	pickers = {
 		find_files = {
+			mappings = {
+				n = {
+					["cd"] = function(prompt_bufnr)
+						local selection = require("telescope.actions.state").get_selected_entry()
+						local dir = vim.fn.fnamemodify(selection.path, ":p:h")
+						require("telescope.actions").close(prompt_bufnr)
+						-- Depending on what you want put `cd`, `lcd`, `tcd`
+						vim.cmd(string.format("silent lcd %s", dir))
+					end,
+				},
+			},
 			find_command = {
 				"rg",
 				"--files",
@@ -57,13 +71,10 @@ require("telescope").setup({
 				"!node_modules",
 			},
 		},
-		file_browser = {
-			hidden = true,
-		},
 		buffers = {
+            theme = '',
 			show_all_buffers = true,
 			sort_lastused = true,
-			previewer = false,
 		},
 		oldfiles = {
 			only_cwd = true,
@@ -72,6 +83,8 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("project")
 
 -- Highlights
 vim.highlight.create("TelescopeMatching", { guifg = "#F18F91" }, false)

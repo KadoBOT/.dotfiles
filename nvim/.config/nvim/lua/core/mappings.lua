@@ -1,9 +1,5 @@
 local wk = require("which-key")
 
-wk.setup({
-	triggers = { "<leader>", "g" },
-})
-
 wk.register({
 	["<C-^>"] = "which_key_ignore",
 	["<leader>"] = { "<c-^>", "which_key_ignore" },
@@ -13,11 +9,6 @@ wk.register({
 	},
 	g = {
 		name = "+Git",
-	},
-	h = {
-		name = "History",
-		c = "Command",
-		s = "Search",
 	},
 	z = { ":BD<CR>", "Delete Buffer" },
 }, { prefix = "<leader>" })
@@ -54,4 +45,19 @@ wk.register({
 	["("] = { "<esc>`>a)<esc>`<i(<esc>", "Wrap selection with ()" },
 	["["] = { "<esc>`>a]<esc>`<i[<esc>", "Wrap selection with []" },
 	["{"] = { "<esc>`>a}<esc>`<i{<esc>", "Wrap selection with {}" },
+	["$"] = { "<esc>`>a}`<esc>`<i`${<esc>", "Wrap selection with `${}`" },
 }, { prefix = "<leader>", mode = "v" })
+
+vim.api.nvim_set_keymap("n", "<PageUp>", "<C-u>", { silent = true })
+vim.api.nvim_set_keymap("n", "<PageDown>", "<C-d>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-L>", ":TmuxNavigateLeft<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-H>", ":TmuxNavigateDown<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-J>", ":TmuxNavigateUp<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-z>", ":TmuxNavigateRight<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", { silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-L>", "<C-W>h", { silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-H>", "<C-W>j", { silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-J>", "<C-W>k", { silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-z>", "<C-W>l", { silent = true })
+vim.api.nvim_set_keymap('n', '<Home>', '<C-b>', { silent = true })
+vim.api.nvim_set_keymap('n', '<End>', '<C-f>', { silent = true })

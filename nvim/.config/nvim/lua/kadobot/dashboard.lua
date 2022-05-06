@@ -45,14 +45,8 @@ vim.g.dashboard_custom_section = {
 	f = {
 		description = { "  Find Word                  SPC f g" },
 		command = "Telescope live_grep",
-	},
-	g = {
-		description = { "פּ  File Tree                        ;" },
-		command = "NvimTreeToggle",
-	},
+	}
 }
 
 vim.g.dashboard_custom_footer = { '"It\'s not who I am underneath, but what I do that defines me."' }
--- vim.g.dashboard_custom_footer = { vim.g.tip_of_the_day }
-
 vim.g.dashboard_custom_header = custom_header

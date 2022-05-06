@@ -1,3 +1,34 @@
+local custom_fname = require("lualine.components.filename"):extend()
+local highlight = require("lualine.highlight")
+local default_status_colors = { saved = "#228B22", modified = "#C70039" }
+
+function custom_fname:init(options)
+	custom_fname.super.init(self, options)
+	self.status_colors = {
+		saved = highlight.create_component_highlight_group(
+			{ bg = default_status_colors.saved },
+			"filename_status_saved",
+			self.options
+		),
+		modified = highlight.create_component_highlight_group(
+			{ bg = default_status_colors.modified },
+			"filename_status_modified",
+			self.options
+		),
+	}
+	if self.options.color == nil then
+		self.options.color = ""
+	end
+end
+
+function custom_fname:update_status()
+	local data = custom_fname.super.update_status(self)
+	data = highlight.component_format_highlight(
+		vim.bo.modified and self.status_colors.modified or self.status_colors.saved
+	) .. data
+	return data
+end
+
 local function lsp()
 	local icon = [[  ]]
 	local msg = "No Active LSP"
@@ -17,70 +48,65 @@ local function lsp()
 	return icon .. msg
 end
 
-local function progress_message()
-	local Lsp = vim.lsp.util.get_progress_messages()[1]
-
-	if Lsp then
-		local msg = Lsp.message or ""
-		local percentage = Lsp.percentage or 0
-		local title = Lsp.title or ""
-		local spinners = { "", "", "" }
-		local success_icon = { "", "", "" }
-
-		local ms = vim.loop.hrtime() / 1000000
-		local frame = math.floor(ms / 120) % #spinners
-
-		if percentage >= 70 then
-			return string.format(" %%<%s %s %s (%s%%%%) ", success_icon[frame + 1], title, msg, percentage)
-		end
-
-		return string.format(" %%<%s %s %s (%s%%%%) ", spinners[frame + 1], title, msg, percentage)
-	end
-
-	return ""
-end
-
 local function fugitive_branch()
 	local icon = "" -- e0a0
 	return icon .. " " .. vim.fn.FugitiveHead()
 end
 
 local function gps_status()
-    local gps = require('nvim-gps')
-    if gps.is_available() then
-        return gps.get_location()
-    end
+	local gps = require("nvim-gps")
+	gps.setup({
+		separator = "  ",
+	})
+	if gps.is_available() then
+		return gps.get_location()
+	end
 end
 
+local function diff_source()
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
+	end
+end
 
 require("lualine").setup({
 	options = {
 		theme = "kanagawa",
-		disabled_filetypes = { "TelescopePrompt" },
+		disabled_filetypes = { "TelescopePrompt", "NvimTree", "neo-tree" },
+		globalstatus = true,
 	},
 	sections = {
-		lualine_a = { "mode" },
+		lualine_a = {
+			{ "filetype", icon_only = true, colored = false },
+			"mode",
+		},
 		lualine_b = {
 			fugitive_branch,
-			"diff",
-		},
-		lualine_c = {
-			{ progress_message },
-			{ "filename", path = 1 },
-		},
-		lualine_x = {
+			{ "diff", source = diff_source },
 			{
 				"diagnostics",
-				sources = { "nvim_diagnostic" },
+				sources = { "nvim_diagnostic", "nvim_lsp" },
+				sections = { "error", "warn" },
 			},
 		},
-		lualine_y = { gps_status, "location", "filetype" },
-		lualine_z = {
-			{ lsp },
+		lualine_c = {
+			{ "filename", path = 1, file_status = true },
 		},
-	},
-	inactive_sections = {
-		lualine_c = { "filename" },
+		lualine_x = {
+			gps_status,
+		},
+		lualine_y = {
+			"location",
+			"progress",
+		},
+		lualine_z = {
+			lsp,
+		},
 	},
 	extensions = {
 		"fugitive",

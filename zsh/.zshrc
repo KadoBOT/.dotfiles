@@ -1,17 +1,21 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/Projects/telescope-spotify.nvim/go:$PATH # FIX: temporary
-export PATH=$HOME/Library/Python/3.9/bin:$PATH
-export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 export BROWSER=brave
-export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
-export GOPATH=~/go
-export PATH=$PATH:$GOPATH/bin
 export TERM=alacritty-direct
+export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
+
+export GOPATH=$HOME/go
+
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/Downloads/flutter/bin:$PATH
+export PATH=$PATH:$GOPATH/bin
+export PATH=$GEM_HOME/bin:$PATH
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/Downloads/v
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -90,12 +94,18 @@ plugins=(
     # minikube
     # helm
     common-aliases
-    terraform
+    # terraform
     aws
     vi-mode
     tmux
     zsh-autosuggestions
     zsh-syntax-highlighting
+    thefuck
+    aliases
+    flutter
+    fzf
+    node
+    npm
 )
 
 ZSH_TMUX_AUTOSTART=true
@@ -145,6 +155,7 @@ alias vim="nvim"
 alias oldvim="\vim"
 alias cdp="cd ~/Projects"
 alias cdd="cd ~/.dotfiles"
+alias trs="tree-sitter"
 
 # Paths
 # export PATH=$PATH:/usr/local/go/bin
@@ -173,6 +184,10 @@ if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-eval "$(starship init zsh)"
-
 eval $(thefuck --alias)
+eval "$(op completion zsh)"; compdef _op op
+# eval "$(oh-my-posh prompt init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/v$(oh-my-posh --version)/themes/star.omp.json)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

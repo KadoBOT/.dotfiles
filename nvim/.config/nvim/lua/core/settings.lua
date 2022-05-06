@@ -2,8 +2,6 @@ local o = vim.opt
 local w = vim.wo
 local g = vim.g
 
-vim.cmd('colorscheme kanagawa')
-
 o.autoindent = true
 o.autoread = true
 o.background = "dark"
@@ -11,12 +9,13 @@ o.backspace = "indent,eol,start"
 o.backup = false
 o.bomb = false
 o.breakindent = true
+g.bufhidden = true
 o.clipboard = "unnamedplus"
 o.cmdheight = 2
 o.completeopt = "menuone,noselect"
 o.confirm = true
 o.conceallevel = 2
--- o.cursorline = true
+o.cursorline = true
 o.cursorcolumn = false
 o.cursorline = false
 o.display:append { "lastline" }
@@ -25,15 +24,23 @@ o.errorbells = false
 o.expandtab = true
 o.fileencoding = "utf-8"
 o.fileformats:append { "mac" }
-o.fillchars:append("vert:│")
+o.fillchars:append({
+    horiz = '━',
+    horizup = '┻',
+    horizdown = '┳',
+    vert = '┃',
+    vertleft = '┨',
+    vertright = '┣',
+    verthoriz = '╋',
+})
 -- o.foldenable = false
 -- o.foldexpr = "nvim_treesitter#foldexpr()"
 -- o.foldlevel = 0
-o.foldlevelstart = 99
-o.foldmethod = "indent"
-o.foldminlines = 1
-o.foldnestmax = 3
-o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))]]
+-- o.foldlevelstart = 99
+-- o.foldmethod = "expr"
+-- o.foldminlines = 1
+-- o.foldnestmax = 3
+-- o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))]]
 o.formatoptions:remove {'a','t','o','2'}
 o.formatoptions:append('cqrnj')
 o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
@@ -43,8 +50,8 @@ o.hlsearch = true
 o.ignorecase = true
 o.inccommand = "split"
 o.incsearch = true
+o.laststatus = 3
 o.lazyredraw = false
-o.laststatus = 2
 o.linebreak = true
 o.list = true
 o.listchars = {
@@ -101,8 +108,9 @@ o.swapfile = false
 o.tabstop = 4
 o.termguicolors = true
 o.textwidth = 120
-o.ttimeout = true
+g.tmux_navigator_no_mappings = 1
 o.timeoutlen = 100
+o.ttimeout = true
 o.ttimeoutlen = 10
 o.title = true
 o.ttyfast = true
@@ -156,3 +164,4 @@ vim.cmd([[
     augroup end
 ]])
 
+vim.highlight.create("WinSeparator", { guibg = "None", guifg = "#7E9CD8" }, false)

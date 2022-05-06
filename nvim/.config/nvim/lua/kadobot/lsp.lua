@@ -7,6 +7,10 @@ local wk = require("which-key")
 local sumneko_root_path = "/Users/ricardoambrogi/Projects/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
 
+local base_path = "/Users/ricardoambrogi/.local/share/nvim/lsp_servers"
+local vls_root_path = base_path .. "/vls"
+local vls_binary = vls_root_path .. "/bin/vls"
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -38,6 +42,18 @@ capabilities.textDocument.codeAction = {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+	-- omnifunc
+	if client.resolved_capabilities.completion then
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	end
+
+	if client.name == "tsserver" then
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_formatting_range = false
+
+		vim.api.nvim_create_autocmd("BufWritePre", { buffer = bufnr, command = ":EslintFixAll" })
+	end
+
 	if client.resolved_capabilities.call_hierarchy then
 		vim.cmd([[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]])
 		vim.cmd([[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]])
@@ -90,14 +106,15 @@ local on_attach = function(client, bufnr)
 			prefix = "",
 		},
 	}
+
 	vim.diagnostic.config(config)
 end
 
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 wk.register({
 	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Doc" },
-	["<leader>e"] = { "<cmd>lua vim.lsp.diagnostic_float()<CR>", "Diagonostic" },
-	["<leader>q"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diagonostic" },
+	["<leader>e"] = { "<cmd>lua vim.diagnostic.setqflist()<CR>", "Add to Quickfix" },
+	["<leader>q"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Add to Loclist" },
 })
 
 wk.register({
@@ -111,7 +128,7 @@ wk.register({
 	["Y"] = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
 	["t"] = { ":Telescope lsp_type_definitions<CR>", "Type Definition" },
 	["x"] = { ":Telescope lsp_code_actions<CR>", "Code Actions" },
-	["z"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line Diagnostics" },
+	["z"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
 	["o"] = { ":Telescope lsp_diagnostics<CR>", "Document Diagnostics" },
 	["e"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diagnostic" },
 	["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
@@ -140,7 +157,7 @@ wk.register({
 
 vim.api.nvim_set_keymap("i", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
 -- Use a loop to conveniently call 'setup' on multiple servers and
-local servers = { "tsserver", "vimls", "gopls", "jsonls", "yamlls" }
+local servers = { "tsserver", "vimls", "gopls", "yamlls", "dartls", "eslint", "html", "cssls", "jsonls" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = on_attach,
@@ -151,11 +168,27 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+nvim_lsp.ccls.setup({
+	on_attach = on_attach,
+	cmd = { base_path .. "/ccls/bin/ccls" },
+})
+
+nvim_lsp.vls.setup({
+	on_attach = on_attach,
+	cmd = { vls_binary },
+	filetypes = { "vlang" },
+	root_dir = nvim_lsp.util.root_pattern("v.mod", ".git"),
+})
+
 nvim_lsp.sumneko_lua.setup({
 	on_attach = on_attach,
+	capabilities = cmp_lsp.update_capabilities(capabilities),
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
+			format = {
+				enable = true,
+			},
 			runtime = {
 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = "LuaJIT",
@@ -163,6 +196,7 @@ nvim_lsp.sumneko_lua.setup({
 				path = vim.split(package.path, ";"),
 			},
 			diagnostics = {
+				enable = true,
 				-- Get the language server to recognize the `vim` global
 				globals = { "vim" },
 			},
@@ -172,6 +206,8 @@ nvim_lsp.sumneko_lua.setup({
 					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
 				},
+				maxPreload = 3000,
+				preloadFileSize = 1024,
 			},
 		},
 	},
