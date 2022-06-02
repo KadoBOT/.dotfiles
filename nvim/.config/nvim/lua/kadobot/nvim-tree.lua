@@ -8,9 +8,7 @@ g.nvim_tree_root_folder_modifier = ":~" -- This is the default. See :help filena
 g.nvim_tree_add_trailing = 1 -- 0 by default, append a trailing slash to folder names
 g.nvim_tree_group_empty = 1 --  0 by default, compact folders that only contain a single folder into one node in the file tree
 g.nvim_tree_icon_padding = " " -- one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-g.nvim_tree_symlink_arrow = " >> " --  defaults to ' ? '. used as a separator between symlinks' source and target.
 g.nvim_tree_respect_buf_cwd = 1 -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
-g.nvim_tree_create_in_closed_folder = 0 -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 g.nvim_tree_refresh_wait = 500 -- 1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 g.nvim_tree_special_files = {}
 g.nvim_tree_show_icons = {
@@ -65,29 +63,22 @@ wk.register({
 require("nvim-tree").setup({
 	actions = {
 		open_file = {
-			quit_on_open = 1,
+			quit_on_open = true,
 			window_picker = {
-				enable = 1,
+				enable = true,
 				exclude = {
-					filetype = {
-						"notify",
-						"packer",
-						"qf",
-						"Trouble",
-					},
-					buftype = {
-						"terminal",
-					},
+					filetype = { "notify", "packer", "qf", "Trouble" },
+					buftype = { "terminal", "nofile", "help" },
 				},
 			},
 		},
 		change_dir = {
-			global = 1,
+			global = true,
 		},
 	},
 	auto_close = true,
 	diagnostics = {
-		enable = false,
+		enable = true,
 	},
 	update_focused_file = {
 		enable = true,
@@ -104,9 +95,7 @@ require("nvim-tree").setup({
 		width = 50,
 		hide_root_folder = false,
 	},
-	quit_on_open = 0,
 	git_hl = 1,
-	disable_window_picker = 0,
 	root_folder_modifier = ":t",
 	show_icons = {
 		git = 1,

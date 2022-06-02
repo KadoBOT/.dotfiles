@@ -4,6 +4,34 @@ local lspkind = require("lspkind")
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
+local icons = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "⌘",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "廓",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+}
+
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 cmp.setup({
 	snippet = {
@@ -39,16 +67,7 @@ cmp.setup({
 		fields = { "kind", "abbr", "menu" },
 		format = lspkind.cmp_format({
 			icon = true,
-			with_text = false,
-			menu = {
-				buffer = " ﬘",
-				nvim_lsp = " ",
-				nvim_lsp_signature_help = " ﯳ",
-				luasnip = " 🐍",
-				treesitter = " ",
-				nvim_lua = " ",
-				spell = " 暈",
-			},
+			with_text = true,
 			before = function(entry, vim_item)
 				local duplicates = {
 					buffer = 1,
@@ -61,6 +80,9 @@ cmp.setup({
 				}
 
 				vim_item.dup = duplicates[entry.source.name] or 0
+                vim_item.menu = vim_item.kind
+                vim_item.kind = icons[vim_item.kind]
+
 				return vim_item
 			end,
 		}),

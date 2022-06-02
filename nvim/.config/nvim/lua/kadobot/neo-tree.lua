@@ -1,16 +1,8 @@
-local wk = require("which-key")
-
-wk.register({
-	[";"] = { ":Neotree toggle reveal<CR>", "Toggle" },
-})
-
-wk.register({
-	name = "Tree",
-	["t"] = { ":Neotree toggle<CR>", "Toggle" },
-	["b"] = { ":Neotree buffers float<CR>", "Buffers" },
-	["g"] = { ":Neotree git_status float<CR>", "Git Status" },
-	["f"] = { ":Neotree float<CR>", "Open Float" },
-}, { prefix = "<leader>t" })
+vim.keymap.set("n", ";", ":Neotree toggle reveal<CR>", { desc = "Toggle" })
+vim.keymap.set("n", "<leader>tt", ":Neotree toggle<CR>", { desc = "Toggle" })
+vim.keymap.set("n", "<leader>tb", ":Neotree buffers float<CR>", { desc = "Buffers" })
+vim.keymap.set("n", "<leader>tg", ":Neotree git_status float<CR>", { desc = "Git Status" })
+vim.keymap.set("n", "<leader>tf", ":Neotree float<CR>", { desc = "Open Float" })
 
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -34,9 +26,9 @@ highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
 
 require("neo-tree").setup({
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-	popup_border_style = "double",
+	popup_border_style = "rounded",
 	enable_git_status = true,
-	enable_diagnostics = true,
+	enable_diagnostics = false,
 	default_component_configs = {
 		indent = {
 			indent_size = 2,
@@ -87,8 +79,8 @@ require("neo-tree").setup({
 		},
 	},
 	window = {
-		position = "float",
-		width = 40,
+		position = "right",
+		width = 52,
 		popup = {
 			position = { col = "98%", row = "2" },
 			size = function(state)

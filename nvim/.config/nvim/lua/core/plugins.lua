@@ -42,11 +42,10 @@ return require("packer").startup(function(use)
 			end,
 		},
 		{
-			"folke/persistence.nvim",
-			event = "BufReadPre", -- this will only start session saving when an actual file was opened
-			module = "persistence",
+			"olimorris/persisted.nvim",
+			module = "persisted",
 			config = function()
-				require("persistence").setup()
+				require("persisted").setup()
 			end,
 		},
 		{ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] },
@@ -73,6 +72,7 @@ return require("packer").startup(function(use)
 	})
 	use({ "christoomey/vim-tmux-navigator" })
 	use({ "editorconfig/editorconfig-vim" })
+	use({ "folke/lua-dev.nvim" })
 	use({ "folke/trouble.nvim", config = [[require'kadobot.trouble']] })
 	use({ "folke/which-key.nvim", config = [[require('kadobot.which-key')]] })
 	use({ "ggandor/lightspeed.nvim", config = [[require('kadobot.lightspeed')]] })
@@ -106,7 +106,15 @@ return require("packer").startup(function(use)
 		"lukas-reineke/indent-blankline.nvim",
 		config = [[require('kadobot.indent-blankline')]],
 	})
-	use({ "mbbill/undotree", opt = true, cmd = { "UndotreeShow" } })
+	use({
+		"luukvbaal/stabilize.nvim",
+		config = function()
+			require("stabilize").setup()
+		end,
+	})
+	use({ "mbbill/undotree", opt = true, cmd = { "UndotreeShow" }, config = function ()
+		vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
+	end })
 	use({
 		"nacro90/numb.nvim",
 		config = function()
@@ -119,6 +127,7 @@ return require("packer").startup(function(use)
 			requires = {
 				"hrsh7th/nvim-cmp",
 				"onsails/lspkind-nvim",
+				"williamboman/nvim-lsp-installer",
 			},
 			config = [[require('kadobot.lsp')]],
 		},
@@ -137,8 +146,7 @@ return require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = {
 			{ "kyazdani42/nvim-web-devicons" },
-			"tpope/vim-fugitive",
-			"kyazdani42/nvim-tree.lua",
+			"tpope/vim-fugitive"
 		},
 		config = [[require('kadobot.lualine')]],
 	})

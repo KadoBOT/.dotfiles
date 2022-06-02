@@ -1,6 +1,7 @@
 local o = vim.opt
-local w = vim.wo
 local g = vim.g
+
+vim.cmd("colorscheme kanagawa")
 
 o.autoindent = true
 o.autoread = true
@@ -15,13 +16,13 @@ o.cmdheight = 2
 o.completeopt = "menuone,noselect"
 o.confirm = true
 o.conceallevel = 2
-o.cursorline = true
 o.cursorcolumn = false
-o.cursorline = false
+o.cursorline = true
+o.cursorlineopt = 'screenline'
 o.display:append { "lastline" }
 o.encoding = "utf-8"
 o.errorbells = false
-o.expandtab = true
+o.expandtab = false
 o.fileencoding = "utf-8"
 o.fileformats:append { "mac" }
 o.fillchars:append({
@@ -70,7 +71,7 @@ o.matchpairs:append { "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" }
 o.modeline = false
 o.mouse = "nv"
 o.nrformats:remove { "octal" }
-w.number = true
+o.number = true
 o.numberwidth = 4
 o.path = '.,**'
 o.pumheight = 10
@@ -80,7 +81,7 @@ o.redrawtime = 10000
 o.relativenumber = false
 o.ruler = false
 o.scrolljump = 5
-o.scrolloff = 12
+o.scrolloff = 4
 o.shell = vim.env.SHELL
 o.shiftround = true
 o.shiftwidth = 4

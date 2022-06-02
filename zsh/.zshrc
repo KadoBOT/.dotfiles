@@ -24,6 +24,7 @@ export PATH=$PATH:$HOME/Downloads/v
 ZSH_THEME="robbyrussell"
 KUBE_EDITOR="vim"
 
+ZSH_DISABLE_COMPFIX="true"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -106,6 +107,7 @@ plugins=(
     fzf
     node
     npm
+	fzf-tab
 )
 
 ZSH_TMUX_AUTOSTART=true
@@ -156,6 +158,8 @@ alias oldvim="\vim"
 alias cdp="cd ~/Projects"
 alias cdd="cd ~/.dotfiles"
 alias trs="tree-sitter"
+alias wmp="op item get warnermedia --fields Password | pbcopy"
+alias wmu="op item get warnermedia --fields username | pbcopy"
 
 # Paths
 # export PATH=$PATH:/usr/local/go/bin
@@ -191,3 +195,4 @@ eval "$(op completion zsh)"; compdef _op op
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="/usr/local/opt/libpq/bin:$PATH"

@@ -8,18 +8,6 @@ local function project_files()
 	end
 end
 
-local ok = pcall(require, "dap")
-if ok then
-	wk.register({
-		name = "Telescope",
-		["c"] = { ":Telescope dap commands<CR>", "Commands" },
-		["g"] = { ":Telescope dap configurations<CR>", "Configurations" },
-		["l"] = { ":Telescope dap list_breakpoints<CR>", "List Breakpoints" },
-		["v"] = { ":Telescope dap variables<CR>", "Variables" },
-		["f"] = { ":Telescope dap frames<CR>", "Frames" },
-	}, { prefix = "<leader>dt" })
-end
-
 wk.register({
 	["<leader>h"] = { name = "History" },
 	["<leader>hc"] = { "<cmd>Telescope command_history<cr>", "Command History" },

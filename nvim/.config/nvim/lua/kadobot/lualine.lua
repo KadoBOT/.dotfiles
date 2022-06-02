@@ -110,7 +110,6 @@ require("lualine").setup({
 	},
 	extensions = {
 		"fugitive",
-		"quickfix",
-		"nvim-tree",
+		"quickfix"
 	},
 })

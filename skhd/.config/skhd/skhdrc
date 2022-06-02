@@ -106,43 +106,43 @@
 # ]
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd - return : /Applications/MacPorts/Alacritty.app/Contents/MacOS/alacritty
+alt - return : /Applications/MacPorts/Alacritty.app/Contents/MacOS/alacritty
 
 # open chrome
-cmd + shift - return : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
+alt + shift - return : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
 # Navigation
-cmd - l : yabai -m window --focus west || yabai -m space --focus prev
-cmd - h : yabai -m window --focus south || yabai -m display --focus prev
-cmd - j : yabai -m window --focus north || yabai -m display --focus last
-cmd - z : yabai -m window --focus east || yabai -m space --focus next
+alt - l : yabai -m window --focus west || yabai -m space --focus prev
+alt - h : yabai -m window --focus south || yabai -m display --focus prev
+alt - j : yabai -m window --focus north || yabai -m display --focus last
+alt - z : yabai -m window --focus east || yabai -m space --focus next
 
 # Moving windows
-shift + cmd - l : yabai -m window --warp west || yabai -m window --space prev; yabai -m space --focus prev
-shift + cmd - h : yabai -m window --warp south || yabai -m window --display prev
-shift + cmd - j : yabai -m window --warp north || yabai -m window --display next
-shift + cmd - z : yabai -m window --warp east || yabai -m window --space next; yabai -m space --focus next
+shift + alt - l : yabai -m window --swap west || {yabai -m window --space prev; yabai -m space --focus prev}
+shift + alt - h : yabai -m window --swap south || yabai -m window --display prev
+shift + alt - j : yabai -m window --swap north || yabai -m window --display next
+shift + alt - z : yabai -m window --swap east || {yabai -m window --space next; yabai -m space --focus next}
 
 # Move focus container to workspace
-shift + cmd - m : yabai -m window --space last; yabai -m space --focus last
-shift + cmd - p : yabai -m window --space prev; yabai -m space --focus prev
-shift + cmd - n : yabai -m window --space next; yabai -m space --focus next
-shift + cmd - 1 : yabai -m window --space 1; yabai -m space --focus 1
-shift + cmd - 2 : yabai -m window --space 2; yabai -m space --focus 2
-shift + cmd - 3 : yabai -m window --space 3; yabai -m space --focus 3
-shift + cmd - 4 : yabai -m window --space 4; yabai -m space --focus 4
-shift + cmd - 5 : yabai -m window --space 5; yabai -m space --focus 5
-shift + cmd - 6 : yabai -m window --space 6; yabai -m space --focus 6
-shift + cmd - 7 : yabai -m window --space 7; yabai -m space --focus 7
-shift + cmd - 8 : yabai -m window --space 8; yabai -m space --focus 8
-shift + cmd - 9 : yabai -m window --space 9; yabai -m space --focus 9
-shift + cmd - 0 : yabai -m window --space 0; yabai -m space --focus 0
+shift + alt - m : yabai -m window --space last; yabai -m space --focus last
+shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
+shift + alt - 0 : yabai -m window --space 0; yabai -m space --focus 0
 
 # spaces
-cmd - d : yabai -m space --create; yabai -m space --focus next
-cmd - x : yabai -m space --destroy
-cmd - p : yabai -m space --focus prev
-cmd - n : yabai -m space --focus next
+alt - d : yabai -m space --create; yabai -m space --focus next
+alt - x : yabai -m space --destroy
+alt - p : yabai -m space --focus prev
+alt - n : yabai -m space --focus next
 
 ctrl - 1 : yabai -m space --focus 1
 ctrl - 2 : yabai -m space --focus 2
@@ -156,79 +156,30 @@ ctrl - 9 : yabai -m space --focus 9
 ctrl - 0 : yabai -m space --focus 0
 
 # Resize windows
-lctrl + cmd - l : yabai -m window --resize left:-50:0; \
+lctrl + alt - l : yabai -m window --resize left:-50:0; \
                   yabai -m window --resize right:-50:0
-lctrl + cmd - h : yabai -m window --resize bottom:0:50; \
+lctrl + alt - h : yabai -m window --resize bottom:0:50; \
                   yabai -m window --resize top:0:50
-lctrl + cmd - j : yabai -m window --resize top:0:-50; \
+lctrl + alt - j : yabai -m window --resize top:0:-50; \
                   yabai -m window --resize bottom:0:-50
-lctrl + cmd - z : yabai -m window --resize right:50:0; \
+lctrl + alt - z : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
 # Set insertion point for focused container
-cmd - left  : yabai -m window --insert west
-cmd - down  : yabai -m window --insert south
-cmd - up    : yabai -m window --insert north
-cmd - right : yabai -m window --insert east
+alt - left  : yabai -m window --insert west
+alt - down  : yabai -m window --insert south
+alt - up    : yabai -m window --insert north
+alt - right : yabai -m window --insert east
 
 # Rotate windows clockwise and anticlockwise
-cmd - r         : yabai -m space --rotate 270
-shift + cmd - r : yabai -m space --rotate 90
+alt - r         : yabai -m space --rotate 270
+shift + alt - r : yabai -m space --rotate 90
 
 # Make window native fullscreen
-cmd - f         : yabai -m window --toggle zoom-fullscreen
-shift + cmd - f : yabai -m window --toggle native-fullscreen
+alt - f         : yabai -m window --toggle zoom-fullscreen
+shift + alt - f : yabai -m window --toggle native-fullscreen
 
 alt - w : yabai -m window --close
 
 # restart yabai
-ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-
-# tmux shortcuts
-alt - l [ 
-    "alacritty" : tmux previous-window
-]
-
-alt - z [ 
-    "alacritty" : tmux next-window 
-]
-
-alt - h [ 
-    "alacritty" : tmux resize-pane -D 5
-]
-
-alt - j [ 
-    "alacritty" : tmux resize-pane -U 5
-]
-
-shift + alt - l [ 
-    "alacritty" : tmux swap-pane -s {left-of}
-]
-
-shift + alt - z [ 
-    "alacritty" : tmux swap-pane -s {right-of}
-]
-
-shift + alt - h [ 
-    "alacritty" : tmux swap-pane -D
-]
-
-shift + alt - j [ 
-    "alacritty" : tmux swap-pane -U
-]
-
-alt - x [ 
-    "alacritty" : tmux killp
-]
-
-shift + alt - x [ 
-    "alacritty" : tmux killw
-]
-
-alt - s [ 
-    "alacritty" : tmux split-window -c "#{pane_current_path}"
-]
-
-shift + alt - s [ 
-    "alacritty" : tmux split-window -h -c "#{pane_current_path}"
-]
+ctrl + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"

@@ -10,30 +10,31 @@
 
 yabai -m config layout                      bsp
 
-yabai -m config top_padding                 8
-yabai -m config bottom_padding              8
-yabai -m config left_padding                8
-yabai -m config right_padding               8
-yabai -m config window_gap                  8
+yabai -m config top_padding                 6
+yabai -m config bottom_padding              6
+yabai -m config left_padding                6
+yabai -m config right_padding               6
+yabai -m config window_gap                  6
 
 yabai -m config mouse_follows_focus         off
 yabai -m config focus_follows_mouse         off
 
 yabai -m config window_topmost              on
 yabai -m config window_opacity              on
-yabai -m config window_shadow               fleat
+yabai -m config window_shadow               float
 
 yabai -m config window_border               on
-yabai -m config window_border_width         4
-yabai -m config active_window_border_color  0xff2acaea
-yabai -m config normal_window_border_color  0xff555555
-yabai -m config insert_feedback_color       0xffcccccc
+yabai -m config window_border_width         6
+yabai -m config active_window_border_color  0xff7e9cd8
+yabai -m config normal_window_border_color  0xff363646
+yabai -m config insert_feedback_color       0xff9cabca
 
 yabai -m config active_window_opacity       1.0
-yabai -m config normal_window_opacity       0.9
+yabai -m config normal_window_opacity       0.95
 yabai -m config split_ratio                 0.50
+yabai -m config window_opacity_duration     0.1
 
-yabai -m config auto_balance                off
+yabai -m config auto_balance                on
 
 yabai -m config mouse_modifier              fn
 yabai -m config mouse_action1               move

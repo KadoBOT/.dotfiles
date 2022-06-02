@@ -24,7 +24,7 @@ vim.g.dashboard_default_executive = "telescope"
 vim.g.dashboard_custom_section = {
 	a = {
 		description = { "  Restore Dir Session               " },
-		command = "lua require('persistence').load()",
+		command = "lua require('persisted').load()",
 	},
 	b = {
 		description = { "  Find File                  SPC f f" },

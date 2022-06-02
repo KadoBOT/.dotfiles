@@ -1,11 +1,12 @@
+require("nvim-lsp-installer").setup()
 require("kadobot.lspkind")
+
+local M = {}
 
 local nvim_lsp = require("lspconfig")
 local cmp_lsp = require("cmp_nvim_lsp")
 local wk = require("which-key")
-
-local sumneko_root_path = "/Users/ricardoambrogi/Projects/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
+local sumneko_lua = require("kadobot.lsp.sumneko")
 
 local base_path = "/Users/ricardoambrogi/.local/share/nvim/lsp_servers"
 local vls_root_path = base_path .. "/vls"
@@ -43,23 +44,23 @@ capabilities.textDocument.codeAction = {
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	-- omnifunc
-	if client.resolved_capabilities.completion then
+	if client.server_capabilities.completion then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	end
 
 	if client.name == "tsserver" then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_formatting_range = false
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting_range = false
 
 		vim.api.nvim_create_autocmd("BufWritePre", { buffer = bufnr, command = ":EslintFixAll" })
 	end
 
-	if client.resolved_capabilities.call_hierarchy then
+	if client.server_capabilities.call_hierarchy then
 		vim.cmd([[command! -buffer LspIncomingCalls lua vim.lsp.buf.incoming_calls()]])
 		vim.cmd([[command! -buffer LspOutgoingCalls lua vim.lsp.buf.outgoing_calls()]])
 	end
 
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		local augroup = "lsp_document_highlight"
 		vim.api.nvim_create_augroup(augroup, {})
 
@@ -77,10 +78,10 @@ local on_attach = function(client, bufnr)
 		end
 	end
 
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.document_formatting then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
-			callback = vim.lsp.buf.formatting_sync,
+			callback = vim.lsp.buf.format,
 		})
 	end
 
@@ -127,17 +128,17 @@ wk.register({
 	["y"] = { ":Telescope lsp_document_symbols<CR>", "Document symbols" },
 	["Y"] = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
 	["t"] = { ":Telescope lsp_type_definitions<CR>", "Type Definition" },
-	["x"] = { ":Telescope lsp_code_actions<CR>", "Code Actions" },
+	["x"] = { ":lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
 	["z"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
-	["o"] = { ":Telescope lsp_diagnostics<CR>", "Document Diagnostics" },
+	["o"] = { ":Telescope diagnostics<CR>", "Document Diagnostics" },
 	["e"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diagnostic" },
 	["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
 	["p"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
-	["f"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Buffer" },
+	["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Buffer" },
 }, { prefix = "g" })
 
 wk.register({
-	["x"] = { ":Telescope lsp_range_code_actions<CR>", "Code Actions" },
+	["x"] = { "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "Code Actions" },
 	["f"] = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format Buffer" },
 }, { prefix = "g", mode = "v" })
 
@@ -152,12 +153,24 @@ wk.register({
 	name = "Code",
 	["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
 	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-	["f"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Buffer" },
+	["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Buffer" },
 }, { prefix = "<leader>c" })
 
 vim.api.nvim_set_keymap("i", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
 -- Use a loop to conveniently call 'setup' on multiple servers and
-local servers = { "tsserver", "vimls", "gopls", "yamlls", "dartls", "eslint", "html", "cssls", "jsonls" }
+local servers = {
+	"tsserver",
+	"vimls",
+	"gopls",
+	"yamlls",
+	"dartls",
+	"eslint",
+	"html",
+	"cssls",
+	"jsonls",
+	"prismals",
+	"sqls"
+}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = on_attach,
@@ -180,38 +193,7 @@ nvim_lsp.vls.setup({
 	root_dir = nvim_lsp.util.root_pattern("v.mod", ".git"),
 })
 
-nvim_lsp.sumneko_lua.setup({
-	on_attach = on_attach,
-	capabilities = cmp_lsp.update_capabilities(capabilities),
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			format = {
-				enable = true,
-			},
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-				-- Setup your lua path
-				path = vim.split(package.path, ";"),
-			},
-			diagnostics = {
-				enable = true,
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-				},
-				maxPreload = 3000,
-				preloadFileSize = 1024,
-			},
-		},
-	},
-})
+nvim_lsp.sumneko_lua.setup(sumneko_lua(on_attach))
 
 local signs = {
 	Error = " ",
@@ -224,3 +206,7 @@ for type, icon in pairs(signs) do
 	local hl = "LspDiagnosticsSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+M.on_attach = on_attach
+
+return M

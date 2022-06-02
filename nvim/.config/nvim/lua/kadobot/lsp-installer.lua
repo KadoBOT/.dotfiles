@@ -1,7 +1,7 @@
 -- local nvim_lsp = require("lspconfig")
 -- local lsp_installer = require("nvim-lsp-installer")
 local server = require("nvim-lsp-installer.server")
-local path = require("nvim-lsp-installer.path")
+local path = require("nvim-lsp-installer.core.path")
 local a = require("nvim-lsp-installer.core.async")
 local servers = require("nvim-lsp-installer.servers")
 local git = require("nvim-lsp-installer.core.managers.git")

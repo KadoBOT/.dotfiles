@@ -16,7 +16,7 @@ require("gitsigns").setup({
 			["u"] = { ":Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk" },
 			["r"] = { ":Gitsigns reset_hunk<CR>", "Reset Hunk" },
 			["S"] = { ":Gitsigns stage_buffer<CR>", "Stage Buffer" },
-			["R"] = { ":Gitsigns stage_buffer<CR>", "Reset Buffer" },
+			["R"] = { ":Gitsigns reset_buffer<CR>", "Reset Buffer" },
 			["p"] = { ":Gitsigns preview_hunk<CR>", "Preview Hunk" },
 			["b"] = { "<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Blame Line" },
 			["t"] = { ":Gitsigns toggle_current_line_blame<CR>", "Toggle Current Line Blame" },

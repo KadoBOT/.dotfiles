@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "typescript", "lua" },
+	ensure_installed = { "typescript", "lua", "go", "prisma" },
 	sync_install = false,
 	highlight = {
 		enable = true,

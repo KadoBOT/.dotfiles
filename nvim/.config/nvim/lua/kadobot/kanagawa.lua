@@ -16,5 +16,5 @@ require('kanagawa').setup({
     overrides = {},
 })
 
--- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+-- -- setup must be called before loading
+-- vim.cmd("colorscheme kanagawa")
