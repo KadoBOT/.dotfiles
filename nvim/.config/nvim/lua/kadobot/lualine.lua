@@ -1,5 +1,6 @@
 local custom_fname = require("lualine.components.filename"):extend()
 local highlight = require("lualine.highlight")
+
 local default_status_colors = { saved = "#228B22", modified = "#C70039" }
 
 function custom_fname:init(options)
@@ -53,15 +54,6 @@ local function fugitive_branch()
 	return icon .. " " .. vim.fn.FugitiveHead()
 end
 
-local function gps_status()
-	local gps = require("nvim-gps")
-	gps.setup({
-		separator = "  ",
-	})
-	if gps.is_available() then
-		return gps.get_location()
-	end
-end
 
 local function diff_source()
 	local gitsigns = vim.b.gitsigns_status_dict
@@ -94,12 +86,8 @@ require("lualine").setup({
 				sections = { "error", "warn" },
 			},
 		},
-		lualine_c = {
-			{ "filename", path = 1, file_status = true },
-		},
-		lualine_x = {
-			gps_status,
-		},
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {
 			"location",
 			"progress",

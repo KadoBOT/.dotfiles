@@ -3,8 +3,18 @@ require("nvim-treesitter.configs").setup({
 	sync_install = false,
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = false,
-		use_languagetree = true,
+	},
+	autopairs = {
+		enable = true
+	},
+	rainbow = {
+		enable = true,
+		colors = {
+			"#FF5D62",
+			"#7E9CD8",
+			"#957FB8",
+			"#FF9E3B",
+		}
 	},
 	incremental_selection = {
 		enable = true,

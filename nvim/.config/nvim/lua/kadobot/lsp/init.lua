@@ -118,11 +118,15 @@ wk.register({
 	["<leader>q"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Add to Loclist" },
 })
 
+vim.keymap.set("n", "gr", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
+
 wk.register({
 	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
 	["d"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 	["i"] = { ":Telescope lsp_implementations<CR>", "Go to implementation" },
-	["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+	-- ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
 	["R"] = { ":Telescope lsp_references<CR>", "References" },
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
 	["y"] = { ":Telescope lsp_document_symbols<CR>", "Document symbols" },
@@ -169,7 +173,8 @@ local servers = {
 	"cssls",
 	"jsonls",
 	"prismals",
-	"sqls"
+	"sqls",
+	"sourcekit",
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({

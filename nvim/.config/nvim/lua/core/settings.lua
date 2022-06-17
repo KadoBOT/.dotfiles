@@ -2,7 +2,6 @@ local o = vim.opt
 local g = vim.g
 
 vim.cmd("colorscheme kanagawa")
-
 o.autoindent = true
 o.autoread = true
 o.background = "dark"
@@ -165,4 +164,4 @@ vim.cmd([[
     augroup end
 ]])
 
-vim.highlight.create("WinSeparator", { guibg = "None", guifg = "#7E9CD8" }, false)
+vim.highlight.create("WinSeparator", { guibg = "None", guifg = "#54546D" }, false)

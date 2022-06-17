@@ -14,14 +14,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-# env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  # TERM: tmux-256color
+  TERM: xterm-256color
 
 window:
   opacity: 1
@@ -690,11 +690,11 @@ key_bindings:
   # - { key: J,         mods: Alt|Shift,              chars: "\x01\x7d"      }
   # - { key: Z,         mods: Alt,                    chars: "\x01\x6e"      }
   # - { key: L,         mods: Alt,                    chars: "\x01\x70"      }
-  - { key: Up,        mods: Alt,                    chars: "\x01\x1b[1;5A" }
-  - { key: Down,      mods: Alt,                    chars: "\x01\x1b[1;5B" }
-  - { key: Left,      mods: Alt,                    chars: "\x01\x1b[1;5D" }
-  - { key: Right,     mods: Alt,                    chars: "\x01\x1b[1;5C" }
-  - { key: R,         mods: Alt,                    chars: "\x01\x20"      }
+  - { key: Up,          mods: Shift,                  chars: "\x01\x1b[1;5A" }
+  - { key: Down,        mods: Shift,                  chars: "\x01\x1b[1;5B" }
+  - { key: Left,        mods: Shift,                  chars: "\x01\x1b[1;5D" }
+  - { key: Right,       mods: Shift,                  chars: "\x01\x1b[1;5C" }
+  - { key: R,           mods: Control|Shift,          chars: "\x01\x20"      }
   # - { key: K,         mods: Control,                chars: "\x08k"         }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
@@ -743,7 +743,6 @@ key_bindings:
   - { key: W,                           mode: Vi|~Search, action: SemanticRight           }
   - { key: E,                           mode: Vi|~Search, action: SemanticRightEnd        }
   - { key: B,      mods: Shift,         mode: Vi|~Search, action: WordLeft                }
-  - { key: W,      mods: Shift,         mode: Vi|~Search, action: WordRight               }
   - { key: E,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
   - { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
   - { key: Slash,                       mode: Vi|~Search, action: SearchForward           }

@@ -5,31 +5,31 @@ local lspkind = require("lspkind")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "⌘",
-    Field = "ﰠ",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "塞",
-    Value = "",
-    Enum = "",
-    Keyword = "廓",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "פּ",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "⌘",
+	Field = "ﰠ",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "ﰠ",
+	Unit = "塞",
+	Value = "",
+	Enum = "",
+	Keyword = "廓",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "פּ",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
 }
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
@@ -58,8 +58,8 @@ cmp.setup({
 		["<S-Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-            else
-                fallback()
+			else
+				fallback()
 			end
 		end,
 	}),
@@ -80,8 +80,8 @@ cmp.setup({
 				}
 
 				vim_item.dup = duplicates[entry.source.name] or 0
-                vim_item.menu = vim_item.kind
-                vim_item.kind = icons[vim_item.kind]
+				vim_item.menu = vim_item.kind
+				vim_item.kind = icons[vim_item.kind]
 
 				return vim_item
 			end,
@@ -91,9 +91,10 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", priority_weight = 110, group_index = 1, max_item_count = 25 },
 		{ name = "vsnip", priority_weight = 105, group_index = 1 },
-        { name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 102, group_index = 1 },
-        { name = "nvim_lsp_document_symbol", priority_weight = 98, group_index = 1 },
-        { name = "nvim_lsp_signature_help", priority_weight = 97, group_index = 2 },
+		{ name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 102, group_index = 1 },
+		{ name = "plugins", priority_weight = 200, group_index = 1 },
+		{ name = "nvim_lsp_document_symbol", priority_weight = 98, group_index = 1 },
+		{ name = "nvim_lsp_signature_help", priority_weight = 97, group_index = 2 },
 		{ name = "nvim_lua", priority_weight = 95, group_index = 2 },
 	}, {
 		{ name = "path", priority_weight = 92, group_index = 2 },
@@ -155,25 +156,26 @@ cmp.setup({
 })
 
 cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "buffer" },
 	}, {
 		{ name = "nvim_lsp_document_symbol" },
-    }),
+	}),
 })
 
 cmp.setup.cmdline("?", {
-    mapping = cmp.mapping.preset.cmdline(),
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
-	}, {
+	},
+	{
 		{ name = "nvim_lsp_document_symbol" },
-    },
+	},
 })
 
 cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {

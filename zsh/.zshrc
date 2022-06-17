@@ -5,10 +5,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 export BROWSER=brave
-export TERM=alacritty-direct
 export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
-
 export GOPATH=$HOME/go
+export DENO_INSTALL="/Users/ricardoambrogi/.deno"
 
 export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export PATH=$HOME/Downloads/flutter/bin:$PATH
@@ -16,6 +15,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$GEM_HOME/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/Downloads/v
+export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/
+  export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -158,8 +159,6 @@ alias oldvim="\vim"
 alias cdp="cd ~/Projects"
 alias cdd="cd ~/.dotfiles"
 alias trs="tree-sitter"
-alias wmp="op item get warnermedia --fields Password | pbcopy"
-alias wmu="op item get warnermedia --fields username | pbcopy"
 
 # Paths
 # export PATH=$PATH:/usr/local/go/bin
@@ -168,7 +167,6 @@ alias wmu="op item get warnermedia --fields username | pbcopy"
 # export PATH=$PATH:$HOME/.istio/bin
 # export PATH=$PATH:$HOME/.emacs.d/bin
 # export PATH=$PATH:/usr/local/share/webOS_TV_SDK/CLI/bin
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

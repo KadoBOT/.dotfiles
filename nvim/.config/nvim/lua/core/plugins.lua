@@ -48,7 +48,6 @@ return require("packer").startup(function(use)
 				require("persisted").setup()
 			end,
 		},
-		{ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] },
 	})
 	use({
 		"abecodes/tabout.nvim",
@@ -91,6 +90,14 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/vim-vsnip" },
 			{ "ray-x/cmp-treesitter" },
+			{
+				"KadoBOT/cmp-plugins",
+				config = function()
+					require("cmp-plugins").setup({
+						files = {"plugins.lua"}
+					})
+				end,
+			},
 		},
 		config = [[require('kadobot.cmp')]],
 	})
@@ -112,9 +119,28 @@ return require("packer").startup(function(use)
 			require("stabilize").setup()
 		end,
 	})
-	use({ "mbbill/undotree", opt = true, cmd = { "UndotreeShow" }, config = function ()
-		vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
-	end })
+	use({
+		"mbbill/undotree",
+		opt = true,
+		cmd = { "UndotreeShow" },
+		config = function()
+			vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
+		end,
+	})
+	use({
+		"mvllow/modes.nvim",
+		config = function()
+			require("modes").setup({
+				colors = {
+					copy = "#dca561",
+					delete = "#c34043",
+					insert = "#a3d4d5",
+					visual = "#957fb8",
+				},
+				ignore_filetypes = { "neo-tree", "TelescopePrompt" },
+			})
+		end,
+	})
 	use({
 		"nacro90/numb.nvim",
 		config = function()
@@ -146,7 +172,7 @@ return require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = {
 			{ "kyazdani42/nvim-web-devicons" },
-			"tpope/vim-fugitive"
+			"tpope/vim-fugitive",
 		},
 		config = [[require('kadobot.lualine')]],
 	})
@@ -199,6 +225,17 @@ return require("packer").startup(function(use)
 	})
 	use({ "onsails/lspkind-nvim" })
 	use({ "qpkorr/vim-bufkill" })
+	use({ "p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter" })
+	use({ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] })
+	use({
+		"smjonas/inc-rename.nvim",
+		config = function()
+			require("inc_rename").setup({
+				cmd_name = "IncRename",
+				hl_group = "Substitute",
+			})
+		end,
+	})
 	use({ "tpope/vim-eunuch" })
 	use({
 		{ "tpope/vim-fugitive" },
@@ -210,7 +247,7 @@ return require("packer").startup(function(use)
 	})
 	use({ "wellle/targets.vim" })
 	use({ "windwp/nvim-autopairs", config = [[require('kadobot.autopairs')]] })
-
+	
 	if Packer_bootstrap then
 		require("packer").sync()
 	end
