@@ -5,32 +5,53 @@ local lspkind = require("lspkind")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "⌘",
-	Field = "ﰠ",
-	Variable = "",
-	Class = "ﴯ",
-	Interface = "",
-	Module = "",
-	Property = "ﰠ",
-	Unit = "塞",
-	Value = "",
-	Enum = "",
-	Keyword = "廓",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "פּ",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
+	Text = "  ",
+	Method = "  ",
+	Function = "  ",
+	Constructor = "⌘  ",
+	Field = "ﰠ  ",
+	Variable = "  ",
+	Class = "ﴯ  ",
+	Interface = "  ",
+	Module = "  ",
+	Property = "ﰠ  ",
+	Unit = "塞 ",
+	Value = "  ",
+	Enum = "  ",
+	Keyword = "廓 ",
+	Snippet = "  ",
+	Color = "  ",
+	File = "  ",
+	Reference = "  ",
+	Folder = "  ",
+	EnumMember = "  ",
+	Constant = "  ",
+	Struct = "פּ  ",
+	Event = " ",
+	Operator = "  ",
+	TypeParameter = "t ",
 }
+
+-- gray
+vim.highlight.create("CmpItemAbbrDeprecated", { guibg="NONE", gui="strikethrough", guifg="#808080"}, false)
+
+-- blue
+vim.highlight.create("CmpItemAbbrMatch", { guibg="NONE", guifg="#7E9CD8"}, false)
+vim.highlight.create("CmpItemAbbrFuzzy", { guibg="NONE", guifg="#7E9CD8"}, false)
+
+-- light blue
+vim.highlight.create("CmpItemKindVariable", { guibg="NONE", guifg="#7FB4CA"}, false)
+vim.highlight.create("CmpItemKindInterface", { guibg="NONE", guifg="#7FB4CA"}, false)
+vim.highlight.create("CmpItemKindText", { guibg="NONE", guifg="#7FB4CA"}, false)
+
+-- magenta
+vim.highlight.create("CmpItemKindFunction", { guibg="NONE", guifg="#957FB8"}, false)
+vim.highlight.create("CmpItemKindMethod", { guibg="NONE", guifg="#957FB8"}, false)
+
+-- white
+vim.highlight.create("CmpItemKindKeyword", { guibg="NONE", guifg="#C8C093"}, false)
+vim.highlight.create("CmpItemKindProperty", { guibg="NONE", guifg="#C8C093"}, false)
+vim.highlight.create("CmpItemKindUnit", { guibg="NONE", guifg="#C8C093"}, false)
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 cmp.setup({
@@ -64,7 +85,7 @@ cmp.setup({
 		end,
 	}),
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
+		fields = { "abbr", "kind" },
 		format = lspkind.cmp_format({
 			icon = true,
 			with_text = true,
@@ -80,8 +101,7 @@ cmp.setup({
 				}
 
 				vim_item.dup = duplicates[entry.source.name] or 0
-				vim_item.menu = vim_item.kind
-				vim_item.kind = icons[vim_item.kind]
+				vim_item.kind = (icons[vim_item.kind] or '') .. vim_item.kind
 
 				return vim_item
 			end,
@@ -128,7 +148,7 @@ cmp.setup({
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
-		completion = cmp.config.window.bordered(),
+		completion = vim.tbl_deep_extend("force", cmp.config.window.bordered(), { col_offset = -1 }),
 	},
 	experimental = {
 		ghost_text = true,

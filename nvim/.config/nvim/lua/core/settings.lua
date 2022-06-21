@@ -11,7 +11,7 @@ o.bomb = false
 o.breakindent = true
 g.bufhidden = true
 o.clipboard = "unnamedplus"
-o.cmdheight = 2
+o.cmdheight = 1
 o.completeopt = "menuone,noselect"
 o.confirm = true
 o.conceallevel = 2
@@ -33,14 +33,6 @@ o.fillchars:append({
     vertright = '┣',
     verthoriz = '╋',
 })
--- o.foldenable = false
--- o.foldexpr = "nvim_treesitter#foldexpr()"
--- o.foldlevel = 0
--- o.foldlevelstart = 99
--- o.foldmethod = "expr"
--- o.foldminlines = 1
--- o.foldnestmax = 3
--- o.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend))]]
 o.formatoptions:remove {'a','t','o','2'}
 o.formatoptions:append('cqrnj')
 o.grepprg = [[rg --vimgrep --no-heading --smart-case]]

@@ -112,44 +112,44 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "BlexMono NF"
-    style: Text
+    family: "BlexMono Nerd Font"
+    style: Book
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
-  # bold:
+  bold:
     # Font family
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: "BlexMono NF"
-    # style: Text
+    family: "BlexMono Nerd Font"
+    style: Bold
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
-  # italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: "BlexMono NF"
-    # style: Light Italic
+    family: "BlexMono Nerd Font"
+    style: Italic
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
   # Bold italic font face
-  # bold_italic:
+  bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    # family: "BlexMono NF"
-    # style: Text Italic
+    family: "BlexMono Nerd Font"
+    style: Bold Italic
 
     # The`style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -175,10 +175,10 @@ font:
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 schemes:
   kanagawa: &kanagawa

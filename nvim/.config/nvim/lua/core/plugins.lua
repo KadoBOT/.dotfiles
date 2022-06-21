@@ -94,7 +94,7 @@ return require("packer").startup(function(use)
 				"KadoBOT/cmp-plugins",
 				config = function()
 					require("cmp-plugins").setup({
-						files = {"plugins.lua"}
+						files = { "plugins.lua" },
 					})
 				end,
 			},
@@ -247,7 +247,7 @@ return require("packer").startup(function(use)
 	})
 	use({ "wellle/targets.vim" })
 	use({ "windwp/nvim-autopairs", config = [[require('kadobot.autopairs')]] })
-	
+
 	if Packer_bootstrap then
 		require("packer").sync()
 	end
