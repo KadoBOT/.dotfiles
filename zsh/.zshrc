@@ -4,7 +4,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
-export BROWSER=brave
 export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
 export GOPATH=$HOME/go
 export DENO_INSTALL="/Users/ricardoambrogi/.deno"
@@ -167,6 +166,7 @@ alias trs="tree-sitter"
 # export PATH=$PATH:$HOME/.istio/bin
 # export PATH=$PATH:$HOME/.emacs.d/bin
 # export PATH=$PATH:/usr/local/share/webOS_TV_SDK/CLI/bin
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

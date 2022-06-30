@@ -57,6 +57,7 @@ return require("packer").startup(function(use)
 			require("tabout").setup({})
 		end,
 	})
+	use({ "anuvyklack/hydra.nvim", requires = "anuvyklack/keymap-layer.nvim", config = [[require('kadobot.hydra')]] })
 	use({
 		{ "arcticicestudio/nord-vim", opt = true },
 		{ "nTBBloodbath/doom-one.nvim", config = [[require('kadobot.doom-one')]], opt = true },
@@ -76,6 +77,7 @@ return require("packer").startup(function(use)
 	use({ "folke/which-key.nvim", config = [[require('kadobot.which-key')]] })
 	use({ "ggandor/lightspeed.nvim", config = [[require('kadobot.lightspeed')]] })
 	use({ "glepnir/dashboard-nvim", config = [[require('kadobot.dashboard')]] })
+	use({ "glepnir/lspsaga.nvim", config = [[require('kadobot.lspsaga')]] })
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -105,6 +107,13 @@ return require("packer").startup(function(use)
 		"j-hui/fidget.nvim",
 		config = function()
 			require("fidget").setup({})
+		end,
+	})
+	use({
+		"jlanzarotta/bufexplorer",
+		config = function()
+			local wk = require("which-key")
+			wk.register({ fb = { ":BufExplorer<CR>", "Buffer Explorer" } }, { prefix = "<leader>" })
 		end,
 	})
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
@@ -227,6 +236,7 @@ return require("packer").startup(function(use)
 	use({ "qpkorr/vim-bufkill" })
 	use({ "p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter" })
 	use({ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] })
+	use({ "sindrets/winshift.nvim" })
 	use({
 		"smjonas/inc-rename.nvim",
 		config = function()
@@ -236,6 +246,7 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	use({ "stevearc/aerial.nvim", config = [[require('kadobot.aerial')]] })
 	use({ "tpope/vim-eunuch" })
 	use({
 		{ "tpope/vim-fugitive" },

@@ -47,6 +47,8 @@ capabilities.textDocument.foldingRange = {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+	require("aerial").on_attach(client, bufnr)
+
 	-- omnifunc
 	if client.server_capabilities.completion then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -131,17 +133,17 @@ wk.register({
 	["d"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 	["i"] = { ":Telescope lsp_implementations<CR>", "Go to implementation" },
 	-- ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-	["R"] = { ":Telescope lsp_references<CR>", "References" },
+	-- ["R"] = { ":Telescope lsp_references<CR>", "References" },
 	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
 	["y"] = { ":Telescope lsp_document_symbols<CR>", "Document symbols" },
 	["Y"] = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
 	["t"] = { ":Telescope lsp_type_definitions<CR>", "Type Definition" },
 	["x"] = { ":lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
-	["z"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
+	-- ["z"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
 	["o"] = { ":Telescope diagnostics<CR>", "Document Diagnostics" },
 	["e"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diagnostic" },
-	["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
-	["p"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
+	-- ["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
+	-- ["p"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
 	["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Buffer" },
 }, { prefix = "g" })
 

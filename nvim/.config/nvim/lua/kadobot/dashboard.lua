@@ -1,52 +1,64 @@
-local custom_header = {
+local db = require('dashboard')
+
+db.custom_header = {
 	"",
 	"",
 	"",
 	"MMMMMMMMMMMMMMMMMMMMM.                             MMMMMMMMMMMMMMMMMMMMM",
-	"`MMMMMMMMMMMMMMMMMMMM           M\\  /M           MMMMMMMMMMMMMMMMMMMM'",
-	"  `MMMMMMMMMMMMMMMMMMM          MMMMMM          MMMMMMMMMMMMMMMMMMM'",
-	"    MMMMMMMMMMMMMMMMMMM-_______MMMMMMMM_______-MMMMMMMMMMMMMMMMMMM",
-	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-	"    .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.",
-	"   MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
-	"                  `MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'",
-	"                         `MMMMMMMMMMMMMMMMMM'",
-	"                             `MMMMMMMMMM'",
-	"                                MMMMMM",
-	"                                 MMMM",
-	"                                  MM",
+	"`MMMMMMMMMMMMMMMMMMMM           M\\  /M           MMMMMMMMMMMMMMMMMMMM' ",
+	"  `MMMMMMMMMMMMMMMMMMM          MMMMMM          MMMMMMMMMMMMMMMMMMM'    ",
+	"    MMMMMMMMMMMMMMMMMMM-_______MMMMMMMM_______-MMMMMMMMMMMMMMMMMMM      ",
+	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM       ",
+	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM       ",
+	"     MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM       ",
+	"    .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.      ",
+	"   MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM     ",
+	"                  `MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'                    ",
+	"                         `MMMMMMMMMMMMMMMMMM'                           ",
+	"                             `MMMMMMMMMM'                               ",
+	"                                MMMMMM                                  ",
+	"                                 MMMM                                   ",
+	"                                  MM                                    ",
+	"                                                                        ",
+	"                                                                        "
 }
 
-vim.g.dashboard_default_executive = "telescope"
-
-vim.g.dashboard_custom_section = {
-	a = {
-		description = { "  Restore Dir Session               " },
-		command = "lua require('persisted').load()",
+db.custom_center = {
+	{
+		icon = "",
+		desc = "  Restore Dir Session               ",
+		action = "lua require('persisted').load()",
 	},
-	b = {
-		description = { "  Find File                  SPC f f" },
-		command = "Telescope find_files",
+	{
+		icon = "",
+		desc = "  Find File                  ",
+		action = "Telescope find_files",
+		shortcut = "SPC f f"
 	},
-	c = {
-		description = { "  Find Project               SPC f p" },
-		command = "Telescope project",
+	{
+		icon = "",
+		desc = "  Find Project               ",
+		action = "Telescope project",
+		shortcut = "SPC f p"
 	},
-	d = {
-		description = { "  Recents                    SPC f r" },
-		command = "Telescope oldfiles",
+	{
+		icon = "",
+		desc = "  Recents                    ",
+		action = "Telescope oldfiles",
+		shortcut = "SPC f r"
 	},
-	e = {
-		description = { "  File Browser               SPC f t" },
-		command = "Telescope file_browser",
+	{
+		icon = "",
+		desc = "  File Browser               ",
+		action = "Telescope file_browser",
+		shortcut = "SPC f t"
 	},
-	f = {
-		description = { "  Find Word                  SPC f g" },
-		command = "Telescope live_grep",
+	{
+		icon = "",
+		desc = "  Live Grep                  ",
+		action = "Telescope live_grep",
+		shortcut = "SPC f g"
 	}
 }
 
-vim.g.dashboard_custom_footer = { '"It\'s not who I am underneath, but what I do that defines me."' }
-vim.g.dashboard_custom_header = custom_header
+db.custom_footer = { '"It\'s not who I am underneath, but what I do that defines me."' }

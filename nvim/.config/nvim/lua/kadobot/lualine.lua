@@ -87,7 +87,7 @@ require("lualine").setup({
 			},
 		},
 		lualine_c = {},
-		lualine_x = {},
+		lualine_x = { "aerial" },
 		lualine_y = {
 			"location",
 			"progress",
