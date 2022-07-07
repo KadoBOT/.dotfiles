@@ -1,4 +1,5 @@
 local aerial = require('aerial')
+require("kadobot.aerial.winbar")
 
 aerial.setup({
     default_direction = "prefer_right",

@@ -2,9 +2,9 @@ local Hydra = require('hydra')
 local gitsigns = require('gitsigns')
 
 local hint = [[
- _H_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
- _J_: prev hunk   _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full 
- ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
+ _H_: next hunk      _s_: stage hunk        _d_: show deleted   _b_: blame line
+ _J_: prev hunk      _u_: undo stage hunk   _p_: preview hunk   _B_: blame show full 
+ _R_: reset buffer   _S_: stage buffer      _r_: reset hunk     _/_: show base file
  ^
  ^ ^              _<Enter>_: Neogit              _q_: exit
 ]]
@@ -53,5 +53,7 @@ Hydra({
       { '/', gitsigns.show, { exit = true } }, -- show the base of the file
       { '<Enter>', '<cmd>Neogit<CR>', { exit = true } },
       { 'q', nil, { exit = true, nowait = true } },
+      { 'r', gitsigns.reset_hunk, { nowait = true } },
+      { 'R', gitsigns.reset_buffer, { nowait = true } },
    }
 })

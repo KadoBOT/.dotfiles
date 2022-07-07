@@ -93,10 +93,11 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/vim-vsnip" },
 			{ "ray-x/cmp-treesitter" },
 			{
-				"KadoBOT/cmp-plugins",
+				-- "KadoBOT/cmp-plugins",
+				"~/Projects/cmp-plugins",
 				config = function()
 					require("cmp-plugins").setup({
-						files = { "plugins.lua" },
+						files = { "/lua/core", ".*es\\.lua" },
 					})
 				end,
 			},
@@ -127,6 +128,24 @@ return require("packer").startup(function(use)
 		config = function()
 			require("stabilize").setup()
 		end,
+	})
+	use({
+		{ "mfussenegger/nvim-dap", config = [[require('kadobot.dap')]] },
+		{
+			"theHamsta/nvim-dap-virtual-text",
+			config = function()
+				require("nvim-dap-virtual-text").setup()
+			end,
+			requires = "mfussenegger/nvim-dap",
+		},
+		{
+			"rcarriga/nvim-dap-ui",
+			requires = { "mfussenegger/nvim-dap" },
+			config = function()
+				require("dapui").setup()
+				require("which-key").register({ ["<C-D>h"] = { require("dapui").toggle, "Toggle UI" } })
+			end,
+		},
 	})
 	use({
 		"mbbill/undotree",
@@ -203,6 +222,7 @@ return require("packer").startup(function(use)
 				"nvim-telescope/telescope-project.nvim",
 				"nvim-telescope/telescope-symbols.nvim",
 				"nvim-telescope/telescope-file-browser.nvim",
+				"nvim-telescope/telescope-dap.nvim",
 				"telescope-fzf-native.nvim",
 				"telescope-fzf-writer.nvim",
 			},
@@ -246,7 +266,11 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
-	use({ "stevearc/aerial.nvim", config = [[require('kadobot.aerial')]] })
+	use({
+		"stevearc/aerial.nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = [[require('kadobot.aerial')]],
+	})
 	use({ "tpope/vim-eunuch" })
 	use({
 		{ "tpope/vim-fugitive" },
