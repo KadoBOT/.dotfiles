@@ -17,24 +17,26 @@ o.confirm = true
 o.conceallevel = 2
 o.cursorcolumn = false
 o.cursorline = true
-o.cursorlineopt = 'screenline'
-o.display:append { "lastline" }
+o.cursorlineopt = "screenline"
+o.display:append({ "lastline" })
 o.encoding = "utf-8"
 o.errorbells = false
 o.expandtab = false
 o.fileencoding = "utf-8"
-o.fileformats:append { "mac" }
+o.fileformats:append({ "mac" })
 o.fillchars:append({
-    horiz = '━',
-    horizup = '┻',
-    horizdown = '┳',
-    vert = '┃',
-    vertleft = '┨',
-    vertright = '┣',
-    verthoriz = '╋',
+	horiz = "━",
+	horizup = "┻",
+	horizdown = "┳",
+	vert = "┃",
+	vertleft = "┨",
+	vertright = "┣",
+	verthoriz = "╋",
 })
-o.formatoptions:remove {'a','t','o','2'}
-o.formatoptions:append('cqrnj')
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.formatoptions:remove({ "a", "t", "o", "2" })
+o.formatoptions:append("cqrnj")
 o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
 o.history = 2000
 o.hidden = true
@@ -47,24 +49,24 @@ o.lazyredraw = false
 o.linebreak = true
 o.list = true
 o.listchars = {
-    tab = '▷─',
-    trail = '·',
-    space = ' ',
-    eol = '↲',
-    nbsp = '⦸',
-    extends = '',
-    precedes = '',
-    conceal = '┊'
+	tab = "▷ ",
+	trail = "·",
+	space = " ",
+	eol = "↲",
+	nbsp = "⦸",
+	extends = "",
+	precedes = "",
+	conceal = "┊",
 }
 o.magic = true
 o.mat = 2
-o.matchpairs:append { "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" }
+o.matchpairs:append({ "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" })
 o.modeline = false
 o.mouse = "nv"
-o.nrformats:remove { "octal" }
+o.nrformats:remove({ "octal" })
 o.number = true
 o.numberwidth = 4
-o.path = '.,**'
+o.path = ".,**"
 o.pumheight = 10
 o.pumblend = 17
 -- o.re = 1
@@ -77,7 +79,7 @@ o.shell = vim.env.SHELL
 o.shiftround = true
 o.shiftwidth = 4
 o.shortmess:append("c")
-o.showbreak = string.rep(' ', 4)
+o.showbreak = string.rep(" ", 4)
 o.showcmd = true
 o.showmatch = true
 o.showmode = false
@@ -94,7 +96,7 @@ o.splitbelow = true
 o.splitright = true
 o.softtabstop = 4
 o.startofline = false
-o.syntax = 'enable'
+o.syntax = "enable"
 o.synmaxcol = 180
 o.swapfile = false
 o.tabstop = 4
@@ -109,36 +111,36 @@ o.ttyfast = true
 o.updatetime = 200
 o.virtualedit = "block"
 o.visualbell = true
-o.wildignore:append { "node_modules/**,.git/**" }
+o.wildignore:append({ "node_modules/**,.git/**" })
 o.wildmenu = true
 -- o.wildmode:append {"full,longest"}
-o.wildoptions = 'pum'
+o.wildoptions = "pum"
 o.wrap = false
 o.wrapmargin = 8
 o.writebackup = false
 
 local disabled_built_ins = {
-    "2html_plugin",
-    "getscript",
-    "getscriptPlugin",
-    "gzip",
-    "logiPat",
-    "netrw",
-    "netrwFileHandlers",
-    "netrwPlugin",
-    "netrwSettings",
-    "rrhelper",
-    "spellfile_plugin",
-    "tar",
-    "tarPlugin",
-    "vimball",
-    "vimballPlugin",
-    "zip",
-    "zipPlugin",
+	"2html_plugin",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logiPat",
+	"netrw",
+	"netrwFileHandlers",
+	"netrwPlugin",
+	"netrwSettings",
+	"rrhelper",
+	"spellfile_plugin",
+	"tar",
+	"tarPlugin",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
+	g["loaded_" .. plugin] = 1
 end
 
 vim.cmd([[
@@ -156,4 +158,4 @@ vim.cmd([[
     augroup end
 ]])
 
-vim.highlight.create("WinSeparator", { guibg = "None", guifg = "#54546D" }, false)
+vim.api.nvim_set_hl(0, "WinSeparator", { bg = "None", fg = "#54546D" })

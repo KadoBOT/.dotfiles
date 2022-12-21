@@ -7,16 +7,15 @@ npairs.setup({
 		javascript = { "template_string" },
 		typescript = { "template_string" },
 	},
-	disable_filetype = { "TelescopePrompt", "spectre_panel", "guihua" },
+	disable_filetype = { "TelescopePrompt", "spectre_panel" },
 	fast_wrap = {
 		map = "<M-e>",
-		chars = { "{", "[", "(", '"', "'", "`" },
-		pattern = string.gsub([[ [%'%"%`%)%>%]%)%}%,] ]], "%s+", ""),
-		offset = 0, -- Offset from pattern match
+		chars = { "{", "[", "(", '"', "'" },
+		pattern = [=[[%'%"%)%>%]%)%}%,]]=],
 		end_key = "$",
-		keys = "wdbvqfupxkcmlhjzasrtgyneoi",
+		keys = "qwertyuiopzxcvbnmasdfghjkl",
 		check_comma = true,
-		highlight = "PmenuSel",
-		highlight_grey = "LineNr",
+		highlight = "Search",
+		highlight_grey = "Comment",
 	},
 })

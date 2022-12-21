@@ -1,18 +1,31 @@
-local aerial = require('aerial')
+local aerial = require("aerial")
 require("kadobot.aerial.winbar")
+local actions = require("aerial.actions")
+
+-- Toggle the aerial window with <leader>a
+vim.keymap.set("n", "!", "<cmd>AerialToggle!<CR>", { silent = true })
 
 aerial.setup({
-    default_direction = "prefer_right",
-    default_bindings = false,
-    min_width = 35,
-    on_attach = function (bufnr)
-        -- Toggle the aerial window with <leader>a
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '!', '<cmd>AerialToggle!<CR>', {})
-        -- Jump forwards/backwards with '{' and '}'
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '{', '<cmd>AerialPrev<CR>', {})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '}', '<cmd>AerialNext<CR>', {})
-        -- Jump up the tree with '[[' or ']]'
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
-    end
+	backends = { "lsp", "treesitter", "markdown" },
+	show_guides = true,
+	guides = {
+		mid_item = "├ ",
+		last_item = "└ ",
+		nested_top = "│ ",
+		whitespace = "  ",
+	},
+	keymaps = {
+		["{"] = actions.prev,
+		["}"] = actions.next,
+		["[["] = actions.prev_up,
+		["]]"] = actions.next_up,
+	},
+	layout = {
+		attach_mode = "global",
+		min_width = { 35, 0.2 },
+		default_direction = "prefer_right",
+		placement = "window",
+	},
+	close_automatic_events = { "unfocus" },
+	close_on_select = true,
 })

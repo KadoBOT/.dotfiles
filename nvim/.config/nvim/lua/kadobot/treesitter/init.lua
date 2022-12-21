@@ -1,11 +1,11 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "typescript", "lua", "go", "prisma" },
-	sync_install = false,
+	ensure_installed = "all",
+	sync_install = true,
 	highlight = {
 		enable = true,
 	},
 	autopairs = {
-		enable = true
+		enable = true,
 	},
 	rainbow = {
 		enable = true,
@@ -14,7 +14,7 @@ require("nvim-treesitter.configs").setup({
 			"#7E9CD8",
 			"#957FB8",
 			"#FF9E3B",
-		}
+		},
 	},
 	incremental_selection = {
 		enable = true,
@@ -24,5 +24,11 @@ require("nvim-treesitter.configs").setup({
 			node_incremental = "<TAB>",
 			node_decremental = "<S-TAB>",
 		},
-	}
+	},
+	-- experimental
+	indent = {
+		enable = true,
+	},
 })
+
+require("kadobot.treesitter.parsers")

@@ -28,6 +28,10 @@ return require("packer").startup(function(use)
 					overrides = {
 						extensions = {
 							v = "vlang",
+							proto = "proto",
+							puml = "plantuml",
+							esdl = "edgeql",
+							cql = "sql",
 						},
 					},
 				})
@@ -42,11 +46,10 @@ return require("packer").startup(function(use)
 			end,
 		},
 		{
-			"olimorris/persisted.nvim",
-			module = "persisted",
-			config = function()
-				require("persisted").setup()
-			end,
+			"folke/persistence.nvim",
+			event = "BufReadPre",
+			module = "persistence",
+			config = [[require('kadobot.persistence')]],
 		},
 	})
 	use({
@@ -57,27 +60,63 @@ return require("packer").startup(function(use)
 			require("tabout").setup({})
 		end,
 	})
+	use({ "aklt/plantuml-syntax" })
 	use({ "anuvyklack/hydra.nvim", requires = "anuvyklack/keymap-layer.nvim", config = [[require('kadobot.hydra')]] })
-	use({
-		{ "arcticicestudio/nord-vim", opt = true },
-		{ "nTBBloodbath/doom-one.nvim", config = [[require('kadobot.doom-one')]], opt = true },
-		{ "navarasu/onedark.nvim", opt = true },
-		{ "folke/tokyonight.nvim", opt = true },
-	})
 	use({
 		"akinsho/bufferline.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
 		tag = "v2.*",
 		config = [[require('kadobot.bufferline')]],
 	})
-	use({ "christoomey/vim-tmux-navigator" })
+	use({
+		"axelvc/template-string.nvim",
+		config = function()
+			require("template-string").setup()
+		end,
+	})
+	use({
+		"Darazaki/indent-o-matic",
+		config = function()
+			require("indent-o-matic").setup({})
+		end,
+	})
+	use({ "edgedb/edgedb-vim" })
 	use({ "editorconfig/editorconfig-vim" })
 	use({ "folke/lua-dev.nvim" })
-	use({ "folke/trouble.nvim", config = [[require'kadobot.trouble']] })
+	use({
+		"folke/paint.nvim",
+		config = function()
+			require("paint").setup({
+				highlights = {
+					{
+						filter = { filetype = "go" },
+						pattern = "^%/%/%s*(%w+)%s*[^\n]%w",
+						hl = "Keyword",
+					},
+				},
+			})
+		end,
+	})
+	use({ "folke/trouble.nvim", config = [[require('kadobot.trouble')]] })
+	use({ "folke/twilight.nvim" })
 	use({ "folke/which-key.nvim", config = [[require('kadobot.which-key')]] })
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				plugins = {
+					kitty = { enabled = true },
+				},
+			})
+		end,
+	})
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+		config = [[require('kadobot.alpha')]],
+	})
 	use({ "ggandor/lightspeed.nvim", config = [[require('kadobot.lightspeed')]] })
-	use({ "glepnir/dashboard-nvim", config = [[require('kadobot.dashboard')]] })
-	use({ "glepnir/lspsaga.nvim", config = [[require('kadobot.lspsaga')]] })
+	use({ "glepnir/lspsaga.nvim", branch = "main", config = [[require('kadobot.lspsaga')]] })
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -97,7 +136,7 @@ return require("packer").startup(function(use)
 				"~/Projects/cmp-plugins",
 				config = function()
 					require("cmp-plugins").setup({
-						files = { "/lua/core", ".*es\\.lua" },
+						files = { "plugins.lua" },
 					})
 				end,
 			},
@@ -105,28 +144,43 @@ return require("packer").startup(function(use)
 		config = [[require('kadobot.cmp')]],
 	})
 	use({
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup({})
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+			vim.g.mkdp_preview_options = {
+				uml = { server = "http://localhost:8888", imageFormat = "svg" },
+			}
 		end,
+		ft = { "markdown" },
 	})
-	use({
-		"jlanzarotta/bufexplorer",
-		config = function()
-			local wk = require("which-key")
-			wk.register({ fb = { ":BufExplorer<CR>", "Buffer Explorer" } }, { prefix = "<leader>" })
-		end,
-	})
-	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
+	use({ "jose-elias-alvarez/typescript.nvim" })
+	use({ "jose-elias-alvarez/null-ls.nvim", config = [[require('kadobot.null-ls')]] })
 	use({ "kyazdani42/nvim-web-devicons" })
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = [[require('kadobot.indent-blankline')]],
 	})
 	use({
-		"luukvbaal/stabilize.nvim",
+		"lukas-reineke/virt-column.nvim",
 		config = function()
-			require("stabilize").setup()
+			vim.opt.colorcolumn = "121"
+			require("virt-column").setup()
+		end,
+	})
+	use({
+		"m-demare/hlargs.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("hlargs").setup()
+		end,
+	})
+	use({
+		"mbbill/undotree",
+		opt = true,
+		cmd = { "UndotreeShow" },
+		config = function()
+			vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
 		end,
 	})
 	use({
@@ -148,14 +202,6 @@ return require("packer").startup(function(use)
 		},
 	})
 	use({
-		"mbbill/undotree",
-		opt = true,
-		cmd = { "UndotreeShow" },
-		config = function()
-			vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
-		end,
-	})
-	use({
 		"mvllow/modes.nvim",
 		config = function()
 			require("modes").setup({
@@ -170,25 +216,15 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use({
-		"nacro90/numb.nvim",
-		config = function()
-			require("numb").setup()
-		end,
+		"mrjones2014/smart-splits.nvim",
+		config = [[require('kadobot.smart-splits')]],
 	})
+	use({ "nanotee/sqls.nvim" })
 	use({
-		{
-			"neovim/nvim-lspconfig",
-			requires = {
-				"hrsh7th/nvim-cmp",
-				"onsails/lspkind-nvim",
-				"williamboman/nvim-lsp-installer",
-			},
-			config = [[require('kadobot.lsp')]],
-		},
-		{
-			"williamboman/nvim-lsp-installer",
-			config = [[require('kadobot.lsp-installer')]],
-		},
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
 	})
 	use({
 		"numToStr/Comment.nvim",
@@ -217,6 +253,7 @@ return require("packer").startup(function(use)
 	use({
 		{
 			"nvim-telescope/telescope.nvim",
+			tag = "0.1.0",
 			requires = {
 				"nvim-lua/plenary.nvim",
 				"nvim-telescope/telescope-project.nvim",
@@ -256,7 +293,6 @@ return require("packer").startup(function(use)
 	use({ "qpkorr/vim-bufkill" })
 	use({ "p00f/nvim-ts-rainbow", requires = "nvim-treesitter/nvim-treesitter" })
 	use({ "rebelot/kanagawa.nvim", config = [[require('kadobot.kanagawa')]] })
-	use({ "sindrets/winshift.nvim" })
 	use({
 		"smjonas/inc-rename.nvim",
 		config = function()
@@ -271,6 +307,10 @@ return require("packer").startup(function(use)
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = [[require('kadobot.aerial')]],
 	})
+	use({
+		"toppair/reach.nvim",
+		config = [[require('kadobot.reach')]],
+	})
 	use({ "tpope/vim-eunuch" })
 	use({
 		{ "tpope/vim-fugitive" },
@@ -281,7 +321,25 @@ return require("packer").startup(function(use)
 		},
 	})
 	use({ "wellle/targets.vim" })
+	use({
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+		{
+			"neovim/nvim-lspconfig",
+			requires = {
+				"hrsh7th/nvim-cmp",
+				"onsails/lspkind-nvim",
+			},
+			config = [[require('kadobot.lsp')]],
+		},
+	})
 	use({ "windwp/nvim-autopairs", config = [[require('kadobot.autopairs')]] })
+	use({
+		"wuelnerdotexe/vim-astro",
+		config = function()
+			vim.g.astro_typescript = "enable"
+		end,
+	})
 
 	if Packer_bootstrap then
 		require("packer").sync()

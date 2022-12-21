@@ -1,8 +1,16 @@
 require("telescope").setup({
 	defaults = {
-        dynamic_preview_title = true,
-		layout_strategy = "flex",
+		dynamic_preview_title = true,
+		layout_strategy = "vertical",
 		scroll_strategy = "cycle",
+		layout_config = {
+			vertical = {
+				prompt_position = "bottom",
+				preview_cutoff = 0,
+				height = 0.95,
+				width = 0.92,
+			},
+		},
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
 		color_devicons = true,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -13,7 +21,7 @@ require("telescope").setup({
 		file_ignore_patterns = { "%.git", "node_modules/", "dist/", "reports/" },
 		prompt_prefix = "   ",
 		selection_caret = " ",
-        path_display={"smart"},
+		path_display = { "smart" },
 		mappings = {
 			n = {
 				["j"] = require("telescope.actions").move_selection_previous,
@@ -70,9 +78,10 @@ require("telescope").setup({
 				"-g",
 				"!node_modules",
 			},
+			theme = "dropdown",
 		},
 		buffers = {
-            theme = '',
+			theme = "",
 			show_all_buffers = true,
 			sort_lastused = true,
 		},
@@ -89,6 +98,6 @@ require("telescope").load_extension("aerial")
 require("telescope").load_extension("dap")
 
 -- Highlights
-vim.highlight.create("TelescopeMatching", { guifg = "#F18F91" }, false)
-vim.highlight.create("TelescopeSelection", { guibg = "#2F2A4F", gui = "bold" }, false)
-vim.highlight.create("TelescopeNormal", { guifg = "#C5C0E0" }, false)
+vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#F18F91" })
+vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#2F2A4F", bold = true })
+vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#C5C0E0" })

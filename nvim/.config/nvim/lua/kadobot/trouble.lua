@@ -1,7 +1,7 @@
 require("trouble").setup({
 	action_keys = {
-		previous = "j",
-		next = "h",
+		previous = "<C-p>",
+		next = "<C-n>",
 		toggle_fold = { "kA", "ka" },
 	},
 	use_diagnostic_signs = true,

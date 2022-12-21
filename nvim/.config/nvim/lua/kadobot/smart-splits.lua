@@ -1,8 +1,10 @@
 local s = require("smart-splits")
 
-s.setup{}
+s.setup({
+	ignored_buftypes = { "neo-tree" },
+})
 
-vim.keymap.set("n", "<C-Left>", s.resize_left)
-vim.keymap.set("n", "<C-Down>", s.resize_down)
-vim.keymap.set("n", "<C-Up>", s.resize_up)
-vim.keymap.set("n", "<C-Right>", s.resize_right)
+vim.keymap.set("n", "<C-L>", require("smart-splits").move_cursor_left, { silent = true })
+vim.keymap.set("n", "<C-H>", require("smart-splits").move_cursor_down, { silent = true })
+vim.keymap.set("n", "<C-J>", require("smart-splits").move_cursor_up, { silent = true })
+vim.keymap.set("n", "<C-z>", require("smart-splits").move_cursor_right, { silent = true })

@@ -13,7 +13,7 @@ wk.register({
 	["<leader>hc"] = { "<cmd>Telescope command_history<cr>", "Command History" },
 	["<leader>hs"] = { "<cmd>Telescope search_history<cr>", "Search History" },
 	["<leader>hf"] = { "<cmd>Telescope oldfiles<cr>", "FIles History" },
-	["'"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
+	-- ["'"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer Fuzzy Find" },
 	["<leader>f"] = { name = "Files" },
 	["<leader>ff"] = { project_files, "Find Files" },
 	["<leader>fo"] = { "<cmd>Telescope oldfiles<cr>", "Old Files" },

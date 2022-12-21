@@ -6,7 +6,8 @@ return function(on_attach)
 	return l.setup({
 		lspconfig = {
 			on_attach = on_attach,
-			cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" }
-		}
+			cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+			Lua = { hint = { enable = true } },
+		},
 	})
 end

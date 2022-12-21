@@ -7,8 +7,6 @@ local hint = [[
  ^                      _q_: exit
 ]]
 
-local ok, diag = pcall(require, "lspsaga.diagnostic")
-
 for _, value in pairs({ "gn", "gp", "gz" }) do
 	Hydra({
 		hint = hint,
@@ -22,11 +20,11 @@ for _, value in pairs({ "gn", "gp", "gz" }) do
 			},
 			on_enter = function()
 				if value == "gn" then
-					diag.goto_next()
+					vim.diagnostic.goto_next()
 				elseif value == "gz" then
-					diag.show_line_diagnostics()
+					vim.diagnostic.show_line_diagnostics()
 				else
-					diag.goto_prev()
+					vim.diagnostic.goto_prev()
 				end
 				aerial.open()
 			end,
@@ -40,21 +38,13 @@ for _, value in pairs({ "gn", "gp", "gz" }) do
 			{
 				"n",
 				function()
-					if ok then
-						diag.goto_next()
-					else
-						vim.diagnostic.goto_next()
-					end
+					vim.diagnostic.goto_next()
 				end,
 			},
 			{
 				"p",
 				function()
-					if ok then
-						diag.goto_prev()
-					else
-						vim.diagnostic.goto_prev()
-					end
+					vim.diagnostic.goto_prev()
 				end,
 			},
 			{
@@ -82,11 +72,7 @@ for _, value in pairs({ "gn", "gp", "gz" }) do
 			{
 				"a",
 				function()
-					if ok then
-						require("lspsaga.codeaction").code_action()
-					else
-						vim.lsp.buf.code_action()
-					end
+					vim.lsp.buf.code_action()
 					return "<Ignore>"
 				end,
 			},

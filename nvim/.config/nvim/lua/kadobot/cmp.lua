@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local cmp_buffer = require("cmp_buffer")
-local lspkind = require("lspkind")
+local kind = require("lspkind")
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
@@ -34,55 +34,74 @@ local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 -- }
 
 local icons = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
+	Text = "  ",
+	Method = "  ",
+	Function = "  ",
+	Constructor = "  ",
+	Field = "  ",
+	Variable = "  ",
+	Class = "  ",
+	Interface = "  ",
+	Module = "  ",
+	Property = "  ",
+	Unit = "  ",
+	Value = "  ",
+	Enum = "  ",
+	Keyword = "  ",
+	Snippet = "  ",
+	Color = "  ",
+	File = "  ",
+	Reference = "  ",
+	Folder = "  ",
+	EnumMember = "  ",
+	Constant = "  ",
+	Struct = "  ",
+	Event = "  ",
+	Operator = "  ",
+	TypeParameter = "  ",
 }
 
 -- gray
-vim.highlight.create("CmpItemAbbrDeprecated", { guibg="NONE", gui="strikethrough", guifg="#808080"}, false)
+vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
 
 -- blue
-vim.highlight.create("CmpItemAbbrMatch", { guibg="NONE", guifg="#7E9CD8"}, false)
-vim.highlight.create("CmpItemAbbrFuzzy", { guibg="NONE", guifg="#7E9CD8"}, false)
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#7E9CD8" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrFuzzy", { bg = "NONE", fg = "#7E9CD8" })
 
 -- light blue
-vim.highlight.create("CmpItemKindVariable", { guibg="NONE", guifg="#7FB4CA"}, false)
-vim.highlight.create("CmpItemKindInterface", { guibg="NONE", guifg="#7FB4CA"}, false)
-vim.highlight.create("CmpItemKindText", { guibg="NONE", guifg="#7FB4CA"}, false)
+vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#7FB4CA" })
+vim.api.nvim_set_hl(0, "CmpItemKindInterface", { bg = "NONE", fg = "#7FB4CA" })
+vim.api.nvim_set_hl(0, "CmpItemKindText", { bg = "NONE", fg = "#7FB4CA" })
 
 -- magenta
-vim.highlight.create("CmpItemKindFunction", { guibg="NONE", guifg="#957FB8"}, false)
-vim.highlight.create("CmpItemKindMethod", { guibg="NONE", guifg="#957FB8"}, false)
+vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#957FB8" })
+vim.api.nvim_set_hl(0, "CmpItemKindMethod", { bg = "NONE", fg = "#957FB8" })
 
 -- white
-vim.highlight.create("CmpItemKindKeyword", { guibg="NONE", guifg="#C8C093"}, false)
-vim.highlight.create("CmpItemKindProperty", { guibg="NONE", guifg="#C8C093"}, false)
-vim.highlight.create("CmpItemKindUnit", { guibg="NONE", guifg="#C8C093"}, false)
+vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#C8C093" })
+vim.api.nvim_set_hl(0, "CmpItemKindProperty", { bg = "NONE", fg = "#C8C093" })
+vim.api.nvim_set_hl(0, "CmpItemKindUnit", { bg = "NONE", fg = "#C8C093" })
 
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
+local handlers = require("nvim-autopairs.completion.handlers")
+cmp.event:on(
+	"confirm_done",
+	cmp_autopairs.on_confirm_done({
+		filetypes = {
+			-- "*" is a alias to all filetypes
+			["*"] = {
+				["("] = {
+					kind = {
+						cmp.lsp.CompletionItemKind.Function,
+						cmp.lsp.CompletionItemKind.Method,
+					},
+					handler = handlers["*"],
+				},
+			},
+			-- Disable for tex
+			tex = false,
+		},
+	})
+)
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -115,7 +134,7 @@ cmp.setup({
 	}),
 	formatting = {
 		fields = { "abbr", "kind" },
-		format = lspkind.cmp_format({
+		format = kind.cmp_format({
 			icon = true,
 			with_text = true,
 			before = function(entry, vim_item)
@@ -130,7 +149,7 @@ cmp.setup({
 				}
 
 				vim_item.dup = duplicates[entry.source.name] or 0
-				vim_item.kind = (icons[vim_item.kind] or '') .. vim_item.kind
+				vim_item.kind = (icons[vim_item.kind] or "") .. vim_item.kind
 
 				return vim_item
 			end,
@@ -138,7 +157,7 @@ cmp.setup({
 	},
 	-- You should specify your *installed* sources.
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp", priority_weight = 110, group_index = 1, max_item_count = 25 },
+		{ name = "nvim_lsp", priority_weight = 110, group_index = 1 },
 		{ name = "vsnip", priority_weight = 105, group_index = 1 },
 		{ name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 102, group_index = 1 },
 		{ name = "plugins", priority_weight = 200, group_index = 1 },
@@ -204,23 +223,13 @@ cmp.setup({
 	preselect = cmp.PreselectMode.None,
 })
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "buffer" },
 	}, {
 		{ name = "nvim_lsp_document_symbol" },
 	}),
-})
-
-cmp.setup.cmdline("?", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "buffer" },
-	},
-	{
-		{ name = "nvim_lsp_document_symbol" },
-	},
 })
 
 cmp.setup.cmdline(":", {

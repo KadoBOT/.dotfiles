@@ -4,18 +4,15 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
-export SESSION_BUS_SOCKET=/tmp/dbus/$USER.session.usock
-export GOPATH=$HOME/go
-export DENO_INSTALL="/Users/ricardoambrogi/.deno"
 
 export PATH=$HOME/Library/Python/3.9/bin:$PATH
-export PATH=$HOME/Downloads/flutter/bin:$PATH
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$GEM_HOME/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/Downloads/v
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/
-  export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$(brew --prefix llvm)/bin:${PATH}"
+export PATH=$PATH:$HOME/.local/bin
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -88,8 +85,8 @@ setopt globdots
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    # docker
-    # docker-compose
+    docker
+    docker-compose
     # gcloud
     # kubectl
     # minikube
@@ -100,6 +97,7 @@ plugins=(
     vi-mode
     tmux
     zsh-autosuggestions
+    zsh-completions
     zsh-syntax-highlighting
     thefuck
     aliases
@@ -109,6 +107,8 @@ plugins=(
     npm
 	fzf-tab
 )
+
+fpath+=~/.zfunc
 
 ZSH_TMUX_AUTOSTART=true
 source $ZSH/oh-my-zsh.sh
@@ -158,6 +158,8 @@ alias oldvim="\vim"
 alias cdp="cd ~/Projects"
 alias cdd="cd ~/.dotfiles"
 alias trs="tree-sitter"
+alias sed="gsed"
+alias kubectl="minikube kubectl --"
 
 # Paths
 # export PATH=$PATH:/usr/local/go/bin
@@ -188,9 +190,29 @@ if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc' ];
 
 eval $(thefuck --alias)
 eval "$(op completion zsh)"; compdef _op op
+eval "$(zoxide init zsh)"
 # eval "$(oh-my-posh prompt init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/v$(oh-my-posh --version)/themes/star.omp.json)"
-
+eval "$(kompose completion zsh)"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# bun completions
+[ -s "/Users/ricardoambrogi/.bun/_bun" ] && source "/Users/ricardoambrogi/.bun/_bun"
+
+# bun
+export BUN_INSTALL="/Users/ricardoambrogi/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/ricardoambrogi/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+# azure cli completions
+[ -s "/usr/local/etc/bash_completion.d/az" ] && source "/usr/local/etc/bash_completion.d/az"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
