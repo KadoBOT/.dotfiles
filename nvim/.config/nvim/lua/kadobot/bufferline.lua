@@ -1,7 +1,5 @@
 vim.opt.termguicolors = true
 
-local colors = require("kanagawa.colors").setup({})
-
 require("bufferline").setup({
 	options = {
 		mode = "buffers",
