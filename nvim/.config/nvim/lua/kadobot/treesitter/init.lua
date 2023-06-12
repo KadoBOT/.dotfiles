@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = "all",
+	ensure_installed = {"go", "typescript"},
 	sync_install = true,
 	highlight = {
 		enable = true,

@@ -58,14 +58,6 @@ return require("lazy").setup({
 			require("tabout").setup({})
 		end,
 	},
-	{ "aklt/plantuml-syntax" },
-	{
-		"anuvyklack/hydra.nvim",
-		dependencies = "anuvyklack/keymap-layer.nvim",
-		config = function()
-			require("kadobot.hydra")
-		end,
-	},
 	{
 		"akinsho/bufferline.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
@@ -80,15 +72,7 @@ return require("lazy").setup({
 			require("template-string").setup()
 		end,
 	},
-	{
-		"Darazaki/indent-o-matic",
-		config = function()
-			require("indent-o-matic").setup({})
-		end,
-	},
-	{ "edgedb/edgedb-vim" },
 	{ "editorconfig/editorconfig-vim" },
-	{ "folke/lua-dev.nvim" },
 	{
 		"folke/paint.nvim",
 		config = function()
@@ -109,21 +93,10 @@ return require("lazy").setup({
 			require("kadobot.trouble")
 		end,
 	},
-	{ "folke/twilight.nvim" },
 	{
 		"folke/which-key.nvim",
 		config = function()
 			require("kadobot.which-key")
-		end,
-	},
-	{
-		"folke/zen-mode.nvim",
-		config = function()
-			require("zen-mode").setup({
-				plugins = {
-					kitty = { enabled = true },
-				},
-			})
 		end,
 	},
 	{
@@ -160,30 +133,10 @@ return require("lazy").setup({
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/vim-vsnip" },
 			{ "ray-x/cmp-treesitter" },
-			{
-				"KadoBOT/cmp-plugins",
-				-- "~/Projects/cmp-plugins",
-				config = function()
-					require("cmp-plugins").setup({
-						files = { "plugins.lua" },
-					})
-				end,
-			},
 		},
 		config = function()
 			require("kadobot.cmp")
 		end,
-	},
-	{
-		"iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-			vim.g.mkdp_preview_options = {
-				uml = { server = "http://localhost:8888", imageFormat = "svg" },
-			}
-		end,
-		ft = { "markdown" },
 	},
 	{ "jose-elias-alvarez/typescript.nvim" },
 	{
@@ -207,44 +160,6 @@ return require("lazy").setup({
 		end,
 	},
 	{
-		"m-demare/hlargs.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("hlargs").setup()
-		end,
-	},
-	{
-		"mbbill/undotree",
-		opt = true,
-		cmd = { "UndotreeShow" },
-		config = function()
-			vim.keymap.set("n", "<Space>tu", ":UndotreeShow<CR>", { desc = "UndoTree" })
-		end,
-	},
-	{
-		{
-			"mfussenegger/nvim-dap",
-			config = function()
-				require("kadobot.dap")
-			end,
-		},
-		{
-			"theHamsta/nvim-dap-virtual-text",
-			config = function()
-				require("nvim-dap-virtual-text").setup()
-			end,
-			dependencies = "mfussenegger/nvim-dap",
-		},
-		{
-			"rcarriga/nvim-dap-ui",
-			dependencies = { "mfussenegger/nvim-dap" },
-			config = function()
-				require("dapui").setup()
-				require("which-key").register({ ["<C-D>h"] = { require("dapui").toggle, "Toggle UI" } })
-			end,
-		},
-	},
-	{
 		"mvllow/modes.nvim",
 		config = function()
 			require("modes").setup({
@@ -262,13 +177,6 @@ return require("lazy").setup({
 		"mrjones2014/smart-splits.nvim",
 		config = function()
 			require("kadobot.smart-splits")
-		end,
-	},
-	{ "nanotee/sqls.nvim" },
-	{
-		"norcalli/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
 		end,
 	},
 	{
@@ -301,7 +209,7 @@ return require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.0",
+		tag = "0.1.1",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-project.nvim",
@@ -339,7 +247,6 @@ return require("lazy").setup({
 	},
 	{ "onsails/lspkind-nvim" },
 	{ "qpkorr/vim-bufkill" },
-	{ "p00f/nvim-ts-rainbow", dependencies = "nvim-treesitter/nvim-treesitter" },
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()
@@ -396,12 +303,6 @@ return require("lazy").setup({
 		"windwp/nvim-autopairs",
 		config = function()
 			require("kadobot.autopairs")
-		end,
-	},
-	{
-		"wuelnerdotexe/vim-astro",
-		config = function()
-			vim.g.astro_typescript = "enable"
 		end,
 	},
 })

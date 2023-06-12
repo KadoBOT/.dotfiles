@@ -85,26 +85,11 @@ setopt globdots
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    docker
-    docker-compose
-    # gcloud
-    # kubectl
-    # minikube
-    # helm
     common-aliases
-    # terraform
-    aws
-    vi-mode
     tmux
-    zsh-autosuggestions
-    zsh-completions
-    zsh-syntax-highlighting
     thefuck
     aliases
-    flutter
     fzf
-    node
-    npm
 	fzf-tab
 )
 
@@ -216,3 +201,5 @@ export PATH="$PNPM_HOME:$PATH"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -13,5 +13,5 @@ require("kanagawa").setup({
 	dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 	globalStatus = true, -- adjust window separators highlight for laststatus=3
 	colors = {},
-	overrides = {},
+	overrides = function(colors) return{} end,
 })

@@ -95,7 +95,6 @@ require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("project")
 require("telescope").load_extension("aerial")
-require("telescope").load_extension("dap")
 
 -- Highlights
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#F18F91" })

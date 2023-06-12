@@ -1,7 +1,7 @@
 local saga = require("lspsaga")
 local wk = require("which-key")
 
-saga.init_lsp_saga({
+saga.setup({
 	max_preview_lines = 40,
 	move_in_saga = { prev = "<C-p>", next = "<C-n>" },
 	finder_action_keys = {

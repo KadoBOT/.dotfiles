@@ -12,13 +12,15 @@ o.breakindent = true
 g.bufhidden = true
 o.clipboard = "unnamedplus"
 o.cmdheight = 1
-o.completeopt = "menuone,noselect"
+o.completeopt = "noselect"
 o.confirm = true
-o.conceallevel = 2
+o.conceallevel = 0
 o.cursorcolumn = false
-o.cursorline = true
+o.cursorline = false
 o.cursorlineopt = "screenline"
 o.display:append({ "lastline" })
+g.did_load_filetypes = false
+g.do_filetype_lua = true
 o.encoding = "utf-8"
 o.errorbells = false
 o.expandtab = false
@@ -33,11 +35,11 @@ o.fillchars:append({
 	vertright = "┣",
 	verthoriz = "╋",
 })
-o.foldmethod = "expr"
-o.foldexpr = "nvim_treesitter#foldexpr()"
+-- o.foldmethod = "expr"
+-- o.foldexpr = "nvim_treesitter#foldexpr()"
 o.formatoptions:remove({ "a", "t", "o", "2" })
 o.formatoptions:append("cqrnj")
-o.grepprg = [[rg --vimgrep --no-heading --smart-case]]
+o.grepprg = [[rg --hidden --vimgrep --glob --follow --smart-case]]
 o.history = 2000
 o.hidden = true
 o.hlsearch = true
@@ -45,9 +47,9 @@ o.ignorecase = true
 o.inccommand = "split"
 o.incsearch = true
 o.laststatus = 3
-o.lazyredraw = false
+o.lazyredraw = true
 o.linebreak = true
-o.list = true
+o.list = false
 o.listchars = {
 	tab = "▷ ",
 	trail = "·",
@@ -62,18 +64,18 @@ o.magic = true
 o.mat = 2
 o.matchpairs:append({ "<:>,「:」,『:』,【:】,“:”,‘:’,《:》" })
 o.modeline = false
-o.mouse = "nv"
+o.mouse = "a"
 o.nrformats:remove({ "octal" })
 o.number = true
 o.numberwidth = 4
-o.path = ".,**"
+o.path:append({"**"})
 o.pumheight = 10
 o.pumblend = 17
 -- o.re = 1
 o.redrawtime = 10000
 o.relativenumber = false
 o.ruler = false
-o.scrolljump = 5
+o.scrolljump = 1
 o.scrolloff = 4
 o.shell = vim.env.SHELL
 o.shiftround = true
@@ -83,8 +85,8 @@ o.showbreak = string.rep(" ", 4)
 o.showcmd = true
 o.showmatch = true
 o.showmode = false
-o.showtabline = 4
-o.sidescroll = 12
+o.showtabline = 1
+o.sidescroll = 1
 o.sidescrolloff = 15
 o.signcolumn = "yes"
 o.smartcase = true
@@ -97,7 +99,7 @@ o.splitright = true
 o.softtabstop = 4
 o.startofline = false
 o.syntax = "enable"
-o.synmaxcol = 180
+o.synmaxcol = 240
 o.swapfile = false
 o.tabstop = 4
 o.termguicolors = true
@@ -108,12 +110,12 @@ o.ttimeout = true
 o.ttimeoutlen = 10
 o.title = true
 o.ttyfast = true
-o.updatetime = 200
-o.virtualedit = "block"
+o.updatetime = 1000
+o.virtualedit = ""
 o.visualbell = true
 o.wildignore:append({ "node_modules/**,.git/**" })
 o.wildmenu = true
--- o.wildmode:append {"full,longest"}
+o.wildmode = "list"
 o.wildoptions = "pum"
 o.wrap = false
 o.wrapmargin = 8

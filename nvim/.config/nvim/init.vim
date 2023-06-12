@@ -1,3 +1,5 @@
+set termguicolors
+
 filetype plugin indent on
 let mapleader=" "
 
