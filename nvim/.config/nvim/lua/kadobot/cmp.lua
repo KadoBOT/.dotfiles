@@ -1,3 +1,5 @@
+vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
 local cmp = require("cmp")
 local cmp_buffer = require("cmp_buffer")
 local kind = require("lspkind")
@@ -105,8 +107,7 @@ cmp.event:on(
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			-- You must install `vim-vsnip` if you use the following as-is.
-			vim.fn["vsnip#anonymous"](args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
@@ -158,12 +159,8 @@ cmp.setup({
 	-- You should specify your *installed* sources.
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp", priority_weight = 110, group_index = 1 },
-		{ name = "vsnip", priority_weight = 105, group_index = 1 },
+		{ name = "luasnip", priority_weight = 105, group_index = 1 },
 		{ name = "treesitter", max_item_count = 10, keyword_length = 2, priority_weight = 102, group_index = 1 },
-		{ name = "plugins", priority_weight = 200, group_index = 1 },
-		{ name = "nvim_lsp_document_symbol", priority_weight = 98, group_index = 1 },
-		{ name = "nvim_lsp_signature_help", priority_weight = 97, group_index = 2 },
-		{ name = "nvim_lua", priority_weight = 95, group_index = 2 },
 	}, {
 		{ name = "path", priority_weight = 92, group_index = 2 },
 		{
@@ -199,7 +196,9 @@ cmp.setup({
 		completion = vim.tbl_deep_extend("force", cmp.config.window.bordered(), { col_offset = -1 }),
 	},
 	experimental = {
-		ghost_text = true,
+		ghost_text = {
+			hl_group = "CmpGhostText",
+		},
 	},
 	view = {
 		entries = cmp.EntriesConfig,

@@ -1,5 +1,3 @@
-vim.opt.termguicolors = true
-
 require("bufferline").setup({
 	options = {
 		mode = "buffers",
@@ -27,9 +25,12 @@ require("bufferline").setup({
 				padding = 1,
 			},
 		},
+		get_element_icon = function(element)
+			local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(element.filetype, { default = false })
+			return icon, hl
+		end,
 		show_buffer_icons = true,
 		show_buffer_close_icons = false,
-		show_buffer_default_icon = true,
 		show_close_icon = false,
 		show_tab_indicators = true,
 		persist_buffer_sort = true,
@@ -67,28 +68,4 @@ require("bufferline").setup({
 			fg = "#7E9CD8",
 		},
 	},
-})
-
-local wk = require("which-key")
-
-wk.register({
-	name = "Buffer",
-	["p"] = { ":BufferLineCyclePrev<CR>", "Previous Buffer" },
-	["n"] = { ":BufferLineCycleNext<CR>", "Next Buffer" },
-	["c"] = { ":BufferLineClosePick<CR>", "Close Buffer" },
-	["d"] = { ":BufferLineCloseRight<CR>", "Close Right" },
-	["1"] = { ":BufferLineGoToBuffer 1<CR>", "Buffer 1" },
-	["2"] = { ":BufferLineGoToBuffer 2<CR>", "Buffer 2" },
-	["3"] = { ":BufferLineGoToBuffer 3<CR>", "Buffer 3" },
-	["4"] = { ":BufferLineGoToBuffer 4<CR>", "Buffer 4" },
-	["5"] = { ":BufferLineGoToBuffer 5<CR>", "Buffer 5" },
-	["6"] = { ":BufferLineGoToBuffer 6<CR>", "Buffer 6" },
-	["7"] = { ":BufferLineGoToBuffer 7<CR>", "Buffer 7" },
-	["8"] = { ":BufferLineGoToBuffer 8<CR>", "Buffer 8" },
-	["9"] = { ":BufferLineGoToBuffer 9<CR>", "Buffer 9" },
-}, { prefix = "<leader>b" })
-
-wk.register({
-	["<C-p>"] = { ":BufferLineCyclePrev<CR>", "Previous Buffer" },
-	["<C-n>"] = { ":BufferLineCycleNext<CR>", "Next Buffer" },
 })

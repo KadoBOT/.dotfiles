@@ -10,7 +10,6 @@ local M = {}
 local nvim_lsp = require("lspconfig")
 local configs = require("lspconfig/configs")
 local cmp_lsp = require("cmp_nvim_lsp")
-local wk = require("which-key")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -62,6 +61,20 @@ local on_attach = function(client, bufnr)
 	-- omnifunc
 	if client.server_capabilities.completion then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	end
+
+	if client.name == "gopls" then
+		if not client.server_capabilities.semanticTokensProvider then
+			local semantic = client.config.capabilities.textDocument.semanticTokens
+			client.server_capabilities.semanticTokensProvider = {
+				full = true,
+				legend = {
+					tokenTypes = semantic.tokenTypes,
+					tokenModifiers = semantic.tokenModifiers,
+				},
+				range = true,
+			}
+		end
 	end
 
 	if client.supports_method("textDocument/formatting") then
@@ -133,9 +146,9 @@ local on_attach = function(client, bufnr)
 		})
 	end
 
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-	vim.lsp.handlers["textDocument/signatureHelp"] =
-		vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+	-- vim.lsp.handlers["textDocument/signatureHelp"] =
+	-- 	vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 	-- Diagnostics
 	local config = {
@@ -156,57 +169,6 @@ local on_attach = function(client, bufnr)
 
 	vim.diagnostic.config(config)
 end
-
--- See `:help vim.lsp.*` for documentation on any of the below functions
-wk.register({
-	["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Doc" },
-	["<leader>e"] = { "<cmd>lua vim.diagnostic.setqflist()<CR>", "Add to Quickfix" },
-	["<leader>q"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Add to Loclist" },
-})
-
-vim.keymap.set("n", "gr", function()
-	return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true })
-
-wk.register({
-	["D"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Go to declaration" },
-	["d"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
-	["i"] = { ":Telescope lsp_implementations<CR>", "Go to implementation" },
-	-- ["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-	["R"] = { ":Telescope lsp_references<CR>", "References" },
-	["s"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-	["y"] = { ":Telescope lsp_document_symbols<CR>", "Document symbols" },
-	["Y"] = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
-	["t"] = { ":Telescope lsp_type_definitions<CR>", "Type Definition" },
-	-- ["a"] = { ":lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
-	-- ["z"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
-	-- ["o"] = { ":Telescope diagnostics<CR>", "Document Diagnostics" },
-	["e"] = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Float diagnostic" },
-	-- ["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
-	-- ["p"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
-	["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Buffer" },
-}, { prefix = "g" })
-
-wk.register({
-	-- ["a"] = { "<cmd>lua vim.lsp.buf.range_code_action()<CR>", "Code Actions" },
-	["f"] = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format Buffer" },
-}, { prefix = "g", mode = "v" })
-
-wk.register({
-	name = "Workspace",
-	["a"] = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", "Add folder" },
-	["r"] = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Workspace Folder" },
-	["l"] = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Workspace Folders" },
-}, { prefix = "<leader>=" })
-
-wk.register({
-	name = "Code",
-	["r"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
-	["f"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format Buffer" },
-}, { prefix = "<leader>c" })
-
-vim.api.nvim_set_keymap("i", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
 
 local servers = mason_lspconfig.get_installed_servers()
 

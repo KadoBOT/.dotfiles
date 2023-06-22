@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = {"go", "typescript"},
+	ensure_installed = { "go", "typescript", "tsx" },
 	sync_install = true,
 	highlight = {
 		enable = true,
@@ -27,6 +27,9 @@ require("nvim-treesitter.configs").setup({
 	},
 	-- experimental
 	indent = {
+		enable = true,
+	},
+	context_commentstring = {
 		enable = true,
 	},
 })

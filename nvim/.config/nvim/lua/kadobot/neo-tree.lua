@@ -1,4 +1,4 @@
-vim.keymap.set("n", ";", ":Neotree toggle reveal<CR>", { desc = "Toggle" })
+vim.keymap.set("n", ";", ":Neotree toggle reveal<CR>", { desc = "Toggle", noremap = true })
 vim.keymap.set("n", "<leader>tt", ":Neotree toggle<CR>", { desc = "Toggle" })
 vim.keymap.set("n", "<leader>tb", ":Neotree buffers float<CR>", { desc = "Buffers" })
 vim.keymap.set("n", "<leader>tg", ":Neotree git_status float<CR>", { desc = "Git Status" })
