@@ -21,4 +21,4 @@ map({ "v" }, "<leader>{", "<esc>`>a}<esc>`<i{<esc>", { noremap = true, silent = 
 map({ "v" }, "<leader>$", "<esc>`>a}<esc>`<i${<esc>", { noremap = true, silent = true })
 
 -- buffers
-map("", "<leader>z", ":bd<cr>", { noremap = true })
+map("", "<leader><Space>", ":b#<cr>", { noremap = true, desc = "Previous Buffer" })

@@ -88,13 +88,6 @@ local on_attach = function(client, bufnr)
 		})
 	end
 
-	if client.name == "tsserver" then
-		client.server_capabilities.document_formatting = false
-		client.server_capabilities.document_formatting_range = false
-
-		vim.api.nvim_create_autocmd("BufWritePre", { buffer = bufnr, command = ":EslintFixAll" })
-	end
-
 	if client.name == "sqls" then
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "SqlsConnectionChoice",

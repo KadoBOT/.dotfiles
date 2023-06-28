@@ -142,8 +142,8 @@ return {
 				"<cmd>lua vim.diagnostic.open_float()<CR>",
 				desc = "Float diagnostic",
 			},
-			-- ["n"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Go to prev diagnostic" },
-			-- ["p"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Go to prev diagnostic" },
+			{ "gn", "<cmd>lua vim.diagnostic.goto_next()<CR>", desc = "Go to prev desc = diagnostic" },
+			{ "gp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", desc = "Go to prev desc = diagnostic" },
 			{
 				"gf",
 				"<cmd>lua vim.lsp.buf.format()<CR>",

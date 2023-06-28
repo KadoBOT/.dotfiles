@@ -47,7 +47,7 @@ return {
 			modes = {
 				char = {
 					enabled = true,
-					keys = { "f", "f", "t", "t", "," },
+					keys = { "f", "F", "t", "T", "," },
 				},
 			},
 		},
@@ -62,10 +62,28 @@ return {
 			},
 			{
 				"S",
-				mode = { "o", "x" },
+				mode = { "n", "o", "x" },
 				function()
 					require("flash").treesitter()
 				end,
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					-- jump to a remote location to execute the operator
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "n", "o", "x" },
+				function()
+					-- show labeled treesitter nodes around the search matches
+					require("flash").treesitter_search()
+				end,
+				desc = "Treesitter Search",
 			},
 		},
 	},
@@ -109,61 +127,6 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("kadobot.aerial")
-		end,
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("kadobot.indent-blankline")
-		end,
-	},
-	{
-		"lukas-reineke/virt-column.nvim",
-		config = function()
-			vim.opt.colorcolumn = "121"
-			require("virt-column").setup()
-		end,
-	},
-	{
-		"mrjones2014/smart-splits.nvim",
-		config = function()
-			require("kadobot.smart-splits")
-		end,
-	},
-	{
-		"abecodes/tabout.nvim",
-		after = { "nvim-cmp" },
-		wants = { "nvim-treesitter" },
-		config = function()
-			require("tabout").setup({})
-		end,
-	},
-	{ "editorconfig/editorconfig-vim" },
-	{
-		"folke/paint.nvim",
-		config = function()
-			require("paint").setup({
-				highlights = {
-					{
-						filter = { filetype = "go" },
-						pattern = "^%/%/%s*(%w+)%s*[^\n]%w",
-						hl = "Keyword",
-					},
-				},
-			})
-		end,
-	},
-	{
-		"folke/which-key.nvim",
-		config = function()
-			require("kadobot.which-key")
-		end,
-	},
-	{
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			require("kadobot.lspsaga")
 		end,
 	},
 	{
@@ -228,5 +191,17 @@ return {
 				desc = "Search on current file",
 			})
 		end,
+	},
+	{
+		"echasnovski/mini.bufremove",
+		version = "*",
+		config = function()
+			require("mini.bufremove").setup()
+		end,
+		keys = {
+			{ "<space>bd", "<cmd>lua MiniBufremove.delete()<cr>", desc = "Delete buffer" },
+			{ "<leader>z", "<cmd>lua MiniBufremove.unshow_in_window()<cr>", desc = "Unshow buffer in window" },
+			{ "<leader>Z", "<cmd>lua MiniBufremove.unshow()<cr>", desc = "Unshow buffer" },
+		},
 	},
 }
