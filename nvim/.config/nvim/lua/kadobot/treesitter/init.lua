@@ -32,6 +32,7 @@ require("nvim-treesitter.configs").setup({
 	context_commentstring = {
 		enable = true,
 	},
+	additional_vim_regex_highlighting = true,
 })
 
 require("kadobot.treesitter.parsers")

@@ -28,12 +28,10 @@ return {
 			require("kadobot.cmp")
 		end,
 	},
-	{ "jose-elias-alvarez/typescript.nvim" },
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("kadobot.null-ls")
-		end,
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -46,6 +44,7 @@ return {
 			require("kadobot.treesitter")
 		end,
 	},
+	{ "nvim-treesitter/playground" },
 	{
 		"axelvc/template-string.nvim",
 		config = function()
@@ -192,4 +191,5 @@ return {
 			end,
 		},
 	},
+	{ "DingDean/wgsl.vim" },
 }

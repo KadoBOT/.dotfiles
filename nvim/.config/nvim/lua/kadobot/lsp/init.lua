@@ -142,6 +142,30 @@ local on_attach = function(client, bufnr)
 	-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 	-- vim.lsp.handlers["textDocument/signatureHelp"] =
 	-- 	vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+	vim.lsp.handlers["wgsl-analyzer/requestConfiguration"] = function(err, result, ctx, config)
+		return {
+			success = true,
+			customImports = { _dummy_ = "dummy" },
+			shaderDefs = {},
+			trace = {
+				extension = false,
+				server = false,
+			},
+			inlayHints = {
+				enabled = false,
+				typeHints = false,
+				parameterHints = false,
+				structLayoutHints = false,
+				typeVerbosity = "inner",
+			},
+			diagnostics = {
+				typeErrors = true,
+				nagaParsingErrors = true,
+				nagaValidationErrors = true,
+				nagaVersion = "main",
+			},
+		}
+	end
 
 	-- Diagnostics
 	local config = {
@@ -189,13 +213,23 @@ end
 for _, lsp in ipairs(servers) do
 	if lsp == "golangci_lint_ls" then
 		nvim_lsp[lsp].setup({ filetypes = { "go", "gomod" } })
-	elseif lsp == "tsserver" then
-		require("typescript").setup({
-			disable_commands = false, -- prevent the plugin from creating Vim commands
-			debug = false, -- enable debug logging for commands
-			server = { -- pass options to lspconfig's setup method
-				on_attach = on_attach,
+	elseif lsp == "wgsl_analyzer" then
+		nvim_lsp[lsp].setup({
+			settings = {
+				["wgsl-analyzer"] = {
+					diagnostics = {
+						typeErrors = true,
+						nagaParsingErrors = true,
+						nagaValidationErrors = true,
+					},
+				},
 			},
+			on_attach = on_attach,
+		})
+	elseif lsp == "denols" then
+		nvim_lsp[lsp].setup({
+			on_attach = on_attach,
+			root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 		})
 	elseif lsp == "sqls" then
 		nvim_lsp.sqls.setup({

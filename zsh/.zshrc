@@ -4,7 +4,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
-
+export BUN_INSTALL="$HOME/.bun"
+export DENO_INSTALL="/Users/kadobot/.deno"
 export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
@@ -13,6 +14,8 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/
 export PATH="$(brew --prefix llvm)/bin:${PATH}"
 export PATH=$PATH:$HOME/.local/bin
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -91,6 +94,7 @@ plugins=(
     aliases
     fzf
 	fzf-tab
+	terraform
 )
 
 fpath+=~/.zfunc
@@ -167,12 +171,6 @@ alias luamake=/Users/ricardoambrogi/Projects/lua-language-server/3rd/luamake/lua
 export PATH="$HOME/.serverless/bin:$PATH"
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ricardoambrogi/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/ricardoambrogi/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 eval $(thefuck --alias)
 eval "$(op completion zsh)"; compdef _op op
 eval "$(zoxide init zsh)"
@@ -203,3 +201,28 @@ export PATH="$PNPM_HOME:$PATH"
 source <(ng completion script)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/kadobot/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/kadobot/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kadobot/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/kadobot/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kadobot/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kadobot/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kadobot/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kadobot/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform

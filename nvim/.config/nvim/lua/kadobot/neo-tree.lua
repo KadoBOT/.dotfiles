@@ -28,8 +28,11 @@ require("neo-tree").setup({
 	close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
 	enable_git_status = true,
-	enable_diagnostics = false,
+	enable_diagnostics = true,
 	default_component_configs = {
+		container = {
+			enable_character_fade = true,
+		},
 		indent = {
 			indent_size = 2,
 			padding = 0, -- extra padding on left hand side
@@ -49,10 +52,16 @@ require("neo-tree").setup({
 			folder_open = "",
 			folder_empty = "ﰊ",
 			default = "*",
+			highlight = "NeoTreefileIcon",
+		},
+		modified = {
+			symbol = "[+]",
+			highlight = "NeoTreeModified",
 		},
 		name = {
 			trailing_slash = false,
 			use_git_status_colors = true,
+			highlight = "NeoTreeFileName",
 		},
 		git_status = {
 			symbols = {
@@ -68,14 +77,6 @@ require("neo-tree").setup({
 				staged = "",
 				conflict = "",
 			},
-		},
-	},
-	event_handlers = {
-		{
-			event = "file_opened",
-			handler = function(file_path)
-				require("neo-tree").close_all()
-			end,
 		},
 	},
 	window = {
@@ -134,7 +135,9 @@ require("neo-tree").setup({
 				--"thumbs.db"
 			},
 		},
-		follow_current_file = true, -- This will find and focus the file in the active buffer every
+		follow_current_file = {
+			enable = true,
+		}, -- This will find and focus the file in the active buffer every
 		-- time the current file is changed while the tree is open.
 		hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
 		-- in whatever position is specified in window.position

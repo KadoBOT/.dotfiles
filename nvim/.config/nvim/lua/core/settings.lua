@@ -18,6 +18,7 @@ g.lsp_handlers_enabled = true
 g.mapleader = " "
 g.maplocaleader = ","
 g.markdown_recommended_style = 0
+g.markdown_fenced_languages = { "ts=typescript" }
 g.tmux_navigator_no_mappings = 1
 g.ui_notifications_enabled = true
 
@@ -111,21 +112,20 @@ o.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 o.selection = "old"
 o.shell = vim.env.SHELL
 o.shiftround = true
-o.shiftwidth = 2
+o.shiftwidth = 4
 o.shortmess:append({ c = true, I = true, W = true, C = true })
 o.showbreak = string.rep(" ", 4)
 o.showcmd = true
 o.showmatch = true
 o.showmode = false
-o.showtabline = 2
+o.showtabline = 4
 o.sidescroll = 1
 o.sidescrolloff = 15
 o.signcolumn = "yes"
 o.smartcase = true
 o.smartindent = true
 o.smarttab = true
-o.smoothscroll = true
-o.softtabstop = 2
+o.softtabstop = 4
 o.spelllang = { "en" }
 o.splitbelow = true
 o.splitkeep = "screen"

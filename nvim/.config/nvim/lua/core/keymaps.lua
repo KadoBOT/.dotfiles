@@ -1,11 +1,11 @@
 local map = vim.keymap.set
 
 -- remap navigation
-map({ "n", "v" }, "l", "<Left>", { noremap = true })
-map({ "n", "v" }, "h", "<Down>", { noremap = true })
-map({ "n", "v" }, "j", "<Up>", { noremap = true })
-map({ "n", "v" }, "z", "<Right>", { noremap = true })
-map({ "n", "v" }, "k", "z", { noremap = true })
+-- map({ "n", "v" }, "l", "<Left>", { noremap = true })
+-- map({ "n", "v" }, "h", "<Down>", { noremap = true })
+-- map({ "n", "v" }, "j", "<Up>", { noremap = true })
+-- map({ "n", "v" }, "z", "<Right>", { noremap = true })
+-- map({ "n", "v" }, "k", "z", { noremap = true })
 
 -- yank
 map({ "v" }, "<leader>y", "*y", { noremap = true })
