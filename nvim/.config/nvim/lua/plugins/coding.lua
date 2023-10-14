@@ -29,9 +29,11 @@ return {
 		end,
 	},
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function ()
+			require("kadobot.null-ls")
+		end
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",

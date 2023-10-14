@@ -45,7 +45,7 @@ o.diffopt:append("linematch:60")
 o.display:append({ "lastline" })
 o.encoding = "utf-8"
 o.errorbells = false
-o.expandtab = true
+o.expandtab = false
 o.fileencoding = "utf-8"
 o.fileformats:append({ "mac" })
 o.fillchars:append({
@@ -79,7 +79,7 @@ o.lazyredraw = false
 o.linebreak = true
 o.list = true
 o.listchars = {
-	tab = "▷ ",
+	tab = "▏ ",
 	trail = "·",
 	space = " ",
 	eol = "↲",

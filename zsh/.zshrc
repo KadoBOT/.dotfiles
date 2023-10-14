@@ -16,6 +16,7 @@ export PATH="$(brew --prefix llvm)/bin:${PATH}"
 export PATH=$PATH:$HOME/.local/bin
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH=$PATH:/usr/bin
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -201,22 +202,6 @@ export PATH="$PNPM_HOME:$PATH"
 source <(ng completion script)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/kadobot/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/kadobot/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/kadobot/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/kadobot/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kadobot/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kadobot/Downloads/google-cloud-sdk/path.zsh.inc'; fi

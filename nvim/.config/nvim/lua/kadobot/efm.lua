@@ -1,5 +1,4 @@
 -- Register linters and formatters per language
-local eslint = require('efmls-configs.linters.eslint')
 local prettier = require('efmls-configs.formatters.prettier')
 local stylua = require('efmls-configs.formatters.stylua')
 local biome = require('efmls-configs.formatters.biome')
@@ -7,7 +6,7 @@ local flake8 = require('efmls-configs.linters.flake8')
 local autopep8 = require('efmls-configs.formatters.autopep8')
 
 local languages = {
-    typescript = { eslint, prettier, biome },
+    typescript = { prettier, biome },
     python = { flake8, autopep8 },
     lua = { stylua },
 }
