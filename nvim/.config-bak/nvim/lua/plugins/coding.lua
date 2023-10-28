@@ -31,33 +31,21 @@ return {
 	{
 		"nvimtools/none-ls.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function ()
+		config = function()
 			require("kadobot.null-ls")
-		end
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-		config = function()
-			require("kadobot.treesitter")
 		end,
 	},
-	{ "nvim-treesitter/playground" },
 	{
-		"axelvc/template-string.nvim",
-		config = function()
-			require("template-string").setup()
-		end,
+		"nvim-treesitter/playground",
+		cmd = "TSPlaygroundToggle",
 	},
 	{
 		"folke/trouble.nvim",
 		config = function()
 			require("kadobot.trouble")
 		end,
+		cmd = "TroubleToggle",
+		lazy = true,
 	},
 	{
 		"smjonas/inc-rename.nvim",
@@ -67,6 +55,7 @@ return {
 				hl_group = "Substitute",
 			})
 		end,
+		cmd = "Rename",
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -185,13 +174,10 @@ return {
 		end,
 	},
 	{
-		{
-			"echasnovski/mini.comment",
-			version = false,
-			config = function()
-				require("mini.comment").setup()
-			end,
-		},
+		"echasnovski/mini.comment",
+		version = false,
+		config = function()
+			require("mini.comment").setup()
+		end,
 	},
-	{ "DingDean/wgsl.vim" },
 }

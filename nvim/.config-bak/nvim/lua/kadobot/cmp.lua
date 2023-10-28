@@ -111,8 +111,14 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Replace }),
-		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Replace }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-l>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				return cmp.complete_common_string()
+			end
+			fallback()
+		end, { "i", "c" }),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-s>"] = cmp.mapping.complete(),
@@ -120,14 +126,14 @@ cmp.setup({
 		["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 		["<Tab>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item()
+				cmp.select_next_item({ behavior = cmp.ConfirmBehavior.Insert })
 			else
 				fallback()
 			end
 		end,
 		["<S-Tab>"] = function(fallback)
 			if cmp.visible() then
-				cmp.select_prev_item()
+				cmp.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert })
 			else
 				fallback()
 			end
@@ -197,9 +203,7 @@ cmp.setup({
 	},
 	experimental = {
 		native_menu = false,
-		ghost_text = {
-			hl_group = "CmpGhostText",
-		},
+		ghost_text = false,
 	},
 	view = {
 		entries = cmp.EntriesConfig,

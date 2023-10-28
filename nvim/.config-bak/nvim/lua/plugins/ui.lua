@@ -23,13 +23,6 @@ return {
 		end,
 	},
 	{
-		"lukas-reineke/virt-column.nvim",
-		config = function()
-			vim.opt.colorcolumn = "121"
-			require("virt-column").setup()
-		end,
-	},
-	{
 		"mvllow/modes.nvim",
 		config = function()
 			require("modes").setup({
@@ -55,20 +48,12 @@ return {
 		end,
 	},
 	{
-		"nvim-telescope/telescope-fzf-writer.nvim",
-		after = "telescope.nvim",
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
-	{
 		"rebelot/kanagawa.nvim",
 		config = function()
 			require("kadobot.kanagawa")
 		end,
+		lazy = true,
 	},
-	{ "nvim-tree/nvim-web-devicons" },
 	{
 		"nvim-telescope/telescope.nvim",
 		version = false,
@@ -119,5 +104,4 @@ return {
 		},
 		cmd = "Telescope",
 	},
-	{ "onsails/lspkind-nvim" },
 }

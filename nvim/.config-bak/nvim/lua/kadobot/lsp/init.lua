@@ -231,6 +231,12 @@ for _, lsp in ipairs(servers) do
 			on_attach = on_attach,
 			root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
 		})
+	elseif lsp == "tsserver" then
+		nvim_lsp[lsp].setup({
+			on_attach = on_attach,
+			root_dir = nvim_lsp.util.root_pattern(".git"),
+			capabilities = table.insert(cmp_lsp.default_capabilities(), capabilities),
+		})
 	elseif lsp == "sqls" then
 		nvim_lsp.sqls.setup({
 			settings = {
