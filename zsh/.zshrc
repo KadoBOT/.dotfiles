@@ -17,6 +17,8 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH=$PATH:/usr/bin
+export MODULAR_HOME="/Users/kadobot/.modular"
+export PATH="/Users/kadobot/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
